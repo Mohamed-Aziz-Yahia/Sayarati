@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sayarati: Sign Up</title>
+    <style>
+      body {
+        font-family: "Montserrat", sans-serif;
+        display: flex;
+        height: 100vh;
+        margin: 0;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0; 
+        width: 100%; 
+        height: 100%;
+        overflow-x: hidden;
+      }
+      h2#main-title {
+        font-family: "Poppins", sans-serif;
+        color: black;
+        font-weight: bold;
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      .container {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+      }
+
+      div.left-section {
+        display: none;
+      }
+
+      .right-section {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+      form#form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .signin-box {
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .signin-box h2 {
+        color: rgb(255, 255, 255);
+        font-size: 1.75rem;
+        margin-bottom: 10px;
+        text-align: left;
+      }
+
+      .signin-box p {
+        display: none;
+      }
+
+      .input-group {
+        display:flex;
+        flex-direction: column;
+        width: 95%;
+        margin-right:20px;
+        margin-bottom: 15px;
+        text-align: right;
+      }
+      
+      .input-group input {
+        height: 48px;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        background-color: #e5e5e5;
+      }
+
+      .input-group input::placeholder {
+        color: #808080;
+        font-family: "Roboto", sans-serif;
+        padding-left: 10px;
+        font-size: 1.2rem;
+      }
+
+      .signin-box button {
+        width: 95%;
+        height: 60px;
+        padding: 12px;
+        background-color: rgb(1, 1, 1);
+        color: rgb(255, 248, 248);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.5);
+        font-weight: bold;
+        margin: 10px 0;
+        margin-right:20px;
+      }
+      .signin-box button:hover {
+        background-color: #333333;
+      }
+      
+      .options {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.875rem;
+        margin: 15px 0;
+        /* padding: 10px 0; */
+      }
+
+      .options a {
+        color: black;
+        text-decoration: none;
+      }
+
+      .options input {
+        margin-right: 190px;
+      }
+      a#forgot-password {
+        margin-right: 20px;
+        font-size: 0.9rem;
+        color: #007aff;
+        text-decoration: none;
+        margin-bottom: 0;
+      }
+      a#forgot-password:hover,#login-btn:hover {
+       color:#005bb5;
+      }
+      label.remember-me {
+        display: flex;
+      }
+      label.remember-me span {
+        margin-left: 10px;
+        margin-right: 110px;
+      }
+      label.remember-me input {
+        margin-right: 0px;
+      }
+      .signup-link {
+        margin-top: 15px;
+        font-size: 0.875rem;
+      }
+
+      .signup-link a {
+        color: black;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      hr#phone-hr {
+        display: block;
+        background-color: #e5e5e5;
+        height: 0.01px;
+        width: 95%;
+        margin-top: 20px;
+      }
+
+      #login {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        margin-bottom: 60px;
+      }
+      div#login p {
+        display: block;
+        color: black;
+        font-size: 1rem;
+      }
+      #login-btn {
+        background-color: white;
+        text-align: right;
+        color: #007aff;
+        text-shadow: 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.5);
+        border: none;
+        width: 45%;
+        height: 40px;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        font-size: 1.5rem;
+      }
+      footer#footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        padding-bottom: 200px;
+      }
+      footer img.S2 {
+        width: 65px;
+        height: 55px;
+        margin-bottom: 30px;
+        margin-right: 0;
+      }
+      footer#footer img.ayarati {
+        width: 156px;
+        height: 42px;
+      }
+
+      @media (min-width: 768px) {
+        .container {
+          flex-direction: row;
+        }
+        body {
+          color: white;
+          background-color: #fe8400;
+        }
+        div.left-section {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          background-color: #fff;
+          border-radius: 0 0 20px 20px;
+          padding: 20px;
+          width: 70%;
+          border-radius: 0 20px 20px 0;
+        }
+        .left-section img#S {
+          margin-bottom: 25px;
+        }
+        div.right-section {
+          width: 30%;
+        }
+        .right-section h2#main-title {
+          font-weight: 700;
+          color: white;
+          letter-spacing: 1px;
+        }
+        .signin-box {
+          width: 90%;
+        }
+        .signin-box p {
+          display: block;
+          color: white;
+          font-size: 1rem;
+          margin-bottom: 20px;
+          color: white;
+        }
+        .input-group input {
+          background-color: white;
+          height: 30px;
+        }
+        .input-group input::placeholder {
+          font-size: 1rem;
+          font-family: "Montserrat", sans-serif;
+          color: #575757;
+        }
+        div a#forgot-password {
+          display: none;
+        }
+        div label.remember-me {
+          margin-right: 55px;
+        }
+        form button#signup-btn {
+          height: 60px;
+          border-radius: 15px;
+          font-family: "Montserrat", sans-serif;
+          font-weight: 600;
+        }
+
+        hr#phone-hr {
+          border: none;
+          height: 3px;
+          background-color: black;
+          width: 100%;
+        }
+        div#login {
+          margin-top: 20px;
+          margin-bottom: 10px;
+        }
+        div#login p {
+          color: white;
+        }
+        div#login button {
+          background-color: white;
+          color: black;
+          font-size: 1rem;
+          text-align: center;
+          font-family: "Montserrat", sans-serif;
+          font-weight: 500;
+        }
+        div#login button:hover {
+          background-color: #e5e5e5;
+          color:black;
+        }
+        footer#footer {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-section">
+        <img id="S" src="./Logos/S.png" alt="logo" />
+        <img src="./Logos/ayarati.png" alt="logo" />
+      </div>
+      <div class="right-section">
+        <div class="signin-box">
+          <h2 id="main-title">Sign up</h2>
+          <p>If you already a member, easily login now.</p>
+          <form id="form">
+            <div class="input-group">
+              <input type="text" placeholder="Email or Phone" required />
+            </div>
+            <div class="input-group">
+              <input type="password" placeholder="Password" required />
+            </div>
+            <div class="options">
+              <label class="remember-me"
+                ><input type="checkbox" /> <span>Remember me</span></label
+              >
+              <div><a id="forgot-password" href="#">Forgot Password?</a></div>
+            </div>
+            <button id="signup-btn" type="submit">Sign up</button>
+          </form>
+
+          <hr id="phone-hr" />
+          <div id="login">
+            <p>Already have an account?</p>
+            <button id="login-btn">Login</button>
+          </div>
+        </div>
+      </div>
+
+      <footer id="footer">
+        <img class="S2" src="./Logos/S.png" alt="logo" />
+        <img class="ayarati" src="./Logos/ayarati.png" alt="logo" />
+      </footer>
+    </div>
+  </body>
+</html>
