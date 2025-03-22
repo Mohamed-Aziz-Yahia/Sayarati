@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sayarati</title>
+    <link rel="stylesheet" type="text/css" href="./main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img class="S-logo" src="./Logos/S-orange.png" alt="S Logo" />
+        <img
+          class="ayarati-logo"
+          src="./Logos/ayarati-white.png"
+          alt="Ayarati Logo"
+        />
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#section5">Contact</a></li>
+        </ul>
+      </nav>
+      <a id="header-btn" href="./login.html">Login|Sign up</a>
+    </header>
+    <main>
+      <section id="section1">
+        <div class="hidden-left" id="layer0">
+          <h1>YOUR WAY<br />TOWARDS PERFECTION</h1>
+          <p>
+            SAYARATI is your guide on the road.<br />
+            Use it now and experience what<br />
+            you’ve never seen before.
+          </p>
+          <a id="explore" href="#">Explore Now</a>
+        </div>
+        <div id="layer1"></div>
+        <img
+          class="hidden-right"
+          id="section1-img"
+          src="./images/Section1-img.jpg"
+          alt="Mercedes Car"
+        />
+        <div id="layer3"></div>
+        <div id="layer4"></div>
+      </section>
+      <section id="section2">
+        <h1 class="hidden-left">About Us</h1>
+        <div id="about-content">
+          <img
+            class="hidden-left"
+            id="section2-img"
+            src="./images/Section2-img.jpg"
+            alt="Orange car"
+          />
+          <p id="shown-paragraph"class="hidden-right">
+            You will find everything you need in Sayarati,<br />
+            including locations of people who repair cars<br />
+            and where various car parts are sold...<br />
+            <button onclick="showParagraph()" id="read-more-btn">Read More</button>
+          </p>
+          <p id="hidden-paragraph" class="hidden-right"> 
+            You will find everything you need in Sayarati,<br />
+            including locations of people who repair cars<br />
+            and where various car parts are sold. You can<br />
+            also book a car repair service and buy car<br />
+            parts online. Sayarati is your guide on the road.<br />
+            Use it now and experience what you’ve never<br />
+            seen before.
+            <button onclick="hideParagraph()" id="read-less-btn">Read Less</button>
+          </p>
+        </div>
+      </section>
+      <section id="section3">
+        <h1 class="hidden-left">Our Featured Car Parts</h1>
+        <div id="section3-container">
+          <div class="section3-item hidden-left">
+            <img src="./images/car-part1.png" alt="Beta 3026SA" />
+            <h2>Beta 3026SA</h2>
+            <div class="item-information">
+              <img src="./Logos/frame.png" alt="Frame logo" />
+              <p>5</p>
+              <img src="./Logos/gas-station.png" alt="Gas station logo" />
+              <p>Gasoline</p>
+              <img src="./Logos/location.png" alt="Location logo" />
+              <p>Ouargla</p>
+            </div>
+            <div class="item-rating">
+              <img src="./Logos/star.png" alt="Star logo" />
+              <img src="./Logos/star.png" alt="Star logo" />
+              <img src="./Logos/star.png" alt="Star logo" />
+            </div>
+            <div class="item-price">
+              <div>
+                <p>Price</p>
+                <h2>500,00DA</h2>
+              </div>
+              <a class="btn" href="#">Book Now</a>
+            </div>
+          </div>
+          <div class="section3-item hidden-left">
+            <img src="./images/car-part2.png" alt="Sequential Gearbox" />
+            <h2>Sequential Gearbox</h2>
+            <div class="item-information">
+              <img src="./Logos/frame.png" alt="Frame logo" />
+              <p>2</p>
+              <img src="./Logos/gas-station.png" alt="Gas station logo" />
+              <p>Electric</p>
+              <img src="./Logos/location.png" alt="Location logo" />
+              <p>Oued Souf</p>
+            </div>
+            <div class="item-rating">
+              <img src="./Logos/star.png" alt="Star logo" />
+              <img src="./Logos/star.png" alt="Star logo" />
+              <img src="./Logos/star.png" alt="Star logo" />
+              <img src="./Logos/star.png" alt="Star logo" />
+            </div>
+            <div class="item-price">
+              <div>
+                <p>Price</p>
+                <h2>2800,00DA</h2>
+              </div>
+              <a class="btn" href="#">Book Now</a>
+            </div>
+          </div>
+          <div class="section3-item hidden-left">
+            <img src="./images/car-part3.png" alt="GD1386" />
+            <h2>GD1386</h2>
+            <div class="item-information">
+              <img src="./Logos/frame.png" alt="Frame logo" />
+              <p>4</p>
+              <img src="./Logos/gas-station.png" alt="Gas station logo" />
+              <p>Gasoline</p>
+              <img src="./Logos/location.png" alt="Location logo" />
+              <p>Taibet</p>
+            </div>
+            <div class="item-rating">
+              <img src="./Logos/star.png" alt="Star logo" />
+              <img src="./Logos/star.png" alt="Star logo" />
+              <img src="./Logos/star.png" alt="Star logo" />
+              <img src="./Logos/star.png" alt="Star logo" />
+              <img src="./Logos/star.png" alt="Star logo" />
+            </div>
+            <div class="item-price">
+              <div>
+                <p>Price</p>
+                <h2>5360,00DA</h2>
+              </div>
+              <a class="btn" href="#">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="section4">
+        <h1 class="hidden-left">Car Breakdown</h1>
+        <img
+          id="section4-img"
+          src="./images/map.png"
+          alt="Map showing near car repair garages"
+        />
+        <div id="section4-container">
+          <div id="section4-inputs">
+            <input
+              onclick="showMap()"
+              id="locationInput"
+              readonly
+              type="text"
+              placeholder="Your current location"
+              name="Location"
+            />
+            <input class="date" type="time" placeholder="Time" name="Time" />
+            <input
+              type="text"
+              placeholder="Choose a car model"
+              id="carInput"
+              onfocus="showDropdown()"
+              onblur="hideDropdown()"
+            />
+            <img
+              id="arrow-logo"
+              src="./Logos/arrow-down.png"
+              alt="Arrow down"
+            />
+            <div class="dropdown-list" id="dropdownList">
+              <div class="dropdown-item" onclick="selectCar('Toyota Camry')">
+                Toyota Camry
+              </div>
+              <div class="dropdown-item" onclick="selectCar('Honda Civic')">
+                Honda Civic
+              </div>
+              <div class="dropdown-item" onclick="selectCar('Ford Mustang')">
+                Ford Mustang
+              </div>
+              <div class="dropdown-item" onclick="selectCar('Tesla Model S')">
+                Tesla Model S
+              </div>
+              <div class="dropdown-item" onclick="selectCar('BMW X5')">
+                BMW X5
+              </div>
+            </div>
+          </div>
+          <button type="submit" id="search-btn">Search</button>
+        </div>
+        <div id="map"></div>
+      </section>
+      <section id="section5">
+        <h1 class="hidden-left">Contact Us</h1>
+        <div id="section5-container">
+          <div id="contact-info">
+            <input type="text" placeholder="Name" name="Name" />
+            <input type="email" placeholder="Email" name="Email" />
+            <textarea
+              type="text"
+              id="input-message"
+              placeholder="Your Message"
+              name="Message"
+            ></textarea>
+            <p>If you need any help call <span>+213 676667873</span></p>
+            <button type="submit" id="send-btn">Send</button>
+          </div>
+          <img src="./images/section5-img.jpg" alt="Handling a car key" />
+        </div>
+        <div id="layer"></div>
+      </section>
+      <footer id="footer">
+        <div id="footer-logo">
+          <img
+            id="footer-S"
+            class="S-logo"
+            src="./Logos/S-orange.png"
+            alt="S Logo"
+          />
+          <img
+            class="ayarati-logo"
+            src="./Logos/ayarati.png"
+            alt="Ayarati Logo"
+          />
+        </div>
+        <div id="social-media">
+          <a href="#"><img src="./Logos/facebook.png" alt="Facebook logo" /></a>
+          <a href="#"
+            ><img src="./Logos/instagram.png" alt="Instagram logo"
+          /></a>
+          <a href="#"><img src="./Logos/twitter.png" alt="Twitter logo" /></a>
+          <a href="#"><img src="./Logos/whatsapp.png" alt="Whatsapp logo" /></a>
+          <a href="#"><img src="./Logos/telegram.png" alt="Telegram logo" /></a>
+        </div>
+      </footer>
+    </main>
+    <script defer src="./main.js"></script>
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script></script>
+  </body>
+</html>

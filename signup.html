@@ -199,6 +199,7 @@
         background-color: white;
         text-align: right;
         color: #007aff;
+        text-decoration: none;
         text-shadow: 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.5);
         border: none;
         width: 45%;
@@ -301,15 +302,16 @@
         div#login p {
           color: white;
         }
-        div#login button {
+        div#login a#login-btn {
           background-color: white;
           color: black;
-          font-size: 1rem;
+          font-size: 1.2rem;
           text-align: center;
           font-family: "Montserrat", sans-serif;
           font-weight: 500;
+          height:25px;
         }
-        div#login button:hover {
+        div#login a#login-btn:hover {
           background-color: #e5e5e5;
           color:black;
         }
@@ -348,7 +350,7 @@
           <hr id="phone-hr" />
           <div id="login">
             <p>Already have an account?</p>
-            <button id="login-btn">Login</button>
+            <a href="./login.html" id="login-btn">Login</a>
           </div>
         </div>
       </div>
