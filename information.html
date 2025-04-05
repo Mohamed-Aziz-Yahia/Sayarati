@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sayarati Profile Information</title>
+    <link rel="icon" type="image/png" href="logo_sayarati.png">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 0;
+            width:100%;
+            overflow-x: hidden;
+        }
+        .header {
+            width: 90%;
+            background-color: #fff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+            margin-left: 35px;
+            margin-top: 20px;
+        }
+        .header .logo img#S-header{
+            padding-left: 10px;
+            width:72px;
+            height:60px;
+            margin-bottom:10px;
+            margin-right:0;
+        }
+        .logo img{
+            width:272px;
+            height:55px;
+            margin-left:0;
+        }
+        .profile-container {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            padding: 50px 20px;
+        }
+        .header-banner {
+    background-color: #ff8c00;
+    color: white;
+    padding: 60px 40px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: left;
+    border-radius: 250px 250px 250px 250px;
+     
+    /* يجعل الشكل بيضوي من اليمين */
+    position: absolute;
+    top: -60px; /* تقليل التداخل مع الشعار */
+    left: -20px;
+    max-width: 500px; /* تصغير العرض */
+    z-index: 0; /* يمنع التغطية على الشعار */
+}
+
+
+        .profile-section {
+            width: 90%;
+            max-width: 700px;
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-top: 50px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .photo-upload {
+            border: 2px dashed #ccc;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            color: #777;
+            border-radius: 5px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .btn-edit {
+            background-color: black;
+            color: white;
+        }
+        .btn-submit {
+            background-color: #ff8c00;
+            color: white;
+        }
+        .footer-image {
+    width: 1800px;
+    display: block;
+    height: 400px;
+    object-fit: cover;
+}
+
+        .social-icons {
+            margin-top: 10px;
+        }
+        .social-icons a {
+            margin: 0 5px;
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+        }
+        .input-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 10px;
+    width: 250px; /* عرض الحقل */
+}
+
+.form-row {
+    display: flex;
+    gap: 20px; /* مسافة بين الحقلين */
+    justify-content: center; /* يجعل الحقول في المنتصف */
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 10px;
+    width: 200px; /* عرض الحقل */
+}
+
+.form-row {
+    display: flex;
+    gap: 40px; /* تباعد بين الحقلين */
+    justify-content: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 10px;
+    width: 250px;
+}
+
+.icon {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.input-container input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 16px;
+}
+.footer {
+            background-color: black;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+.footer #S-footer{
+    margin-bottom: 8px;
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <img id="S-header" src="./Logos/S.png" alt="">
+            <img src="./Logos/ayarati.png" alt=""> </div>
+        <div class="user-id">⚫ user-X</div>
+    </div>
+    
+    <div class="profile-container">
+        <div class="header-banner"><h1>SAYARATI PROFILE INFORMATION</h1>
+            <p>Let's kickstart this event with a spark of portfolio. Share your journey, your best projects—let’s spread their brilliance far and wide.</p>
+        </div>
+        <div class="profile-section">
+            <form id="profileForm">
+                <div class="container">
+                    <h2>Submit your portfolio to SAYARATI</h2>
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <br>
+                            <div class="input-container">
+                                <span class="icon">👤</span>
+                                <input type="text" id="firstName" placeholder="First Name">
+                            </div>
+                        </div>
+                
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <br>
+                            <div class="input-container">
+                                <span class="icon">👤</span>
+                                <input type="text" id="lastName" placeholder="Last Name">
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="bio">Bio</label>
+                        <br>
+                        <input type="text" id="bio" placeholder="📄  Example: Your AGE, from any wilaya ...">
+                        
+                    </div>
+                <br><br>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <br>
+                        <input type="text" id="phone" placeholder="📞 Phone Number with national code, example: +213999999999">
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <br>
+                        <input type="email" id="email" placeholder="📧 mail ">
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="photo-upload">Upload your personal Photo</label>
+                        <div class="photo-upload">
+                            <span class="icon"><img src="./Logos/image 1.png" alt="Upload Icon" style="width: 50px; height: 50px; margin-bottom: 10px;"></span>
+                            <p>Add Photos</p>
+                            <p style="font-size: 16px; color: #5e5757;">Click or drag your images here to upload JPG, GIF, or PNG. Max: 10MB, at least 840px × 840px resolution</p>
+                            <input type="file" id="photo-upload" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;">
+                        </div>
+                    </div>
+                    
+                
+                    <div class="buttons">
+                        <button class="edit-btn">EDIT</button>
+                        <button class="submit-btn">SUBMIT</button>
+                    </div>
+                </div>
+                
+        </div>
+    </div>
+    
+    
+    <div class="footer">
+     <img id ="S-footer" src="./Logos/S-orange.png" alt="">
+     <img src="./Logos/ayarati.png" alt="">   
+    </div>
+
+</body>
+</html>

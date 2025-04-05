@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Parts Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .dark-mode .shop-info {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+            border-bottom: 1px solid #333;
+        }
+
+        .dark-mode .content {
+            background-color: #1e1e1e;
+        }
+
+        .dark-mode .product-card {
+            background-color: #2d2d2d;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+            color: #e0e0e0;
+        }
+
+        .dark-mode .product-card p {
+            color: #b0b0b0;
+        }
+
+        .dark-mode .product-details {
+            background: #252525;
+        }
+
+        .dark-mode .product-details p {
+            color: #e0e0e0;
+        }
+
+        .dark-mode .quantity-btn {
+            background: #3d3d3d;
+            color: #e0e0e0;
+        }
+
+        .dark-mode .page-button {
+            background-color: #2d2d2d;
+            color: #e0e0e0;
+            border: 1px solid #444;
+        }
+
+        .dark-mode .sidebar {
+            background: #1e1e1e;
+        }
+
+        .dark-mode .sidebar h3 {
+            color: #e0e0e0;
+        }
+
+        .dark-mode .search-box,
+        .dark-mode .search-filters input {
+            background: #2d2d2d;
+            color: #e0e0e0;
+            border: 1px solid #444;
+        }
+
+        .dark-mode .stock-options label {
+            color: #b0b0b0;
+        }
+
+        .dark-mode .rating-modal {
+            background: #2d2d2d;
+        }
+
+        .dark-mode .rating-modal h3 {
+            color: #e0e0e0;
+        }
+
+        .dark-mode .close-modal {
+            background: #3d3d3d;
+            color: #e0e0e0;
+        }
+
+        .header {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            background: url('istock-car-parts 1.png') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+        }
+
+        .logo-part {
+            height: 80px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .shop-info {
+            background-color: #ffffff;
+            color: black;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .shop-info-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .shop-info h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .shop-info span {
+            font-size: 14px;
+        }
+
+        .shop-info-bottom {
+            text-align: right;
+            padding-top: 10px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .shop-info button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            color: #007BFF;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .shop-info button:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            padding: 20px;
+            background-color: #f8f9fa;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: scale(1.03);
+        }
+
+        .product-card img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .product-card h3 {
+            margin: 10px 0 5px;
+            font-size: 18px;
+        }
+
+        .product-card p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .product-card .price {
+            font-weight: bold;
+            color: #FF7E00;
+            font-size: 16px;
+        }
+
+        .product-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: #f9f9f9;
+            margin-top: 10px;
+            border-radius: 5px;
+            padding: 0 10px;
+        }
+
+        .product-details.visible {
+            max-height: 300px;
+            padding: 10px;
+        }
+
+        .product-details p {
+            margin: 8px 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .product-details .rating {
+            color: #FFD700;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .actions button {
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .quantity-btn {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .favorite-btn {
+            background: #007BFF;
+            color: white;
+        }
+
+        .favorite-btn.favorited {
+            background: #dc3545;
+        }
+
+        .buy-btn {
+            background: #FF7E00;
+            color: white;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .page-button {
+            background-color: white;
+            color: black;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .page-button.active {
+            background-color: #FF7E00;
+            color: white;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100vh;
+            background: white;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            transition: left 0.3s ease-in-out;
+            z-index: 1000;
+            overflow-y: auto;
+            box-sizing: border-box;
+            font-size: 13px;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .sidebar h3 {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: #666;
+            padding: 0;
+            line-height: 1;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            box-sizing: border-box;
+        }
+
+        .search-filters {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .search-filters input {
+            padding: 7px 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+            height: 34px;
+            box-sizing: border-box;
+        }
+
+        .search-btn {
+            grid-column: span 2;
+            background: #FF7E00;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 13px;
+            transition: background 0.2s;
+            height: 34px;
+        }
+
+        .stock-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .stock-options label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .rating-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            width: 300px;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .rating-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .rating-modal h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .stars {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .star {
+            font-size: 30px;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .star.active, .star:hover {
+            color: #FFD700;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .modal-buttons button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .submit-rating {
+            background: #FF7E00;
+            color: white;
+        }
+
+        .close-modal {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        /* Dark mode toggle button */
+        .dark-mode-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #333;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .dark-mode .dark-mode-toggle {
+            color: #e0e0e0;
+        }
+
+        .dark-mode-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode .dark-mode-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode-toggle svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Favorites sidebar */
+        .favorites-sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: white;
+            box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            transition: right 0.3s ease-in-out;
+            z-index: 1000;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+        .favorites-sidebar.active {
+            right: 0;
+        }
+
+        .favorites-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .favorites-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .favorite-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .favorite-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .favorite-item-info {
+            flex: 1;
+        }
+
+        .favorite-item h4 {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .favorite-item p {
+            margin: 5px 0 0;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .remove-favorite {
+            background: none;
+            border: none;
+            color: #dc3545;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .no-favorites {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+
+        /* Dark mode favorites sidebar */
+        .dark-mode .favorites-sidebar {
+            background: #1e1e1e;
+        }
+
+        .dark-mode .favorites-header {
+            border-bottom: 1px solid #333;
+        }
+
+        .dark-mode .favorite-item {
+            border-bottom: 1px solid #333;
+        }
+
+        .dark-mode .favorite-item p {
+            color: #b0b0b0;
+        }
+
+        .dark-mode .no-favorites {
+            color: #b0b0b0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-container">
+            <img src="./Logos/S.png" alt="S" class="logo-part">
+            <img src="./Logos/ayarati.png" alt="ayarati" class="logo-part">
+        </div>
+    </div>
+    <div class="shop-info">
+        <div class="shop-info-top">
+            <h1>Store</h1>
+            <span>Showing 1-8 of 80 products</span>
+        </div>
+        <hr style="border: none; border-top: 1px solid #ddd; margin: 0;">
+        <div class="shop-info-bottom">
+            <button id="darkModeToggle" class="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1-8.313-12.454z"/>
+                </svg>
+                Dark Mode
+            </button>
+            <button id="openFavorites">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                Favorites
+            </button>
+            <button id="openSidebar">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/>
+                </svg>
+                Filters
+            </button>
+        </div>
+    </div>
+    <div class="content">
+        <p>Start here to add details or new products.</p>
+
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card" onclick="toggleDetails(this)" data-id="1">
+                <img src="./images/alternateur-gomecano 1.png" alt="ALTERNATEUR">
+                <h3>ALTERNATEUR</h3>
+                <p>Moteur</p>
+                <p>SKU: <span>8122360</span></p>
+                <p class="price">34010.96 DZ</p>
+                <div class="product-details">
+                    <p><span class="rating">⭐ 3.9</span> | +1021 sold</p>
+                    <p><strong>Ouargla</strong></p>
+                    <p>Compatible: RENAULT Twingo | Symbol || Clio || DACIA</p>
+                    <p>F00D0L0458</p>
+                    <div class="actions">
+                        <button class="quantity-btn">+1</button>
+                        <button class="favorite-btn">Add to favorite</button>
+                        <button class="buy-btn">Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card" onclick="toggleDetails(this)" data-id="2">
+                <img src="./images/aile-av-g-berlingo-nm-08 1.png" alt="Ailes Volkswagen Golf">
+                <h3>ALIES Volkswagen Golf</h3>
+                <p>Bonne occasion</p>
+                <p>SKU: <span>2155531</span></p>
+                <p class="price">55120.32 DZ</p>
+                <div class="product-details">
+                    <p><span class="rating">⭐ 4.5</span> | +800 sold</p>
+                    <p><strong>Algiers</strong></p>
+                    <p>Compatible: Volkswagen Golf MK4 | MK5</p>
+                    <p>Part No: VW21553</p>
+                    <div class="actions">
+                        <button class="quantity-btn">+1</button>
+                        <button class="favorite-btn">Add to favorite</button>
+                        <button class="buy-btn">Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card" onclick="toggleDetails(this)" data-id="3">
+                <img src="./images/amortisseur_volvo_s80_et_v70_ref_30683342,_8624604,_9492564_1.png" alt="Amortrisseur">
+                <h3>BATTERIE</h3>
+                <p>High Performance</p>
+                <p>SKU: <span>11235813</span></p>
+                <p class="price">87000.00 DZ</p>
+                <div class="product-details">
+                    <p><span class="rating">⭐ 4.8</span> | +1200 sold</p>
+                    <p><strong>Oran</strong></p>
+                    <p>Compatible: All Standard Cars</p>
+                    <p>Part No: BT1234HP</p>
+                    <div class="actions">
+                        <button class="quantity-btn">+1</button>
+                        <button class="favorite-btn">Add to favorite</button>
+                        <button class="buy-btn">Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card" onclick="toggleDetails(this)" data-id="4">
+                <img src="./images/arret-de-porte-avant 1.png" alt="FILTRE A AIR">
+                <h3>FILTRE A AIR</h3>
+                <p>Long Life Filter</p>
+                <p>SKU: <span>32659874</span></p>
+                <p class="price">2200.00 DZ</p>
+                <div class="product-details">
+                    <p><span class="rating">⭐ 4.2</span> | +500 sold</p>
+                    <p><strong>Constantine</strong></p>
+                    <p>Compatible: Multiple Models</p>
+                    <p>Part No: FA5678LL</p>
+                    <div class="actions">
+                        <button class="quantity-btn">+1</button>
+                        <button class="favorite-btn">Add to favorite</button>
+                        <button class="buy-btn">Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card" onclick="toggleDetails(this)" data-id="5">
+                <img src="./images/coupelle-d-appui-suspension-avant 1.png" alt="FILTRE A AIR">
+                <h3>APPUI COUPELLE</h3>
+                <p>Long Life Filter</p>
+                <p>SKU: <span>9515020</span></p>
+                <p class="price">2200.00 DZ</p>
+                <div class="product-details">
+                    <p><span class="rating">⭐ 4.9</span> | +500 sold</p>
+                    <p><strong>Constantine</strong></p>
+                    <p>Compatible: Multiple Models</p>
+                    <p>Part No: FA5678LL</p>
+                    <div class="actions">
+                        <button class="quantity-btn">+1</button>
+                        <button class="favorite-btn">Add to favorite</button>
+                        <button class="buy-btn">Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card" onclick="toggleDetails(this)" data-id="6">
+                <img src="./images/s-l1200 1.png" alt="FILTRE A AIR">
+                <h3>ACCOUDOIR CONSOLE</h3>
+                <p>Accessories</p>
+                <p>SKU: <span>942210</span></p>
+                <p class="price">16648.82 DZ</p>
+                <div class="product-details">
+                    <p><span class="rating">⭐ 5</span> | +500 sold</p>
+                    <p><strong>Constantine</strong></p>
+                    <p>Compatible: Multiple Models</p>
+                    <p>Part No: FA5678LL</p>
+                    <div class="actions">
+                        <button class="quantity-btn">+1</button>
+                        <button class="favorite-btn">Add to favorite</button>
+                        <button class="buy-btn">Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination">
+            <button class="page-button active">1</button>
+            <button class="page-button">2</button>
+            <button class="page-button">3</button>
+            <button class="page-button">4</button>
+            <button class="page-button">5</button>
+            <button class="page-button">6</button>
+            <button class="page-button">7</button>
+            <span class="dots">...</span>
+            <button class="page-button">></button>
+        </div>
+    </div>
+
+    <!-- Filter Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h3>Filter Products</h3>
+            <button id="closeSidebar" class="close-btn" aria-label="Close sidebar">&times;</button>
+        </div>
+        
+        <input type="text" class="search-box" placeholder="Search products...">
+        
+        <h3>Filter By</h3>
+        <div class="search-filters">
+            <input type="text" placeholder="Brand">
+            <input type="text" placeholder="Model">
+            <input type="text" placeholder="Engine">
+            <button class="search-btn">APPLY FILTERS</button>
+        </div>
+        
+        <h3>Availability</h3>
+        <div class="stock-options">
+            <label><input type="checkbox"> In stock</label>
+            <label><input type="checkbox"> On sale</label>
+        </div>
+    </div>
+
+    <!-- Favorites Sidebar -->
+    <div id="favoritesSidebar" class="favorites-sidebar">
+        <div class="favorites-header">
+            <h3>Your Favorites</h3>
+            <button id="closeFavorites" class="close-btn" aria-label="Close favorites">&times;</button>
+        </div>
+        <div class="favorites-list" id="favoritesList">
+            <!-- Favorites will be added here dynamically -->
+            <div class="no-favorites">No favorites yet. Add some products to your favorites!</div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+    <div class="rating-modal" id="ratingModal">
+        <h3>Rate this product</h3>
+        <p>How would you rate your purchase?</p>
+        <div class="stars">
+            <span class="star" data-rating="1">★</span>
+            <span class="star" data-rating="2">★</span>
+            <span class="star" data-rating="3">★</span>
+            <span class="star" data-rating="4">★</span>
+            <span class="star" data-rating="5">★</span>
+        </div>
+        <div class="modal-buttons">
+            <button class="submit-rating">Submit</button>
+            <button class="close-modal">Close</button>
+        </div>
+    </div>
+    <script>
+        // Product data
+        const products = {
+            1: {
+                id: 1,
+                name: "ALTERNATEUR",
+                category: "Moteur",
+                sku: "8122360",
+                price: "34010.96 DZ",
+                rating: "⭐ 3.9",
+                sold: "+1021 sold",
+                location: "Ouargla",
+                compatibility: "RENAULT Twingo | Symbol || Clio || DACIA",
+                partNo: "F00D0L0458",
+                image: "alternateur-gomecano 1.png"
+            },
+            2: {
+                id: 2,
+                name: "ALIES Volkswagen Golf",
+                category: "Bonne occasion",
+                sku: "2155531",
+                price: "55120.32 DZ",
+                rating: "⭐ 4.5",
+                sold: "+800 sold",
+                location: "Algiers",
+                compatibility: "Volkswagen Golf MK4 | MK5",
+                partNo: "VW21553",
+                image: "aile-av-g-berlingo-nm-08 1.png"
+            },
+            3: {
+                id: 3,
+                name: "BATTERIE",
+                category: "High Performance",
+                sku: "11235813",
+                price: "87000.00 DZ",
+                rating: "⭐ 4.8",
+                sold: "+1200 sold",
+                location: "Oran",
+                compatibility: "All Standard Cars",
+                partNo: "BT1234HP",
+                image: "amortisseur_volvo_s80_et_v70_ref_30683342,_8624604,_9492564 1.png"
+            },
+            4: {
+                id: 4,
+                name: "FILTRE A AIR",
+                category: "Long Life Filter",
+                sku: "32659874",
+                price: "2200.00 DZ",
+                rating: "⭐ 4.2",
+                sold: "+500 sold",
+                location: "Constantine",
+                compatibility: "Multiple Models",
+                partNo: "FA5678LL",
+                image: "arret-de-porte-avant 1.png"
+            },
+            5: {
+                id: 5,
+                name: "APPUI COUPELLE",
+                category: "Long Life Filter",
+                sku: "9515020",
+                price: "2200.00 DZ",
+                rating: "⭐ 4.9",
+                sold: "+500 sold",
+                location: "Constantine",
+                compatibility: "Multiple Models",
+                partNo: "FA5678LL",
+                image: "coupelle-d-appui-suspension-avant 1.png"
+            },
+            6: {
+                id: 6,
+                name: "ACCOUDOIR CONSOLE",
+                category: "Accessories",
+                sku: "942210",
+                price: "16648.82 DZ",
+                rating: "⭐ 5",
+                sold: "+500 sold",
+                location: "Constantine",
+                compatibility: "Multiple Models",
+                partNo: "FA5678LL",
+                image: "s-l1200 1.png"
+            }
+        };
+
+        // Toggle product details
+        function toggleDetails(card) {
+            const details = card.querySelector('.product-details');
+            details.classList.toggle('visible');
+            
+            // Close other open details
+            document.querySelectorAll('.product-card .product-details').forEach(item => {
+                if (item !== details && item.classList.contains('visible')) {
+                    item.classList.remove('visible');
+                }
+            });
+        }
+
+        // Sidebar toggle
+        const sidebar = document.getElementById('sidebar');
+        const favoritesSidebar = document.getElementById('favoritesSidebar');
+        const overlay = document.getElementById('overlay');
+        const openSidebarBtn = document.getElementById('openSidebar');
+        const closeSidebarBtn = document.getElementById('closeSidebar');
+        const openFavoritesBtn = document.getElementById('openFavorites');
+        const closeFavoritesBtn = document.getElementById('closeFavorites');
+
+        openSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
+        });
+
+        closeSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        openFavoritesBtn.addEventListener('click', () => {
+            favoritesSidebar.classList.add('active');
+            overlay.classList.add('active');
+        });
+
+        closeFavoritesBtn.addEventListener('click', () => {
+            favoritesSidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            favoritesSidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        const ratingModal = document.getElementById('ratingModal');
+        const stars = document.querySelectorAll('.star');
+        let selectedRating = 0;
+
+        // Open rating modal when "Buy" is clicked
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('buy-btn')) {
+                ratingModal.classList.add('active');
+                overlay.classList.add('active');
+            }
+        });
+
+        // Star rating selection
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                const rating = parseInt(this.getAttribute('data-rating'));
+                selectedRating = rating;
+                
+                stars.forEach((s, index) => {
+                    s.classList.toggle('active', index < rating);
+                });
+            });
+        });
+
+        // Close modal
+        document.querySelector('.close-modal').addEventListener('click', function() {
+            ratingModal.classList.remove('active');
+            overlay.classList.remove('active');
+            resetStars();
+        });
+
+        // Submit rating
+        document.querySelector('.submit-rating').addEventListener('click', function() {
+            if (selectedRating > 0) {
+                alert(`Thank you for your ${selectedRating}-star rating!`);
+                ratingModal.classList.remove('active');
+                overlay.classList.remove('active');
+                resetStars();
+            } else {
+                alert('Please select a rating before submitting.');
+            }
+        });
+
+        // Reset stars
+        function resetStars() {
+            selectedRating = 0;
+            stars.forEach(star => star.classList.remove('active'));
+        }
+
+        // Close modal when clicking overlay
+        overlay.addEventListener('click', function() {
+            ratingModal.classList.remove('active');
+            overlay.classList.remove('active');
+            resetStars();
+        });
+
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        
+        // Check for saved user preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121z"/>
+                </svg>
+                Light Mode
+            `;
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            // Save user preference
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+                darkModeToggle.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121z"/>
+                    </svg>
+                    Light Mode
+                `;
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                darkModeToggle.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1-8.313-12.454z"/>
+                    </svg>
+                    Dark Mode
+                `;
+            }
+        });
+
+        // Favorites functionality
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+        // Update favorite buttons based on stored favorites
+        function updateFavoriteButtons() {
+            document.querySelectorAll('.favorite-btn').forEach(button => {
+                const productCard = button.closest('.product-card');
+                const productId = parseInt(productCard.getAttribute('data-id'));
+                
+                if (favorites.includes(productId)) {
+                    button.textContent = 'Remove favorite';
+                    button.classList.add('favorited');
+                } else {
+                    button.textContent = 'Add to favorite';
+                    button.classList.remove('favorited');
+                }
+            });
+        }
+
+        // Render favorites list
+        function renderFavorites() {
+            const favoritesList = document.getElementById('favoritesList');
+            
+            if (favorites.length === 0) {
+                favoritesList.innerHTML = '<div class="no-favorites">No favorites yet. Add some products to your favorites!</div>';
+                return;
+            }
+            
+            favoritesList.innerHTML = '';
+            
+            favorites.forEach(productId => {
+                const product = products[productId];
+                if (!product) return;
+                
+                const favoriteItem = document.createElement('div');
+                favoriteItem.className = 'favorite-item';
+                favoriteItem.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <div class="favorite-item-info">
+                        <h4>${product.name}</h4>
+                        <p>${product.price}</p>
+                    </div>
+                    <button class="remove-favorite" data-id="${productId}">×</button>
+                `;
+                
+                favoritesList.appendChild(favoriteItem);
+            });
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.remove-favorite').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    removeFromFavorites(productId);
+                });
+            });
+        }
+
+        // Add to favorites
+        function addToFavorites(productId) {
+            if (!favorites.includes(productId)) {
+                favorites.push(productId);
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+                updateFavoriteButtons();
+                renderFavorites();
+            }
+        }
+
+        // Remove from favorites
+        function removeFromFavorites(productId) {
+            favorites = favorites.filter(id => id !== productId);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            updateFavoriteButtons();
+            renderFavorites();
+        }
+
+        // Toggle favorite status
+        function toggleFavorite(productId) {
+            if (favorites.includes(productId)) {
+                removeFromFavorites(productId);
+            } else {
+                addToFavorites(productId);
+            }
+        }
+
+        // Handle favorite button clicks
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('favorite-btn')) {
+                e.stopPropagation();
+                const productCard = e.target.closest('.product-card');
+                const productId = parseInt(productCard.getAttribute('data-id'));
+                toggleFavorite(productId);
+            }
+        });
+
+        // Initialize
+        updateFavoriteButtons();
+        renderFavorites();
+    </script>
+</body>
+</html>

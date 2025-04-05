@@ -1,0 +1,335 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  /* overflow-x: hidden; */
+}
+
+/* Header */
+header {
+  background-image: url(./images/What-to-Do-When-Car-Breakdown-on-Highway\ 1.png);
+  background-size: cover;
+  background-position: start;
+  height: 400px;
+}
+header img {
+  margin-top: 150px;
+  width: 250px;
+  height: 50px;
+}
+#S-header {
+  width: 70px;
+  height: 60px;
+  margin-left: 60px;
+  margin-bottom: 10px;
+}
+
+/* Main */
+main#main {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px;
+}
+h1 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 2.2rem;
+  border-bottom: #fe8400 2px solid;
+}
+.repair-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fe8400;
+  width: 100%;
+  padding: 20px 10px;
+  border-radius: 10px;
+  height: 120px;
+  margin: 30px 0;
+}
+.repair-item:hover {
+  background-color: #ef7f00;
+  cursor: pointer;
+}
+.repair-item img {
+  margin-right: 30px;
+}
+.repair-item h2 {
+  width: 300px;
+  font-size: 2rem;
+  font-weight: 500;
+  margin-right: 20px;
+}
+.repair-item p {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-right: 20px;
+  border-right: 1px solid #fff;
+  border-left: 1px solid #fff;
+  padding: 0 20px;
+  padding-top: 25px;
+  height: 50px;
+}
+.repair-rating {
+  margin-top: 10px;
+  width: 180px;
+}
+.repair-rating img {
+  width: 25px;
+  height: 25px;
+  margin: 0 3px;
+}
+.repair-services {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 50px;
+}
+#car-fix {
+  width: 70px;
+  height: 70px;
+}
+#btn {
+  display: flex;
+  justify-content: space-between;
+  width: 1120px;
+  margin: 50px 0;
+}
+#btn button {
+  width: 500px;
+  font-family: "poppins", sans-serif;
+  font-weight: 500;
+  font-size: 2rem;
+  padding: 10px 0;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+}
+
+.repair-details {
+  position: fixed;
+  top: 50%;
+  left: 51%;
+  width: 60%;
+  height: 500px;
+  transform: translate(-50%, -50%);
+  background: #fe8400;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  overflow-y: hidden;
+  pointer-events: auto;
+}
+body.noscroll {
+  pointer-events: none;
+  overflow: hidden;
+}
+#details-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  margin-left: 80px;
+  width: 90%;
+}
+#profile-img {
+  margin-bottom: 150px;
+}
+#rating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 250px;
+  margin-top: -25px;
+}
+#rating img {
+  width: 25px;
+  height: 25px;
+  margin: 0 3px;
+}
+#close {
+  margin-top: -7px;
+  margin-left: 97%;
+  background-color: #fe8400;
+  border: none;
+}
+.repair-details p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+#buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 600px;
+  margin: 20px;
+  margin-left: 110px;
+}
+#call,
+#available,
+#automatic-call {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 160px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 10px;
+}
+#available {
+  width: 300px;
+}
+#call img,
+#available img {
+  width: 30px;
+  height: 30px;
+}
+#automatic-call {
+  background-color: #5c5ff7;
+  border: none;
+  border-radius: 5px;
+  width: 400px;
+  margin-left: 200px;
+}
+#call:hover,
+#available:hover,
+#automatic-call:hover,
+#close:hover,
+#submit:hover {
+  cursor: pointer;
+}
+#buttons button:hover {
+  background-color: lightgray;
+}
+#automatic-call:hover {
+  background-color: #4749b4;
+}
+.repair-review {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 300px;
+  transform: translate(-50%, -50%);
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10000;
+  pointer-events: auto;
+}
+#check {
+  width: 70px;
+  height: 70px;
+}
+.repair-review h2,
+.repair-review p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.repair-review p {
+  font-size: 1rem;
+}
+.stars {
+  font-size: 2rem;
+  cursor: pointer;
+  margin-bottom:20px;
+}
+
+.star {
+  color: #ccc;
+  transition: color 0.2s;
+}
+
+.star:hover,
+.star.active {
+  color: #ffcc00;
+}
+
+#submit {
+  background-color: #fe8400;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 25px;
+}
+#submit:hover {
+  background-color: #ef7f00;
+}
+#add-breakdown {
+  background-color: #5b76ff;
+}
+#add-breakdown:hover {
+  background-color: #3147b8;
+  cursor: pointer;
+}
+#remove-breakdown {
+  background-color: #ff5b5b;
+}
+#remove-breakdown:hover {
+  background-color: #c03e3e;
+  cursor: pointer;
+}
+
+/* Footer */
+footer#footer {
+  background-color: black;
+  width: 100%;
+  height: 300px;
+}
+div#footer-logo {
+  display: flex;
+  height: 80px;
+  margin-left: 30px;
+}
+div#footer-logo img {
+  width: 250px;
+  height: 50px;
+  margin-top: 80px;
+}
+#footer-logo #footer-S {
+  height: 60px;
+  width: 70px;
+  margin-top: 60px;
+}
+#footer-text {
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#footer-text p {
+  font-family: "Poppins", sans-serif;
+  margin-top: 150px;
+  margin-left: 30px;
+  font-size: 1.1rem;
+}
+div#social-media {
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+  margin-top: 140px;
+  margin-right: 50px;
+}
+div#social-media img {
+  width: 18px;
+  height: 18px;
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta viewport="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Repair</title>
+    <link rel="stylesheet" type="text/css" href="./repair.css" />
+  </head>
+  <body>
+    <header>
+      <img id="S-header" src="Logos/S-white.png" alt="S logo" />
+      <img src="Logos/ayarati.png" alt="Ayarati logo" />
+    </header>
+  <main id="main">
+    <h1>Car Breakdown</h1>
+    <div id="repair-container">
+      <div onclick="showDetails(this)"class="repair-item" data-id="item1">
+        <img src="images/Ronaldo.png" alt="Ronaldo" />
+        <h2>Cristiano Ronaldo</h2>
+        <p>+213676662231</p>
+        <div class="repair-rating">
+          <img src="Logos/star.png" alt="Star logo" />
+          <img src="Logos/star.png" alt="Star logo" />
+          <img src="Logos/star.png" alt="Star logo" />
+          <img src="Logos/star.png" alt="Star logo" />
+          <img src="Logos/star.png" alt="Star logo" />
+        </div>
+        <div class="repair-services">
+        <img id="car-fix"src="Logos/car-fix.png" alt="Car fix logo" />
+        <img src="Logos/crane-truck.png" alt="Crane truck logo" />
+        </div>
+    </div>
+    <div onclick="showDetails(this)"class="repair-item" >
+        <img src="images/Ronaldo.png" alt="Ronaldo" />
+        <h2>Eden Hazard</h2>
+        <p>+213676662231</p>
+        <div class="repair-rating">
+          <img src="Logos/star.png" alt="Star logo" />
+          <img src="Logos/star.png" alt="Star logo" />
+          <img src="Logos/star.png" alt="Star logo" />
+        </div>
+        <div class="repair-services">
+        <img id="car-fix"src="Logos/car-fix.png" alt="Car fix logo" />
+        <img src="Logos/crane-truck.png" alt="Crane truck logo" />
+        </div>
+    </div>
+    <div onclick="showDetails(this)"class="repair-item" data-id="item2">
+        <img src="images/Ronaldo.png" alt="Ronaldo" />
+        <h2>Asensio</h2>
+        <p>+213676662231</p>
+        <div class="repair-rating">
+          <img src="Logos/star.png" alt="Star logo" />
+          <img src="Logos/star.png" alt="Star logo" />
+        </div>
+        <div class="repair-services">
+        <img id="car-fix"src="Logos/car-fix.png" alt="Car fix logo" />
+        <img src="Logos/crane-truck.png" alt="Crane truck logo" />
+        </div>
+    </div>
+    <div onclick="showDetails(this)"class="repair-item" data-id="item3">
+        <img src="images/Ronaldo.png" alt="Ronaldo" />
+        <h2>Cristiano Ronaldo</h2>
+        <p>+213676662231</p>
+        <div class="repair-rating">
+          <img src="Logos/star.png" alt="Star logo" />
+          <img src="Logos/star.png" alt="Star logo" />
+          <img src="Logos/star.png" alt="Star logo" />
+          <img src="Logos/star.png" alt="Star logo" />
+        </div>
+        <div class="repair-services">
+        <img id="car-fix"src="Logos/car-fix.png" alt="Car fix logo" />
+        </div>
+        </div>
+        <div id="btn">
+            <button id="remove-breakdown">Remove breakdown</button>
+            <button id="add-breakdown">Add breakdown</button>
+        </div>
+  </main>
+  <footer>
+    <footer id="footer">
+        <div id="footer-logo">
+          <img
+            id="footer-S"
+            class="S-logo"
+            src="./Logos/S-orange.png"
+            alt="S Logo"
+          />
+          <img
+            src="./Logos/ayarati-white.png"
+            alt="Ayarati Logo"
+          />
+        </div>
+        <div id="footer-text">
+        <p>Copyright © 2024-2025 Sayarati company. All rights reserved.</p>
+        <div id="social-media">
+          <a href="#"><img src="./Logos/facebook.png" alt="Facebook logo" /></a>
+          <a href="#"
+            ><img src="./Logos/instagram.png" alt="Instagram logo"
+          /></a>
+          <a href="#"><img src="./Logos/twitter.png" alt="Twitter logo" /></a>
+          <a href="#"><img src="./Logos/whatsapp.png" alt="Whatsapp logo" /></a>
+          <a href="#"><img src="./Logos/telegram.png" alt="Telegram logo" /></a>
+        </div>
+    </div>
+  </footer>
+  <script src="./repair.js"></script>
+</body>
+</html>
