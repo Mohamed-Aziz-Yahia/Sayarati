@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sayarati Profile Information</title>
-    <link rel="icon" type="image/png" href="logo_sayarati.png">
+    <link rel="icon" href="./Logos/Logo bar sayarati.png" type="image/x-icon">
 
     <style>
         body {
@@ -60,7 +60,7 @@
     /* يجعل الشكل بيضوي من اليمين */
     position: absolute;
     top: -60px; /* تقليل التداخل مع الشعار */
-    left: -20px;
+    left: -10px;
     max-width: 500px; /* تصغير العرض */
     z-index: 0; /* يمنع التغطية على الشعار */
 }
@@ -92,32 +92,73 @@
             border-radius: 4px;
         }
         .photo-upload {
-            border: 2px dashed #ccc;
-            padding: 30px;
-            text-align: center;
-            cursor: pointer;
-            color: #777;
-            border-radius: 5px;
-        }
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-        .btn {
-            padding: 12px 20px;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        .btn-edit {
-            background-color: black;
-            color: white;
-        }
-        .btn-submit {
+    border: 2px dashed #ccc;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    color: #777;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-upload img.icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.upload-instructions {
+    font-size: 16px;
+    color: #5e5757;
+    margin-top: 5px;
+}
+
+#photo-upload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#preview-image {
+    max-width: 100%;
+    max-height: 200px;
+    margin-top: 15px;
+    margin-left: 160px;
+    margin-right: 170px;
+    margin-bottom: 20px;
+    object-fit: contain;
+}
+
+.hidden {
+    display: none;
+}
+
+.upload-content {
+    pointer-events: none; /* Allows clicks to pass through to file input */
+}
+       .buttons{
+        text-align:center;
+       }
+        #submit-btn {
+            width: 150px;
+            padding: 10px;
+            margin: 10px;
             background-color: #ff8c00;
             color: white;
+            border:none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
         }
         .footer-image {
     width: 1800px;
@@ -125,17 +166,7 @@
     height: 400px;
     object-fit: cover;
 }
-
-        .social-icons {
-            margin-top: 10px;
-        }
-        .social-icons a {
-            margin: 0 5px;
-            color: white;
-            font-size: 20px;
-            text-decoration: none;
-        }
-        .input-container {
+.input-container {
     display: flex;
     align-items: center;
     border: 1px solid #000;
@@ -201,12 +232,23 @@ label {
             width: 100%;
             padding: 20px;
             text-align: center;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
         }
+#footer-logo{
+    margin-top:16px;
+}
 .footer #S-footer{
+    height:55px;
     margin-bottom: 8px;
+}
+#social-media{
+ text-align:right;
+ margin-right:30px;
+}
+#social-media img{
+  width: 16px;
+  height: 16px;
+  margin: 0 6px;
+  margin-top: 40px;
 }
     </style>
 </head>
@@ -223,7 +265,7 @@ label {
             <p>Let's kickstart this event with a spark of portfolio. Share your journey, your best projects—let’s spread their brilliance far and wide.</p>
         </div>
         <div class="profile-section">
-            <form id="profileForm">
+            <form id="profileForm" enctype="multipart/form-data">
                 <div class="container">
                     <h2>Submit your portfolio to SAYARATI</h2>
                     <div class="form-row">
@@ -268,29 +310,66 @@ label {
                     <br><br>
                     <div class="form-group">
                         <label for="photo-upload">Upload your personal Photo</label>
-                        <div class="photo-upload">
-                            <span class="icon"><img src="./Logos/image 1.png" alt="Upload Icon" style="width: 50px; height: 50px; margin-bottom: 10px;"></span>
-                            <p>Add Photos</p>
-                            <p style="font-size: 16px; color: #5e5757;">Click or drag your images here to upload JPG, GIF, or PNG. Max: 10MB, at least 840px × 840px resolution</p>
-                            <input type="file" id="photo-upload" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;">
+                        <div class="photo-upload" id="upload-area">
+                            <div class="upload-content">
+                                <span class="icon"><img src="./Logos/image 1.png" alt="Upload Icon"></span>
+                                <p>Add Photos</p>
+                                <p class="upload-instructions">Click or drag your images here to upload JPG, GIF, or PNG. Max: 10MB, at least 840px × 840px resolution</p>
+                            </div>
+                            <img id="preview-image" class="hidden">
+                            <input type="file" id="photo-upload" name="photo" accept="image/jpeg,image/png,image/gif">
                         </div>
                     </div>
                     
                 
-                    <div class="buttons">
-                        <button class="edit-btn">EDIT</button>
-                        <button class="submit-btn">SUBMIT</button>
+                        <div class="buttons">
+                        <button id="submit-btn">SUBMIT</button>
                     </div>
-                </div>
-                
+                    </div>
+            </form>
         </div>
     </div>
-    
-    
+   
     <div class="footer">
+    <div id="footer-logo">
      <img id ="S-footer" src="./Logos/S-orange.png" alt="">
-     <img src="./Logos/ayarati.png" alt="">   
+     <img src="./Logos/ayarati.png" alt="">
+    </div> 
+      <div id="social-media">
+        <a href="#"><img src="./Logos/facebook.png" alt="Facebook logo" /></a>
+        <a href="#"
+          ><img src="./Logos/instagram.png" alt="Instagram logo"
+        /></a>
+        <a href="#"><img src="./Logos/twitter.png" alt="Twitter logo" /></a>
+        <a href="#"><img src="./Logos/whatsapp.png" alt="Whatsapp logo" /></a>
+        <a href="#"><img src="./Logos/telegram.png" alt="Telegram logo" /></a>
+      </div>  
     </div>
-
+<script>
+    document.getElementById('photo-upload').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    const preview = document.getElementById('preview-image');
+    const uploadContent = document.querySelector('.upload-content');
+    if (file.size > 10 * 1024 * 1024) { // 10MB
+    alert('File too large! Max 10MB allowed');
+    return;
+}
+    if (file) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.classList.remove('hidden');
+            uploadContent.classList.add('hidden');
+        }
+        
+        reader.readAsDataURL(file);
+    } else {
+        preview.src = '';
+        preview.classList.add('hidden');
+        uploadContent.classList.remove('hidden');
+    }
+});
+</script>
 </body>
 </html>

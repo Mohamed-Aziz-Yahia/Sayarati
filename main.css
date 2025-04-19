@@ -28,10 +28,15 @@ main section h1{
 header {
   display: flex;
   justify-content: space-between;
-  margin-top: 8px;
-  background-color: transparent;
-  position: relative;
-  z-index: 10;
+  padding-top:8px;
+  background-color: transparent;  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+
 }
 header .logo {
   display: flex;
@@ -46,6 +51,9 @@ header .logo {
  img.ayarati-logo {
   width: 174px;
   height: 31px;
+  filter: 
+  drop-shadow(1px 1px 1px rgba(0,0,0,0.8))
+  drop-shadow(-1px -1px 1px rgba(0,0,0,0.8)); 
 }
 
 header nav ul {
