@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -621,13 +622,158 @@
         .dark-mode .no-favorites {
             color: #b0b0b0;
         }
+
+        /* Purchase Form Styles */
+        .purchase-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .purchase-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .purchase-modal h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+            font-size: 22px;
+        }
+
+        .purchase-form {
+            display: grid;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 5px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .purchase-summary {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .purchase-summary h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .purchase-summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .purchase-summary-total {
+            font-weight: bold;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+
+        .purchase-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .purchase-buttons button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .cancel-purchase {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .confirm-purchase {
+            background:  #FF7E00;
+            color: white;
+        }
+
+        /* Dark mode purchase form */
+        .dark-mode .purchase-modal {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+
+        .dark-mode .purchase-modal h3 {
+            color: #e0e0e0;
+        }
+
+        .dark-mode .form-group input,
+        .dark-mode .form-group select,
+        .dark-mode .form-group textarea {
+          
+              background: #3d3d3d;
+            color: #e0e0e0;
+            border: 1px solid #444;
+        }
+
+        .dark-mode .purchase-summary {
+            background: #252525;
+        }
+
+        .dark-mode .purchase-summary-total {
+            border-top: 1px solid #444;
+        }
+
+        .dark-mode .cancel-purchase {
+            background: #3d3d3d;
+            color: #e0e0e0;
+        }
     </style>
 </head>
 <body>
     <div class="header">
         <div class="logo-container">
-            <img src="./Logos/S.png" alt="S" class="logo-part">
-            <img src="./Logos/ayarati.png" alt="ayarati" class="logo-part">
+            <img src="S.png" alt="S" class="logo-part">
+            <img src="ayarati.png" alt="ayarati" class="logo-part">
         </div>
     </div>
     <div class="shop-info">
@@ -663,7 +809,7 @@
         <div class="product-grid">
             <!-- Product 1 -->
             <div class="product-card" onclick="toggleDetails(this)" data-id="1">
-                <img src="./images/alternateur-gomecano 1.png" alt="ALTERNATEUR">
+                <img src="alternateur-gomecano 1.png" alt="ALTERNATEUR">
                 <h3>ALTERNATEUR</h3>
                 <p>Moteur</p>
                 <p>SKU: <span>8122360</span></p>
@@ -683,7 +829,7 @@
 
             <!-- Product 2 -->
             <div class="product-card" onclick="toggleDetails(this)" data-id="2">
-                <img src="./images/aile-av-g-berlingo-nm-08 1.png" alt="Ailes Volkswagen Golf">
+                <img src="aile-av-g-berlingo-nm-08 1.png" alt="Ailes Volkswagen Golf">
                 <h3>ALIES Volkswagen Golf</h3>
                 <p>Bonne occasion</p>
                 <p>SKU: <span>2155531</span></p>
@@ -703,7 +849,7 @@
 
             <!-- Product 3 -->
             <div class="product-card" onclick="toggleDetails(this)" data-id="3">
-                <img src="./images/amortisseur_volvo_s80_et_v70_ref_30683342,_8624604,_9492564_1.png" alt="Amortrisseur">
+                <img src="amortisseur_volvo_s80_et_v70_ref_30683342,_8624604,_9492564 1.png" alt="BATTERIE">
                 <h3>BATTERIE</h3>
                 <p>High Performance</p>
                 <p>SKU: <span>11235813</span></p>
@@ -723,7 +869,7 @@
 
             <!-- Product 4 -->
             <div class="product-card" onclick="toggleDetails(this)" data-id="4">
-                <img src="./images/arret-de-porte-avant 1.png" alt="FILTRE A AIR">
+                <img src="arret-de-porte-avant 1.png" alt="FILTRE A AIR">
                 <h3>FILTRE A AIR</h3>
                 <p>Long Life Filter</p>
                 <p>SKU: <span>32659874</span></p>
@@ -743,7 +889,7 @@
 
             <!-- Product 5 -->
             <div class="product-card" onclick="toggleDetails(this)" data-id="5">
-                <img src="./images/coupelle-d-appui-suspension-avant 1.png" alt="FILTRE A AIR">
+                <img src="coupelle-d-appui-suspension-avant 1.png" alt="FILTRE A AIR">
                 <h3>APPUI COUPELLE</h3>
                 <p>Long Life Filter</p>
                 <p>SKU: <span>9515020</span></p>
@@ -763,7 +909,7 @@
 
             <!-- Product 6 -->
             <div class="product-card" onclick="toggleDetails(this)" data-id="6">
-                <img src="./images/s-l1200 1.png" alt="FILTRE A AIR">
+                <img src="s-l1200 1.png" alt="FILTRE A AIR">
                 <h3>ACCOUDOIR CONSOLE</h3>
                 <p>Accessories</p>
                 <p>SKU: <span>942210</span></p>
@@ -833,6 +979,8 @@
 
     <!-- Overlay -->
     <div id="overlay" class="overlay"></div>
+    
+    <!-- Rating Modal -->
     <div class="rating-modal" id="ratingModal">
         <h3>Rate this product</h3>
         <p>How would you rate your purchase?</p>
@@ -848,6 +996,104 @@
             <button class="close-modal">Close</button>
         </div>
     </div>
+    
+    <!-- Purchase Modal -->
+    <div class="purchase-modal" id="purchaseModal">
+        <h3>Complete Your Purchase</h3>
+        
+        <div class="purchase-summary">
+            <h4>Order Summary</h4>
+            <div class="purchase-summary-item">
+                <span>Product:</span>
+                <span id="purchase-product-name">Product Name</span>
+            </div>
+            <div class="purchase-summary-item">
+                <span>Price:</span>
+                <span id="purchase-product-price">0.00 DZ</span>
+            </div>
+            <div class="purchase-summary-item">
+                <span>Quantity:</span>
+                <span id="purchase-product-quantity">1</span>
+            </div>
+            <div class="purchase-summary-item purchase-summary-total">
+                <span>Total:</span>
+                <span id="purchase-product-total">0.00 DZ</span>
+            </div>
+        </div>
+        
+        <form class="purchase-form" id="purchaseForm">
+            <h4>Shipping Information</h4>
+            <div class="form-group">
+                <label for="full-name">Full Name</label>
+                <input type="text" id="full-name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="address">Shipping Address</label>
+                <textarea id="address" rows="3" required></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" required>
+                </div>
+                <div class="form-group">
+                    <label for="postal-code">Postal Code</label>
+                    <input type="text" id="postal-code" required>
+                </div>
+            </div>
+            
+            <h4>Payment Information</h4>
+            <div class="form-group">
+                <label for="card-name">Name on Card</label>
+                <input type="text" id="card-name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="card-number">Card Number</label>
+                <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="expiry-date">Expiry Date</label>
+                    <input type="text" id="expiry-date" placeholder="MM/YY" required>
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" placeholder="123" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="payment-method">Payment Method</label>
+                <select id="payment-method" required>
+                    <option value="">Select payment method</option>
+                    <option value="visa">Visa</option>
+                    <option value="mastercard">Mastercard</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="cod">Cash on Delivery</option>
+                </select>
+            </div>
+            
+            <div class="purchase-buttons">
+                <button type="button" class="cancel-purchase" id="cancelPurchase">Cancel</button>
+                <button type="submit" class="confirm-purchase">Confirm Purchase</button>
+            </div>
+        </form>
+    </div>
+
     <script>
         // Product data
         const products = {
@@ -977,18 +1223,69 @@
             sidebar.classList.remove('active');
             favoritesSidebar.classList.remove('active');
             overlay.classList.remove('active');
+            ratingModal.classList.remove('active');
+            purchaseModal.classList.remove('active');
         });
 
         const ratingModal = document.getElementById('ratingModal');
+        const purchaseModal = document.getElementById('purchaseModal');
         const stars = document.querySelectorAll('.star');
         let selectedRating = 0;
+        let currentProduct = null;
 
-        // Open rating modal when "Buy" is clicked
+        // Open purchase modal when "Buy" is clicked
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('buy-btn')) {
-                ratingModal.classList.add('active');
+                e.stopPropagation();
+                const productCard = e.target.closest('.product-card');
+                const productId = parseInt(productCard.getAttribute('data-id'));
+                currentProduct = products[productId];
+                
+                // Update purchase modal with product info
+                document.getElementById('purchase-product-name').textContent = currentProduct.name;
+                document.getElementById('purchase-product-price').textContent = currentProduct.price;
+                
+                // Get quantity (default to 1)
+                const quantity = 1; // You can implement quantity selection
+                document.getElementById('purchase-product-quantity').textContent = quantity;
+                
+                // Calculate total (simple implementation)
+                const priceValue = parseFloat(currentProduct.price.replace(/[^0-9.]/g, ''));
+                const total = priceValue * quantity;
+                document.getElementById('purchase-product-total').textContent = total.toFixed(2) + ' DZ';
+                
+                // Show purchase modal
+                purchaseModal.classList.add('active');
                 overlay.classList.add('active');
             }
+        });
+
+        // Close purchase modal
+        document.getElementById('cancelPurchase').addEventListener('click', function() {
+            purchaseModal.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        // Handle purchase form submission
+        document.getElementById('purchaseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would normally send the data to your server
+            // For this example, we'll just show an alert
+            alert('Purchase successful! Thank you for your order.');
+            
+            // Close the modal
+            purchaseModal.classList.remove('active');
+            overlay.classList.remove('active');
+            
+            // Reset form
+            this.reset();
+            
+            // Show rating modal after purchase
+            setTimeout(() => {
+                ratingModal.classList.add('active');
+                overlay.classList.add('active');
+            }, 500);
         });
 
         // Star rating selection
@@ -1027,13 +1324,6 @@
             selectedRating = 0;
             stars.forEach(star => star.classList.remove('active'));
         }
-
-        // Close modal when clicking overlay
-        overlay.addEventListener('click', function() {
-            ratingModal.classList.remove('active');
-            overlay.classList.remove('active');
-            resetStars();
-        });
 
         // Dark mode toggle
         const darkModeToggle = document.getElementById('darkModeToggle');
@@ -1170,6 +1460,15 @@
         // Initialize
         updateFavoriteButtons();
         renderFavorites();
+
+        // Quantity buttons functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('quantity-btn')) {
+                e.stopPropagation();
+                // You can implement quantity adjustment here
+                alert('Quantity adjustment would be implemented here');
+            }
+        });
     </script>
 </body>
 </html>
