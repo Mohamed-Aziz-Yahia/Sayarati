@@ -1,120 +1,172 @@
-function showDetails(item) {
-  document.body.classList.add("noscroll");
-  const name = item.querySelector("h2").textContent;
-  const phoneNum = item.querySelector("p").textContent;
-  const rating = item.querySelectorAll(".repair-rating img").length;
-  const services = item.querySelectorAll(".repair-services img").length;
-  const image = item.querySelector("img").src;
-  function createRating(rating) {
-    let starsHtml = "<div>";
-    for (let i = 0; i < rating; i++) {
-      starsHtml += `<img src="./Logos/star.png" alt="star"/>`;
-    }
-    starsHtml += "</div>";
-    return starsHtml;
+// Main function to load and display sellers
+document.addEventListener('DOMContentLoaded', async function() {
+  try {
+    // 1. Fetch all sellers from backend
+    const response = await fetch('https://your-backend-api.com/api/sellers');
+    if (!response.ok) throw new Error('Failed to fetch sellers');
+    const sellers = await response.json();
+
+    // 2. Render all sellers
+    renderSellers(sellers);
+
+  } catch (error) {
+    console.error('Error loading sellers:', error);
+    showError();
   }
+});
 
-  function service(services) {
-    if (services === 1) {
-      return "Car repair";
-    } else if (services === 2) {
-      return "Car repair, Car breakdown";
-    }
-  }
-
-  const repairDetails = document.createElement("div");
-  repairDetails.classList.add("repair-details");
-
-  repairDetails.innerHTML = `
-      <button id='close'><img src="./Logos/close.png"/></button>
-    <div id='details-content'>
-      <img id='profile-img'src="${image}"/>
-      <div>
-      <p>Name: ${name}</p>
-      <p>Phone Number: ${phoneNum}</p>
-      <p>Working hours: 8:00am-5:00pm</p>
-      <p>Working days: Sunday-Thursday</p>
-      <p>Services: ${service(services)}</p>
-      <div id='rating'><p>Rating:${createRating(rating)}</p></div>
+// Function to render all sellers
+function renderSellers(sellers) {
+  const container = document.getElementById('repair-container');
+  container.innerHTML = sellers.map(seller => `
+    <div class="repair-item" data-id="${seller.id}" onclick="showDetails(${JSON.stringify(seller).replace(/"/g, '&quot;')})">
+      <img src="${seller.image || 'images/default-profile.png'}" alt="${seller.name}">
+      <h2>${seller.name}</h2>
+      <p>${seller.phone}</p>
+      <div class="repair-rating">
+        ${generateStars(seller.rating)}
+        <span class="rating-value">${seller.rating.toFixed(1)}</span>
+      </div>
+      <div class="repair-services">
+        ${seller.services.map(service => 
+          `<img src="Logos/${service}-icon.png" alt="${service}">`
+        ).join('')}
       </div>
     </div>
-      <div id='buttons'>
-        <button id='call'><img src="./Logos/phone.png"/>Contact</button>
-        <button id='available'><img src="./Logos/back-in-time.png"/>Available after 32min</button>
+  `).join('');
+}
+
+// Star rating generator
+function generateStars(rating) {
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 >= 0.5;
+  let stars = '';
+  
+  for (let i = 0; i < fullStars; i++) stars += '<img src="Logos/star.png" alt="★">';
+  if (hasHalfStar) stars += '<img src="Logos/star-half.png" alt="½">';
+  for (let i = 0; i < (5 - fullStars - (hasHalfStar ? 1 : 0)); i++) {
+    stars += '<img src="Logos/star-empty.png" alt="☆">';
+  }
+  return stars;
+}
+
+// Error display
+function showError() {
+  document.getElementById('repair-container').innerHTML = `
+    <div class="error-message">
+      Failed to load sellers. Please try again later.
+    </div>
+  `;
+}
+
+// Seller details display
+function showDetails(sellerData) {
+  // Convert stringified data back to object if needed
+  const seller = typeof sellerData === 'string' ? JSON.parse(sellerData) : sellerData;
+  
+  document.body.classList.add("noscroll");
+  
+  const repairDetails = document.createElement("div");
+  repairDetails.classList.add("repair-details");
+  repairDetails.innerHTML = `
+    <button id='close'><img src="./Logos/close.png" alt="Close"/></button>
+    <div id='details-content'>
+      <img id='profile-img' src="${seller.image || './images/default-profile.png'}" alt="${seller.name}"/>
+      <div>
+        <p>Name: ${seller.name}</p>
+        <p>Phone Number: ${seller.phone}</p>
+        <p>Working hours: 8:00am-5:00pm</p>
+        <p>Working days: Sunday-Thursday</p>
+        <p>Services: ${formatServices(seller.services)}</p>
+        <div id='rating'>Rating: ${generateStars(seller.rating)} <span>${seller.rating.toFixed(1)}/5</span></div>
       </div>
-      <button id='automatic-call'>Contact after time ends automatically</button>
-    `;
+    </div>
+    <div id='buttons'>
+      <button id='call'><img src="./Logos/phone.png" alt="Phone"/>Contact</button>
+      // <button id='available'><img src="./Logos/back-in-time.png" alt="Clock"/>Available after 32min</button>
+    </div>
+    // <button id='automatic-call'>Contact after time ends automatically</button>
+  `;
 
   document.body.appendChild(repairDetails);
 
-  document.getElementById("close").addEventListener("click", () => {
-    document.querySelector(".repair-details").remove();
-    document.body.classList.remove("noscroll");
+  // Event listeners
+  document.getElementById("close").addEventListener("click", closeDetails);
+  document.getElementById("call").addEventListener("click", () => startReviewProcess(seller));
+}
+
+// Helper functions
+function formatServices(services) {
+  const serviceNames = {
+    'car-repair': 'Car Repair',
+    'car-breakdown': 'Car Breakdown',
+  };
+  return services.map(service => serviceNames[service] || service).join(', ');
+}
+
+function closeDetails() {
+  document.querySelector(".repair-details")?.remove();
+  document.body.classList.remove("noscroll");
+}
+
+function startReviewProcess(seller) {
+  window.open(`https://wa.me/${seller.phone.replace(/\D/g, '')}`, "_blank");
+  closeDetails();
+
+  const review = document.createElement("div");
+  review.classList.add("repair-review");
+  review.innerHTML = `
+    <img id='check' src='Logos/check.png' alt="Checkmark"/>
+    <h2>Thanks for reaching out to us</h2>
+    <p>Please evaluate our service</p>
+    <div class="stars">
+      ${[1,2,3,4,5].map(i => `<span class="star" data-value="${i}">★</span>`).join('')}
+    </div>
+    <button id='submit'>Submit</button>
+  `;
+
+  document.body.appendChild(review);
+  setupStarRating(seller.id);
+}
+
+function setupStarRating(sellerId) {
+  let selectedRating = 0;
+  const stars = document.querySelectorAll(".star");
+
+  stars.forEach(star => {
+    star.addEventListener("click", function() {
+      selectedRating = parseInt(this.getAttribute("data-value"));
+      highlightStars(selectedRating);
+    });
   });
 
-  document.getElementById("call").addEventListener("click", () => {
-    window.open("https://web.whatsapp.com/", "_blank");
-    document.querySelector(".repair-details").remove();
-
-    // Create review div
-    const review = document.createElement("div");
-    review.classList.add("repair-review");
-    review.innerHTML = `
-          <img id='check'src='Logos/check.png'/>
-          <h2>Thanks for reaching out to us</h2>
-          <p>Please evaluate our service</p>
-          <div class="stars">
-            <span class="star" data-value="1">★</span>
-            <span class="star" data-value="2">★</span>
-            <span class="star" data-value="3">★</span>
-            <span class="star" data-value="4">★</span>
-            <span class="star" data-value="5">★</span>
-          </div>
-          <button id='submit'>Submit</button>
-      `;
-
-    document.body.appendChild(review);
-
-    // Initialize the star rating AFTER creating the elements
-    setupStarRating();
-
-    document.getElementById("submit").addEventListener("click", () => {
-      document.querySelector(".repair-review").remove();
+  document.getElementById("submit").addEventListener("click", async () => {
+    if (selectedRating > 0) {
+      await submitRating(sellerId, selectedRating);
+      document.querySelector(".repair-review")?.remove();
       document.body.classList.remove("noscroll");
-    });
-  });
-
-  function setupStarRating() {
-    const stars = document.querySelectorAll(".star");
-    let selectedRating = 0;
-
-    stars.forEach((star) => {
-      star.addEventListener("mouseover", function () {
-        const value = parseInt(this.getAttribute("data-value"));
-        highlightStars(value);
-      });
-
-      star.addEventListener("mouseout", function () {
-        highlightStars(selectedRating);
-      });
-
-      star.addEventListener("click", function () {
-        selectedRating = parseInt(this.getAttribute("data-value"));
-        highlightStars(selectedRating);
-        console.log(`User rated: ${selectedRating} stars`);
-        // You can store selectedRating to use when submit is clicked
-      });
-    });
-
-    function highlightStars(count) {
-      stars.forEach((star) => {
-        const value = parseInt(star.getAttribute("data-value"));
-        if (value <= count) {
-          star.classList.add("active");
-        } else {
-          star.classList.remove("active");
-        }
-      });
+    } else {
+      alert("Please select a rating");
     }
+  });
+}
+
+async function submitRating(sellerId, rating) {
+  try {
+    await fetch('https://your-backend-api.com/api/ratings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sellerId, rating })
+    });
+  } catch (error) {
+    console.error("Rating submission failed:", error);
   }
+}
+
+function highlightStars(count) {
+  document.querySelectorAll(".star").forEach(star => {
+    star.classList.toggle("active", 
+      parseInt(star.getAttribute("data-value")) <= count
+    );
+  });
 }

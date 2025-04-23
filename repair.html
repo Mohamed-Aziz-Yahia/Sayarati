@@ -22,54 +22,11 @@
   <body>
     <header>
       <img id="S-header" src="Logos/S-white.png" alt="S logo" />
-      <img src="Logos/ayarati.png" alt="Ayarati logo" />
+      <img id="ayarati-header" src="Logos/ayarati.png" alt="Ayarati logo" />
     </header>
   <main id="main">
     <h1>Car Breakdown</h1>
     <div id="repair-container">
-      <div onclick="showDetails(this)"class="repair-item" data-id="item1">
-        <img src="images/Ronaldo.png" alt="Ronaldo" />
-        <h2>Cristiano Ronaldo</h2>
-        <p>+213676662231</p>
-        <div class="repair-rating">
-          <img src="Logos/star.png" alt="Star logo" />
-          <img src="Logos/star.png" alt="Star logo" />
-          <img src="Logos/star.png" alt="Star logo" />
-          <img src="Logos/star.png" alt="Star logo" />
-          <img src="Logos/star.png" alt="Star logo" />
-        </div>
-        <div class="repair-services">
-        <img id="car-fix"src="Logos/car-fix.png" alt="Car fix logo" />
-        <img src="Logos/crane-truck.png" alt="Crane truck logo" />
-        </div>
-    </div>
-    <div onclick="showDetails(this)"class="repair-item" >
-        <img src="images/Ronaldo.png" alt="Ronaldo" />
-        <h2>Eden Hazard</h2>
-        <p>+213676662231</p>
-        <div class="repair-rating">
-          <img src="Logos/star.png" alt="Star logo" />
-          <img src="Logos/star.png" alt="Star logo" />
-          <img src="Logos/star.png" alt="Star logo" />
-        </div>
-        <div class="repair-services">
-        <img id="car-fix"src="Logos/car-fix.png" alt="Car fix logo" />
-        <img src="Logos/crane-truck.png" alt="Crane truck logo" />
-        </div>
-    </div>
-    <div onclick="showDetails(this)"class="repair-item" data-id="item2">
-        <img src="images/Ronaldo.png" alt="Ronaldo" />
-        <h2>Asensio</h2>
-        <p>+213676662231</p>
-        <div class="repair-rating">
-          <img src="Logos/star.png" alt="Star logo" />
-          <img src="Logos/star.png" alt="Star logo" />
-        </div>
-        <div class="repair-services">
-        <img id="car-fix"src="Logos/car-fix.png" alt="Car fix logo" />
-        <img src="Logos/crane-truck.png" alt="Crane truck logo" />
-        </div>
-    </div>
     <div onclick="showDetails(this)"class="repair-item" data-id="item3">
         <img src="images/Ronaldo.png" alt="Ronaldo" />
         <h2>Cristiano Ronaldo</h2>
@@ -81,10 +38,11 @@
           <img src="Logos/star.png" alt="Star logo" />
         </div>
         <div class="repair-services">
-        <img id="car-fix"src="Logos/car-fix.png" alt="Car fix logo" />
+        <img id="car-fix"src="Logos/repair-icon.png" alt="Car fix logo" />
         </div>
-        </div>
-        <div id="btn">
+      </div>
+
+      <div id="btn">
             <button id="remove-breakdown">Remove breakdown</button>
             <button id="add-breakdown">Add breakdown</button>
         </div>
@@ -94,11 +52,11 @@
         <div id="footer-logo">
           <img
             id="footer-S"
-            class="S-logo"
             src="./Logos/S-orange.png"
             alt="S Logo"
           />
           <img
+            id="ayarati-footer"
             src="./Logos/ayarati-white.png"
             alt="Ayarati Logo"
           />

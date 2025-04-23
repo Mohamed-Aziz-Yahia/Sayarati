@@ -4,18 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="icon" href="./Logos/Logo bar sayarati.png" type="image/x-icon">
     <title> Parts Store</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background-color: #ffffff;
             margin: 0;
             padding: 0;
             color: #333;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-
+        * h1,h2,h3{
+            font-family:'Poppins',sans-serif;
+            font-size: 2rem;
+            font-weight:500;
+        }
         /* Dark mode styles */
         body.dark-mode {
             background-color: #121212;
@@ -98,7 +105,7 @@
             width: 100%;
             height: 300px;
             overflow: hidden;
-            background: url('istock-car-parts 1.png') no-repeat center center;
+            background: url('./Logos/stock-car-parts.png') no-repeat center center;
             background-size: cover;
             display: flex;
             align-items: center;
@@ -112,11 +119,16 @@
             gap: 0;
         }
 
-        .logo-part {
-            height: 80px;
-            width: auto;
-            object-fit: contain;
-            display: block;
+        .S-logo{
+            width: 77px;
+            height: 72px;
+            margin-bottom: 30px;
+            margin-left: 70px;
+            filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.8))
+             }
+        .ayarati-logo {
+            width: 254px;
+            height: 51px;
         }
 
         .shop-info {
@@ -135,8 +147,7 @@
         }
 
         .shop-info h1 {
-            font-size: 24px;
-            margin: 0;
+            margin: 8px;
         }
 
         .shop-info span {
@@ -300,10 +311,11 @@
 
         /* Sidebar Styles */
         .sidebar {
+            display:none;
             position: fixed;
             top: 0;
-            left: -300px;
-            width: 280px;
+            /* left: -300px; */
+            width: 400px;
             height: 100vh;
             background: white;
             box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
@@ -316,7 +328,7 @@
         }
 
         .sidebar.active {
-            left: 0;
+            display:block;
         }
 
         .sidebar-header {
@@ -772,8 +784,8 @@
 <body>
     <div class="header">
         <div class="logo-container">
-            <img src="S.png" alt="S" class="logo-part">
-            <img src="ayarati.png" alt="ayarati" class="logo-part">
+            <img src="./Logos/S.png" alt="S" class="S-logo">
+            <img src="./Logos/ayarati.png" alt="ayarati" class="ayarati-logo">
         </div>
     </div>
     <div class="shop-info">
@@ -781,7 +793,6 @@
             <h1>Store</h1>
             <span>Showing 1-8 of 80 products</span>
         </div>
-        <hr style="border: none; border-top: 1px solid #ddd; margin: 0;">
         <div class="shop-info-bottom">
             <button id="darkModeToggle" class="dark-mode-toggle">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -809,7 +820,7 @@
         <div class="product-grid">
             <!-- Product 1 -->
             <div class="product-card" onclick="toggleDetails(this)" data-id="1">
-                <img src="alternateur-gomecano 1.png" alt="ALTERNATEUR">
+                <img src="./images/alternateur-gomecano 1.png" alt="ALTERNATEUR">
                 <h3>ALTERNATEUR</h3>
                 <p>Moteur</p>
                 <p>SKU: <span>8122360</span></p>
@@ -829,7 +840,7 @@
 
             <!-- Product 2 -->
             <div class="product-card" onclick="toggleDetails(this)" data-id="2">
-                <img src="aile-av-g-berlingo-nm-08 1.png" alt="Ailes Volkswagen Golf">
+                <img src="./images/aile-av-g-berlingo-nm-08 1.png" alt="Ailes Volkswagen Golf">
                 <h3>ALIES Volkswagen Golf</h3>
                 <p>Bonne occasion</p>
                 <p>SKU: <span>2155531</span></p>
@@ -849,7 +860,7 @@
 
             <!-- Product 3 -->
             <div class="product-card" onclick="toggleDetails(this)" data-id="3">
-                <img src="amortisseur_volvo_s80_et_v70_ref_30683342,_8624604,_9492564 1.png" alt="BATTERIE">
+                <img src="./images/amortisseur_volvo_s80_et_v70_ref_30683342,_8624604,_9492564 1.png" alt="BATTERIE">
                 <h3>BATTERIE</h3>
                 <p>High Performance</p>
                 <p>SKU: <span>11235813</span></p>
@@ -869,7 +880,7 @@
 
             <!-- Product 4 -->
             <div class="product-card" onclick="toggleDetails(this)" data-id="4">
-                <img src="arret-de-porte-avant 1.png" alt="FILTRE A AIR">
+                <img src="./images/arret-de-porte-avant 1.png" alt="FILTRE A AIR">
                 <h3>FILTRE A AIR</h3>
                 <p>Long Life Filter</p>
                 <p>SKU: <span>32659874</span></p>
@@ -889,7 +900,7 @@
 
             <!-- Product 5 -->
             <div class="product-card" onclick="toggleDetails(this)" data-id="5">
-                <img src="coupelle-d-appui-suspension-avant 1.png" alt="FILTRE A AIR">
+                <img src="./images/coupelle-d-appui-suspension-avant 1.png" alt="FILTRE A AIR">
                 <h3>APPUI COUPELLE</h3>
                 <p>Long Life Filter</p>
                 <p>SKU: <span>9515020</span></p>
@@ -909,7 +920,7 @@
 
             <!-- Product 6 -->
             <div class="product-card" onclick="toggleDetails(this)" data-id="6">
-                <img src="s-l1200 1.png" alt="FILTRE A AIR">
+                <img src="./images/s-l1200 1.png" alt="FILTRE A AIR">
                 <h3>ACCOUDOIR CONSOLE</h3>
                 <p>Accessories</p>
                 <p>SKU: <span>942210</span></p>
