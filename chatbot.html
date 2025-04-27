@@ -68,16 +68,21 @@
             margin-bottom: 8px;
         }
         #newChat-btn{
-            font-family:'Montserrat',sans-serif;
-            font-weight: 500;
             background-color: #C5198D;
             color: white;
             border: none;
             padding: 10px 15px;
             border-radius: 5px;
-            font-size: 1rem;
             cursor: pointer;
-            width: 100%;
+            width: 85%;
+        }
+        #newChat-btn a{
+            color:white;
+            font-family:'Montserrat',sans-serif;
+            font-weight: 600;
+            font-size:1rem;
+            text-decoration:none;
+            text-align:center;
         }
         #newChat-btn:hover{
             background-color: #e91ea5;
@@ -231,7 +236,20 @@
             display: flex;
             flex-direction: column;
         }
-        
+
+        .chat-messages::-webkit-scrollbar {
+            width: 8px; /* Adjust width as needed */
+            background-color: #FE8400; /* Match background */
+            }
+
+            .chat-messages::-webkit-scrollbar-thumb {
+            background-color: white; /* Match background */
+            border-radius: 4px; /* Optional: round the thumb */
+            }
+
+            .chat-messages::-webkit-scrollbar-track {
+            background-color: #FE8400; /* Match background */
+            }
         .message {
             font-family: "Montserrat", sans-serif;
             font-size: 1rem;
@@ -249,6 +267,7 @@
             color: white;
             border-bottom-right-radius: 4px;
             background-color: #C5198D;
+            margin-right: 10px;
         }
         
         .bot-message {
@@ -256,8 +275,18 @@
             background-color: rgba(255, 255, 255, 0.9);
             color: #333;
             border-bottom-left-radius: 4px;
+            padding-left: 20px;
         }
-        
+        .bot-message  >p{
+            font-family: "Montserrat", sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+        .bot-message >h1,h2,h3,h4,h5,h6{
+            font-family: "Poppins", sans-serif;
+            font-weight: 900;
+            font-size: 1rem;
+        }
         .welcome-message {
             text-align: center;
             margin: auto 0;
@@ -353,17 +382,13 @@
         </div>
         
         <div class="sidebar-menu">
-            <button id="newChat-btn">Start new chat</button>
+            <button id="newChat-btn"><a href="./chatbot.html">Start new chat</a></button>
         </div>
         
         <!-- Sidebar History -->
         <div class="sidebar-history">
-            <h3>History</h3>
             <ul>
-                <li>Why Cubism was revolutionary?</li>
-                <li>Healthy dinner recipes</li>
-                <li>Tell me a joke</li>
-                <li><a href="#">View all</a></li>
+               
             </ul>
         </div>
         
@@ -396,6 +421,8 @@
             <div class="input-container">
                 <input type="text" id="userInput" placeholder="Message Sayarati BOT">
                 <button id="paper-clip"><img src="./Logos/paper-clip.png" alt="Paper clip"></button>
+                <input type="file" id="pictureInput" accept="image/*" style="display: none;">
+                <div id="imagePreview"></div>
                 <button class="send-btn" id="sendButton"><img src="./Logos/up-arrow.png" alt="Up arrow"></button>
             </div
         </div>

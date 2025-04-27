@@ -1,28 +1,20 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="icon" href="./Logos/Logo bar sayarati.png" type="image/x-icon">
-    <title> Parts Store</title>
+    <title>Car Parts Store</title>
     <style>
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: Arial, sans-serif;
             background-color: #ffffff;
             margin: 0;
             padding: 0;
             color: #333;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        * h1,h2,h3{
-            font-family:'Poppins',sans-serif;
-            font-size: 2rem;
-            font-weight:500;
-        }
+
         /* Dark mode styles */
         body.dark-mode {
             background-color: #121212;
@@ -105,7 +97,7 @@
             width: 100%;
             height: 300px;
             overflow: hidden;
-            background: url('./Logos/stock-car-parts.png') no-repeat center center;
+            background: url('./images/istock-car-parts 1.png') no-repeat center center;
             background-size: cover;
             display: flex;
             align-items: center;
@@ -119,18 +111,17 @@
             gap: 0;
         }
 
-        .S-logo{
-            width: 77px;
-            height: 72px;
-            margin-bottom: 30px;
-            margin-left: 70px;
-            filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.8))
-             }
-        .ayarati-logo {
-            width: 254px;
-            height: 51px;
+        .logo-part {
+            height: 80px;
+            width: auto;
+            object-fit: contain;
+            display: block;
         }
-
+        #S-header {
+            height: 90px;
+            width: 80px;
+            margin-bottom:15px;
+        }
         .shop-info {
             background-color: #ffffff;
             color: black;
@@ -147,7 +138,8 @@
         }
 
         .shop-info h1 {
-            margin: 8px;
+            font-size: 24px;
+            margin: 0;
         }
 
         .shop-info span {
@@ -311,11 +303,10 @@
 
         /* Sidebar Styles */
         .sidebar {
-            display:none;
             position: fixed;
+            display:none;
             top: 0;
-            /* left: -300px; */
-            width: 400px;
+            width: 420px;
             height: 100vh;
             background: white;
             box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
@@ -328,7 +319,7 @@
         }
 
         .sidebar.active {
-            display:block;
+            display: block;
         }
 
         .sidebar-header {
@@ -779,13 +770,128 @@
             background: #3d3d3d;
             color: #e0e0e0;
         }
+
+        /* Add Product Modal */
+        .add-product-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .add-product-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .add-product-modal h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+            font-size: 22px;
+        }
+
+        .add-product-form {
+            display: grid;
+            gap: 15px;
+        }
+
+        .add-product-form .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .add-product-form .form-group label {
+            margin-bottom: 5px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .add-product-form .form-group input,
+        .add-product-form .form-group textarea,
+        .add-product-form .form-group select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .add-product-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .add-product-buttons button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .cancel-add-product {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .submit-add-product {
+            background: #FF7E00;
+            color: white;
+        }
+
+        /* Dark mode styles for add product modal */
+        .dark-mode .add-product-modal {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+
+        .dark-mode .add-product-modal h3 {
+            color: #e0e0e0;
+        }
+
+        .dark-mode .add-product-form .form-group input,
+        .dark-mode .add-product-form .form-group textarea,
+        .dark-mode .add-product-form .form-group select {
+            background: #3d3d3d;
+            color: #e0e0e0;
+            border: 1px solid #444;
+        }
+
+        .dark-mode .cancel-add-product {
+            background: #3d3d3d;
+            color: #e0e0e0;
+        }
+        .no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+.dark-mode .no-results {
+    color: #b0b0b0;
+}
     </style>
 </head>
 <body>
     <div class="header">
         <div class="logo-container">
-            <img src="./Logos/S.png" alt="S" class="S-logo">
-            <img src="./Logos/ayarati.png" alt="ayarati" class="ayarati-logo">
+            <img src="./Logos/S-white.png" alt="S" id="S-header"class="logo-part">
+            <img src="./Logos/ayarati.png" alt="ayarati" class="logo-part">
         </div>
     </div>
     <div class="shop-info">
@@ -793,12 +899,19 @@
             <h1>Store</h1>
             <span>Showing 1-8 of 80 products</span>
         </div>
+        <hr style="border: none; border-top: 1px solid #ddd; margin: 0;">
         <div class="shop-info-bottom">
             <button id="darkModeToggle" class="dark-mode-toggle">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1-8.313-12.454z"/>
                 </svg>
                 Dark Mode
+            </button>
+            <button id="addProductBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 4v16m8-8H4"/>
+                </svg>
+                Add Product
             </button>
             <button id="openFavorites">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -860,7 +973,7 @@
 
             <!-- Product 3 -->
             <div class="product-card" onclick="toggleDetails(this)" data-id="3">
-                <img src="./images/amortisseur_volvo_s80_et_v70_ref_30683342,_8624604,_9492564 1.png" alt="BATTERIE">
+                <img src="./images/amortisseur_volvo_s80_et_v70_ref_30683342,_8624604,_9492564_1.png" alt="BATTERIE">
                 <h3>BATTERIE</h3>
                 <p>High Performance</p>
                 <p>SKU: <span>11235813</span></p>
@@ -1105,6 +1218,73 @@
         </form>
     </div>
 
+    <!-- Add Product Modal -->
+    <div class="add-product-modal" id="addProductModal">
+        <h3>Add New Product</h3>
+        <form class="add-product-form" id="addProductForm">
+            <div class="form-group">
+                <label for="product-name">Product Name</label>
+                <input type="text" id="product-name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="product-category">Category</label>
+                <input type="text" id="product-category" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="product-sku">SKU</label>
+                <input type="text" id="product-sku" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="product-price">Price (DZ)</label>
+                <input type="number" id="product-price" step="0.01" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="product-image">Image URL</label>
+                <input type="text" id="product-image" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="product-rating">Rating (1-5)</label>
+                <select id="product-rating" required>
+                    <option value="1">⭐ 1</option>
+                    <option value="2">⭐ 2</option>
+                    <option value="3">⭐ 3</option>
+                    <option value="4">⭐ 4</option>
+                    <option value="5">⭐ 5</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="product-sold">Sold Count</label>
+                <input type="text" id="product-sold" placeholder="e.g., +500 sold" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="product-location">Location</label>
+                <input type="text" id="product-location" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="product-compatibility">Compatibility</label>
+                <textarea id="product-compatibility" rows="2" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="product-partno">Part Number</label>
+                <input type="text" id="product-partno" required>
+            </div>
+            
+            <div class="add-product-buttons">
+                <button type="button" class="cancel-add-product" id="cancelAddProduct">Cancel</button>
+                <button type="submit" class="submit-add-product">Add Product</button>
+            </div>
+        </form>
+    </div>
+
     <script>
         // Product data
         const products = {
@@ -1236,10 +1416,12 @@
             overlay.classList.remove('active');
             ratingModal.classList.remove('active');
             purchaseModal.classList.remove('active');
+            addProductModal.classList.remove('active');
         });
 
         const ratingModal = document.getElementById('ratingModal');
         const purchaseModal = document.getElementById('purchaseModal');
+        const addProductModal = document.getElementById('addProductModal');
         const stars = document.querySelectorAll('.star');
         let selectedRating = 0;
         let currentProduct = null;
@@ -1480,6 +1662,203 @@
                 alert('Quantity adjustment would be implemented here');
             }
         });
+
+        // Add Product Modal functionality
+        const addProductBtn = document.getElementById('addProductBtn');
+        const cancelAddProductBtn = document.getElementById('cancelAddProduct');
+
+        // Open add product modal
+        addProductBtn.addEventListener('click', () => {
+            addProductModal.classList.add('active');
+            overlay.classList.add('active');
+        });
+
+        // Close add product modal
+        cancelAddProductBtn.addEventListener('click', () => {
+            addProductModal.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        // Handle form submission
+        document.getElementById('addProductForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Generate a new product ID
+            const productIds = Object.keys(products).map(Number);
+            const newId = productIds.length > 0 ? Math.max(...productIds) + 1 : 7;
+            
+            // Create new product object
+            const newProduct = {
+                id: newId,
+                name: document.getElementById('product-name').value,
+                category: document.getElementById('product-category').value,
+                sku: document.getElementById('product-sku').value,
+                price: parseFloat(document.getElementById('product-price').value).toFixed(2) + ' DZ',
+                rating: '⭐ ' + document.getElementById('product-rating').value,
+                sold: document.getElementById('product-sold').value,
+                location: document.getElementById('product-location').value,
+                compatibility: document.getElementById('product-compatibility').value,
+                partNo: document.getElementById('product-partno').value,
+                image: document.getElementById('product-image').value
+            };
+            
+            // Add to products object
+            products[newId] = newProduct;
+            
+            // Create new product card
+            const productGrid = document.querySelector('.product-grid');
+            const newProductCard = document.createElement('div');
+            newProductCard.className = 'product-card';
+            newProductCard.setAttribute('data-id', newId);
+            newProductCard.onclick = function() { toggleDetails(this); };
+            
+            newProductCard.innerHTML = `
+                <img src="${newProduct.image}" alt="${newProduct.name}">
+                <h3>${newProduct.name}</h3>
+                <p>${newProduct.category}</p>
+                <p>SKU: <span>${newProduct.sku}</span></p>
+                <p class="price">${newProduct.price}</p>
+                <div class="product-details">
+                    <p><span class="rating">${newProduct.rating}</span> | ${newProduct.sold}</p>
+                    <p><strong>${newProduct.location}</strong></p>
+                    <p>${newProduct.compatibility}</p>
+                    <p>${newProduct.partNo}</p>
+                    <div class="actions">
+                        <button class="quantity-btn">+1</button>
+                        <button class="favorite-btn">Add to favorite</button>
+                        <button class="buy-btn">Buy</button>
+                    </div>
+                </div>
+            `;
+            
+            // Add to the beginning of the product grid
+            productGrid.prepend(newProductCard);
+            
+            // Update product count
+            updateProductCount();
+            
+            // Reset form and close modal
+            this.reset();
+            addProductModal.classList.remove('active');
+            overlay.classList.remove('active');
+            
+            // Update favorite buttons
+            updateFavoriteButtons();
+        });
+
+        // Function to update product count
+        function updateProductCount() {
+            const productCount = document.querySelectorAll('.product-card').length;
+            document.querySelector('.shop-info span').textContent = `Showing 1-${productCount} of ${productCount} products`;
+        }
+
+        // Initialize product count
+        updateProductCount();
+        // Search functionality
+const searchBox = document.querySelector('.search-box');
+const searchBtn = document.querySelector('.search-btn');
+const productGrid = document.querySelector('.product-grid');
+
+// Store original products for resetting search
+let originalProducts = [...productGrid.children];
+
+// Search when Enter key is pressed in search box
+searchBox.addEventListener('keyup', function(e) {
+    if (e.key === 'Enter') {
+        searchProducts();
+    }
+});
+
+// Search when search button is clicked
+searchBtn.addEventListener('click', searchProducts);
+
+function searchProducts() {
+    const searchTerm = searchBox.value.toLowerCase().trim();
+    
+    if (!searchTerm) {
+        // If search is empty, show all products
+        productGrid.innerHTML = '';
+        originalProducts.forEach(product => {
+            productGrid.appendChild(product);
+        });
+        updateProductCount();
+        return;
+    }
+    
+    // Filter products
+    const filteredProducts = Object.values(products).filter(product => {
+        return (
+            product.name.toLowerCase().includes(searchTerm) ||
+            product.category.toLowerCase().includes(searchTerm) ||
+            product.sku.toLowerCase().includes(searchTerm) ||
+            product.compatibility.toLowerCase().includes(searchTerm) ||
+            product.partNo.toLowerCase().includes(searchTerm)
+        );
+    });
+    
+    // Display filtered products
+    displayFilteredProducts(filteredProducts);
+}
+
+function displayFilteredProducts(filteredProducts) {
+    productGrid.innerHTML = '';
+    
+    if (filteredProducts.length === 0) {
+        productGrid.innerHTML = '<p class="no-results">No products found matching your search.</p>';
+        updateProductCount();
+        return;
+    }
+    
+    filteredProducts.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.setAttribute('data-id', product.id);
+        productCard.onclick = function() { toggleDetails(this); };
+        
+        productCard.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>${product.category}</p>
+            <p>SKU: <span>${product.sku}</span></p>
+            <p class="price">${product.price}</p>
+            <div class="product-details">
+                <p><span class="rating">${product.rating}</span> | ${product.sold}</p>
+                <p><strong>${product.location}</strong></p>
+                <p>${product.compatibility}</p>
+                <p>${product.partNo}</p>
+                <div class="actions">
+                    <button class="quantity-btn">+1</button>
+                    <button class="favorite-btn">Add to favorite</button>
+                    <button class="buy-btn">Buy</button>
+                </div>
+            </div>
+        `;
+        
+        productGrid.appendChild(productCard);
+    });
+    
+    // Update favorite buttons for the new filtered products
+    updateFavoriteButtons();
+    updateProductCount();
+}
+overlay.addEventListener('click', () => {
+    sidebar.classList.remove('active');
+    favoritesSidebar.classList.remove('active');
+    overlay.classList.remove('active');
+    ratingModal.classList.remove('active');
+    purchaseModal.classList.remove('active');
+    addProductModal.classList.remove('active');
+    
+    // Reset search when clicking outside
+    searchBox.value = '';
+    productGrid.innerHTML = '';
+    originalProducts.forEach(product => {
+        productGrid.appendChild(product);
+    });
+    updateProductCount();
+});
+// Initialize original products array
+originalProducts = [...productGrid.children];
     </script>
 </body>
 </html>
