@@ -25,8 +25,23 @@
       <img id="ayarati-header" src="Logos/ayarati.png" alt="Ayarati logo" />
     </header>
   <main id="main">
+    <div class="map-container">
+      <!-- Replace the URL with your desired location -->
+      <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215209179035!2d-73.987844924525!3d40.74844047138939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1712345678901!5m2!1sen!2sus" 
+          allowfullscreen="" 
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+  </div>
     <h1>Car Breakdown</h1>
-    <div id="repair-container">
+    <div class="search-container">
+      <div class="search-wrapper">
+        <img src="Logos/search-icon.png" alt="Search" class="search-icon">
+        <input type="text" id="search-bar" placeholder="Search..." />
+      </div>
+  </div>
+    <div id="repair-container" class="repair-container">
     <div onclick="showDetails(this)"class="repair-item" data-id="item3">
         <img src="images/Ronaldo.png" alt="Ronaldo" />
         <h2>Cristiano Ronaldo</h2>
@@ -41,10 +56,49 @@
         <img id="car-fix"src="Logos/repair-icon.png" alt="Car fix logo" />
         </div>
       </div>
-
+      <div onclick="showDetails(this)"class="repair-item" data-id="item3">
+        <img src="images/Ronaldo.png" alt="Ronaldo" />
+        <h2>Cristiano Ronaldo</h2>
+        <p>+213676662231</p>
+        <div class="repair-rating">
+          <img src="Logos/star.png" alt="Star logo" />
+          <img src="Logos/star.png" alt="Star logo" />
+          <img src="Logos/star.png" alt="Star logo" />
+          <img src="Logos/star.png" alt="Star logo" />
+        </div>
+        <div class="repair-services">
+        <img id="repair"src="Logos/repair-icon.png" alt="Car fix logo" />
+        </div>
+      </div>
       <div id="btn">
             <button id="remove-breakdown">Remove breakdown</button>
             <button id="add-breakdown">Add breakdown</button>
+        </div>
+        <div id="breakdown-form-container" class="form-popup" style="display:none;">
+          <form id="breakdown-form" class="form-content">
+            <h2>Add New Breakdown Shop</h2>
+            
+            <label for="shop-name">Shop Name:</label>
+            <input type="text" id="shop-name" required>
+            
+            <label for="shop-phone">Phone Number:</label>
+            <input type="tel" id="shop-phone" required>
+            
+            <label for="shop-services">Services:</label>
+            <div class="services-checkboxes">
+              <label><input type="checkbox" name="service" value="car-repair"> Car Repair</label>
+              <label><input type="checkbox" name="service" value="car-breakdown"> Car Breakdown</label>
+              <label><input type="checkbox" name="service" value="towing"> Towing</label>
+            </div>
+            
+            <label for="shop-image">Profile Picture:</label>
+            <input type="file" id="shop-image" accept="image/*">
+            
+            <div class="form-buttons">
+              <button type="submit">Submit</button>
+              <button type="button" id="cancel-form">Cancel</button>
+            </div>
+          </form>
         </div>
   </main>
   <footer>

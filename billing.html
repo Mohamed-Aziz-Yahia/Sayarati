@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing History</title>
+    <link rel="stylesheet" href="./billing.css">
+    <link rel="icon" href="./Logos/Logo bar sayarati.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div id="footer-logo">
+            <img
+              id="footer-S"
+              src="./Logos/S.png"
+              alt="S Logo"
+            />
+            <img
+              id="ayarati-footer"
+              src="./Logos/ayarati.png"
+              alt="Ayarati Logo"
+            />
+          </div>
+        <img id= "exit" src="./Logos/exit.png" alt="Exit icon" onclick="window.location.href='./main.html'">
+    </header>
+<main>
+    <div class="billing-container">
+        <h2>Billing History</h2>
+
+        <table class="billing-table">
+            <thead>
+                <tr>
+                    <th>Customer Name</th>
+                    <th>Date</th>
+                    <th>Bill Status</th>
+                    <th>Order Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John Smith</td>
+                    <td>April 10.2024</td>
+                    <td><span class="status status-paid">Paid</span></td>
+                    <td><span class="status status-validated">Validated</span></td>
+                </tr>
+                <tr>
+                    <td>Emma Wilson</td>
+                    <td>April 5.2024</td> 
+                    <td><span class="status status-pending">Pending</span></td>
+                    <td><span class="status status-not-validated">Not Validated</span></td>
+                </tr>
+                <tr>
+                    <td>Kareem Ospina</td>
+                    <td>April 1.2024</td> 
+                    <td><span class="status status-paid">Paid</span></td>
+                    <td><span class="status status-validated">Validated</span></td>
+                </tr>
+                </tbody>
+        </table>
+    </div>
+</main>
+    <footer>
+        <footer id="footer">
+            <div id="footer-logo">
+              <img
+                id="footer-S"
+                src="./Logos/S-orange.png"
+                alt="S Logo"
+              />
+              <img
+                id="ayarati-footer"
+                src="./Logos/ayarati-white.png"
+                alt="Ayarati Logo"
+              />
+            </div>
+            <div id="footer-text">
+            <p>Copyright © 2024-2025 Sayarati company. All rights reserved.</p>
+            <div id="social-media">
+              <a href="#"><img src="./Logos/facebook.png" alt="Facebook logo" /></a>
+              <a href="#"
+                ><img src="./Logos/instagram.png" alt="Instagram logo"
+              /></a>
+              <a href="#"><img src="./Logos/twitter.png" alt="Twitter logo" /></a>
+              <a href="#"><img src="./Logos/whatsapp.png" alt="Whatsapp logo" /></a>
+              <a href="#"><img src="./Logos/telegram.png" alt="Telegram logo" /></a>
+            </div>
+        </div>
+      </footer>
+</body>
+</html>

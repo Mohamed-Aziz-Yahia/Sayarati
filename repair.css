@@ -37,18 +37,73 @@ main#main {
   justify-content: center;
   margin-top: 80px;
 }
+.map-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.map-container iframe {
+  width: 100%;
+  height: 450px;
+  border: 0;
+}
 h1 {
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 2.2rem;
   border-bottom: #fe8400 2px solid;
 }
+.search-container {
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+.search-wrapper {
+  position: relative;
+}
+
+input#search-bar {
+  width: 500px;
+  padding: 10px 15px 10px 40px;
+  margin:20px auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  color: #575757;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+#search-bar:focus {
+  border-color: #575757;
+}
+
+#search-bar::placeholder {
+  color: #575757;
+  opacity: 0.7;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
 .repair-item {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #fe8400;
-  width: 100%;
+  width: 97%;
   padding: 20px 10px;
   border-radius: 10px;
   height: 120px;
@@ -92,7 +147,7 @@ h1 {
   justify-content: space-between;
   margin-left: 50px;
 }
-#car-fix {
+#repair{
   width: 70px;
   height: 70px;
 }
@@ -291,7 +346,58 @@ body.noscroll {
   background-color: #c03e3e;
   cursor: pointer;
 }
+.form-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
 
+.form-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+}
+
+.form-content label {
+  display: block;
+  margin-top: 10px;
+}
+
+.form-content input[type="text"],
+.form-content input[type="tel"],
+.form-content input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+.services-checkboxes {
+  margin: 10px 0;
+}
+
+.services-checkboxes label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 5px 0;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
 /* Footer */
 footer#footer {
   background-color: black;

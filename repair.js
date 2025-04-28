@@ -1,172 +1,213 @@
-// Main function to load and display sellers
-document.addEventListener('DOMContentLoaded', async function() {
-  try {
-    // 1. Fetch all sellers from backend
-    const response = await fetch('https://your-backend-api.com/api/sellers');
-    if (!response.ok) throw new Error('Failed to fetch sellers');
-    const sellers = await response.json();
-
-    // 2. Render all sellers
-    renderSellers(sellers);
-
-  } catch (error) {
-    console.error('Error loading sellers:', error);
-    showError();
+let sellers = [
+  {
+    id: 1,
+    name: "City Auto Repair",
+    phone: "0555010123",
+    services: ["repair", "towing"],
+    rating: 4.2,
+    city: "Alger",
+    image: "images/default-profile.png"
+  },
+  {
+    id: 2,
+    name: "24/7 Breakdown Service",
+    phone: "0755020278",
+    services: ["towing"],
+    rating: 3.9,
+    city: "Constantine",
+    image: "images/default-profile.png"
   }
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+  const searchBar = document.getElementById('search-bar'); // Make sure you have this ID in your HTML
+  if (searchBar) {
+    searchBar.addEventListener('input', handleSearch);
+  }
+  renderSellers(sellers); // Initial render
 });
 
-// Function to render all sellers
-function renderSellers(sellers) {
+function handleSearch(e) {
+  const searchTerm = e.target.value.trim().toLowerCase();
+  if (searchTerm === '') {
+    renderSellers(sellers); // Show all when empty
+    return;
+  }
+
+  const filtered = sellers.filter(seller => 
+    seller.city.toLowerCase() === searchTerm // Changed from includes to ===
+  );
+  renderSellers(filtered);
+}
+function renderSellers(sellersToShow) {
   const container = document.getElementById('repair-container');
-  container.innerHTML = sellers.map(seller => `
-    <div class="repair-item" data-id="${seller.id}" onclick="showDetails(${JSON.stringify(seller).replace(/"/g, '&quot;')})">
-      <img src="${seller.image || 'images/default-profile.png'}" alt="${seller.name}">
+  if (!container) return;
+  const logoStyles = 'width: 60px; height: 60px; margin-right: 4px; vertical-align: middle; border-radius: 3px;'; // Example styles
+  container.innerHTML = sellersToShow.map(seller => `
+    <div class="repair-item" data-id="${seller.id}" onclick="showDetails(this)">
+      <img src="${seller.image}" alt="${seller.name}">
       <h2>${seller.name}</h2>
       <p>${seller.phone}</p>
+      <p class="seller-city">${seller.city}</p> <!-- Added city display -->
       <div class="repair-rating">
         ${generateStars(seller.rating)}
         <span class="rating-value">${seller.rating.toFixed(1)}</span>
       </div>
       <div class="repair-services">
         ${seller.services.map(service => 
-          `<img src="Logos/${service}-icon.png" alt="${service}">`
+          `<img src="Logos/${service}-icon.png" alt="${service}" style="${logoStyles}">`
         ).join('')}
       </div>
     </div>
   `).join('');
 }
 
-// Star rating generator
-function generateStars(rating) {
-  const fullStars = Math.floor(rating);
-  const hasHalfStar = rating % 1 >= 0.5;
-  let stars = '';
-  
-  for (let i = 0; i < fullStars; i++) stars += '<img src="Logos/star.png" alt="★">';
-  if (hasHalfStar) stars += '<img src="Logos/star-half.png" alt="½">';
-  for (let i = 0; i < (5 - fullStars - (hasHalfStar ? 1 : 0)); i++) {
-    stars += '<img src="Logos/star-empty.png" alt="☆">';
-  }
-  return stars;
-}
+function showDetails(item) {
+  try {
+    document.body.classList.add("noscroll");
+    
+    // 1. EXTRACT DATA (with fallbacks)
+    const name = item.querySelector("h2")?.textContent || "Unknown Shop";
+    const phoneNum = item.querySelector("p")?.textContent || "No phone";
+    const city = item.querySelector(".seller-city")?.textContent || "Unknown City";
+    const ratingValue = parseFloat(item.querySelector(".rating-value")?.textContent) || 0;
+    const services = item.querySelectorAll(".repair-services img").length;
+    const image = item.querySelector("img")?.src || "images/default-profile.png";
 
-// Error display
-function showError() {
-  document.getElementById('repair-container').innerHTML = `
-    <div class="error-message">
-      Failed to load sellers. Please try again later.
-    </div>
-  `;
-}
+    // 2. YOUR ORIGINAL RATING FUNCTIONS (unchanged)
+    function createRating(rating) {
+      let starsHtml = "<div>";
+      for (let i = 0; i < rating; i++) {
+        starsHtml += `<img src="./Logos/star.png" alt="star"/>`;
+      }
+      starsHtml += "</div>";
+      return starsHtml;
+    }
 
-// Seller details display
-function showDetails(sellerData) {
-  // Convert stringified data back to object if needed
-  const seller = typeof sellerData === 'string' ? JSON.parse(sellerData) : sellerData;
-  
-  document.body.classList.add("noscroll");
-  
-  const repairDetails = document.createElement("div");
-  repairDetails.classList.add("repair-details");
-  repairDetails.innerHTML = `
-    <button id='close'><img src="./Logos/close.png" alt="Close"/></button>
-    <div id='details-content'>
-      <img id='profile-img' src="${seller.image || './images/default-profile.png'}" alt="${seller.name}"/>
-      <div>
-        <p>Name: ${seller.name}</p>
-        <p>Phone Number: ${seller.phone}</p>
-        <p>Working hours: 8:00am-5:00pm</p>
-        <p>Working days: Sunday-Thursday</p>
-        <p>Services: ${formatServices(seller.services)}</p>
-        <div id='rating'>Rating: ${generateStars(seller.rating)} <span>${seller.rating.toFixed(1)}/5</span></div>
+    function service(services) {
+      if (services === 1) return "Car repair";
+      if (services === 2) return "Car repair, Car breakdown";
+      return "Various services";
+    }
+
+    // 3. CREATE POPUP (with error-proof DOM injection)
+    const repairDetails = document.createElement("div");
+    repairDetails.className = "repair-details";
+    repairDetails.innerHTML = `
+      <button id='close'><img src="./Logos/close.png" alt="Close"/></button>
+      <div id='details-content'>
+        <img id='profile-img' src="${image}" alt="${name}"/>
+        <div>
+          <p>Name: ${name}</p>
+          <p>Phone: ${phoneNum}</p>
+          <p>Location: ${city}</p>
+          <p>Hours: 8:00am-5:00pm</p>
+          <p>Days: Sunday-Thursday</p>
+          <p>Services: ${service(services)}</p>
+          <div id='rating'>Rating: ${createRating(Math.floor(ratingValue))}</div>
+        </div>
       </div>
-    </div>
-    <div id='buttons'>
-      <button id='call'><img src="./Logos/phone.png" alt="Phone"/>Contact</button>
-      // <button id='available'><img src="./Logos/back-in-time.png" alt="Clock"/>Available after 32min</button>
-    </div>
-    // <button id='automatic-call'>Contact after time ends automatically</button>
-  `;
+      <div id='buttons'>
+        <button id='call'><img src="./Logos/phone.png"/>Contact</button>
+        <button id='available'><img src="./Logos/back-in-time.png"/>Available after 32min</button>
+      </div>
+      <button id='automatic-call'>Contact after time ends automatically</button>
+    `;
 
-  document.body.appendChild(repairDetails);
+    // 4. SAFE DOM INJECTION
+    if (!document.body) {
+      console.error("Document body not found!");
+      return;
+    }
+    document.body.appendChild(repairDetails);
 
-  // Event listeners
-  document.getElementById("close").addEventListener("click", closeDetails);
-  document.getElementById("call").addEventListener("click", () => startReviewProcess(seller));
+    // 5. YOUR ORIGINAL EVENT HANDLERS (with error handling)
+    const closeBtn = document.getElementById("close");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", () => {
+        const details = document.querySelector(".repair-details");
+        if (details) details.remove();
+        document.body.classList.remove("noscroll");
+      });
+    }
+
+    const callBtn = document.getElementById("call");
+    if (callBtn) {
+      callBtn.addEventListener("click", () => {
+        window.open("https://web.whatsapp.com/", "_blank");
+        
+        const details = document.querySelector(".repair-details");
+        if (details) details.remove();
+
+        // YOUR ORIGINAL REVIEW CODE
+        const review = document.createElement("div");
+        review.className = "repair-review";
+        review.innerHTML = `
+          <img id='check' src='Logos/check.png' alt="Checkmark"/>
+          <h2>Thanks for reaching out</h2>
+          <p>Please evaluate our service</p>
+          <div class="stars">
+            ${[1,2,3,4,5].map(i => `<span class="star" data-value="${i}">★</span>`).join("")}
+          </div>
+          <button id='submit'>Submit</button>
+        `;
+        
+        document.body.appendChild(review);
+        setupStarRating(); // Your original function
+      });
+    }
+
+  } catch (error) {
+    console.error("Error in showDetails:", error);
+    document.body.classList.remove("noscroll");
+  }
 }
 
-// Helper functions
-function formatServices(services) {
-  const serviceNames = {
-    'car-repair': 'Car Repair',
-    'car-breakdown': 'Car Breakdown',
-  };
-  return services.map(service => serviceNames[service] || service).join(', ');
-}
-
-function closeDetails() {
-  document.querySelector(".repair-details")?.remove();
-  document.body.classList.remove("noscroll");
-}
-
-function startReviewProcess(seller) {
-  window.open(`https://wa.me/${seller.phone.replace(/\D/g, '')}`, "_blank");
-  closeDetails();
-
-  const review = document.createElement("div");
-  review.classList.add("repair-review");
-  review.innerHTML = `
-    <img id='check' src='Logos/check.png' alt="Checkmark"/>
-    <h2>Thanks for reaching out to us</h2>
-    <p>Please evaluate our service</p>
-    <div class="stars">
-      ${[1,2,3,4,5].map(i => `<span class="star" data-value="${i}">★</span>`).join('')}
-    </div>
-    <button id='submit'>Submit</button>
-  `;
-
-  document.body.appendChild(review);
-  setupStarRating(seller.id);
-}
-
-function setupStarRating(sellerId) {
-  let selectedRating = 0;
+// YOUR ORIGINAL STAR FUNCTIONS (keep exactly as you had them)
+function setupStarRating() {
   const stars = document.querySelectorAll(".star");
+  let selectedRating = 0;
 
-  stars.forEach(star => {
+  stars.forEach((star) => {
+    star.addEventListener("mouseover", function() {
+      const value = parseInt(this.getAttribute("data-value"));
+      highlightStars(value);
+    });
+
+    star.addEventListener("mouseout", function() {
+      highlightStars(selectedRating);
+    });
+
     star.addEventListener("click", function() {
       selectedRating = parseInt(this.getAttribute("data-value"));
       highlightStars(selectedRating);
     });
   });
 
-  document.getElementById("submit").addEventListener("click", async () => {
-    if (selectedRating > 0) {
-      await submitRating(sellerId, selectedRating);
-      document.querySelector(".repair-review")?.remove();
-      document.body.classList.remove("noscroll");
-    } else {
-      alert("Please select a rating");
-    }
-  });
-}
-
-async function submitRating(sellerId, rating) {
-  try {
-    await fetch('https://your-backend-api.com/api/ratings', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ sellerId, rating })
+  function highlightStars(count) {
+    stars.forEach((star) => {
+      star.classList.toggle("active", 
+        parseInt(star.getAttribute("data-value")) <= count
+      );
     });
-  } catch (error) {
-    console.error("Rating submission failed:", error);
   }
 }
-
-function highlightStars(count) {
-  document.querySelectorAll(".star").forEach(star => {
-    star.classList.toggle("active", 
-      parseInt(star.getAttribute("data-value")) <= count
-    );
-  });
+document.addEventListener("click", function(event) {
+  if (event.target.id === "submit") {
+    const review = document.querySelector(".repair-review");
+    if (review) review.remove();
+    document.body.classList.remove("noscroll");
+  }
+});
+function generateStars(rating) {
+  const fullStars = Math.floor(rating);
+  const halfStar = rating % 1 >= 0.5 ? 1 : 0; // Optional: for half stars
+  const emptyStars = 5 - fullStars - halfStar; // Adjust if using half stars
+  let starsHtml = '';
+  for (let i = 0; i < fullStars; i++) starsHtml += '★'; // Or an img tag
+  // Add half star logic if needed
+  for (let i = 0; i < emptyStars; i++) starsHtml += '☆'; // Or an empty star img
+  return starsHtml;
 }
+// Make sure this function is defined BEFORE renderSellers uses it,
+// or place it globally.

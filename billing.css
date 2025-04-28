@@ -1,0 +1,160 @@
+body {
+    font-family: 'Inter', sans-serif; /* Using Inter font like the image */
+    margin: 0;
+    padding: 10px 20px; /* Add some padding around the content */
+    background-color: #f8f9fa; /* Light background like the image */
+    color: #333;
+    overflow-x: hidden; /* Default text color */
+}
+header{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top:0px;
+}
+#exit {
+    width: 28px;
+    height: 28px;
+    background-color: transparent;
+    border-radius: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: white;
+}
+#exit:hover{
+    background-color:#ccc5c5c0;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 5px;
+    border-radius: 35%;
+}
+.billing-container {
+    max-width: 800px; /* Limit width for better readability */
+    margin: 30px auto; /* Center the container and add top/bottom margin */
+    background-color: #fff; /* White background for the container */
+    padding: 30px;
+    border-radius: 8px; /* Optional: slight rounding of corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Optional: subtle shadow */
+}
+
+h2 {
+    text-align: center; /* Center the heading */
+    font-size: 2em; /* Larger font size for the heading */
+    font-weight: 600; /* Semi-bold heading */
+    color: #212529; /* Darker heading color */
+    margin-bottom: 30px; /* Space below the heading */
+}
+
+.billing-table {
+    width: 100%;
+    border-collapse: collapse; /* Remove space between cell borders */
+    font-size: 0.95em; /* Slightly smaller font size for table */
+}
+
+.billing-table th,
+.billing-table td {
+    padding: 15px 10px; /* Vertical and horizontal padding */
+    text-align: left;
+    border-bottom: 1px solid #e9ecef; /* Light separator line between rows */
+}
+
+.billing-table thead th {
+    font-weight: 500; /* Medium weight for headers */
+    color: #6c757d; /* Grey color for table headers */
+    background-color: #f8f9fa; /* Very light grey for header background */
+    border-bottom-width: 2px; /* Slightly thicker line below header */
+}
+
+/* Remove bottom border from the last row */
+.billing-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.status {
+    padding: 4px 8px; /* Padding inside the status badge */
+    border-radius: 4px; /* Rounded corners for the status badge */
+    font-weight: 500; /* Make status text slightly bolder */
+    font-size: 0.9em;
+    display: inline-block; /* Allow padding and border-radius */
+}
+
+.status-paid,
+.status-validated {
+    color: #198754; /* Green text color */
+    background-color: rgba(25, 135, 84, 0.1); /* Light green background */
+}
+
+.status-pending,
+.status-not-validated {
+    color: #dc3545; /* Red/Orange text color */
+    background-color: rgba(220, 53, 69, 0.1); /* Light red/orange background */
+}
+
+/* Optional: Slightly adjust column widths if needed */
+.billing-table th:nth-child(1),
+.billing-table td:nth-child(1) { /* Customer Name */
+    width: 30%;
+}
+
+.billing-table th:nth-child(2),
+.billing-table td:nth-child(2) { /* Date */
+    width: 20%;
+}
+
+.billing-table th:nth-child(3),
+.billing-table td:nth-child(3) { /* Bill Status */
+    width: 25%;
+}
+
+.billing-table th:nth-child(4),
+.billing-table td:nth-child(4) { /* Order Status */
+    width: 25%;
+}
+
+footer#footer {
+    background-color: black;
+    width: 1366px;
+    height: 200px;
+    position:absolute;
+    left:0;  
+}
+  div#footer-logo {
+    display: flex;
+    height: 80px;
+    margin-left: 30px;
+  }
+  #footer-S{
+    width: 37px;
+    height: 32px;
+    margin-top:30px;
+  }
+   #ayarati-footer{
+    width: 174px;
+    height: 31px;
+    margin-top:35px;
+  }
+  #footer-text {
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #footer-text p {
+    font-family: "Poppins", sans-serif;
+    margin-top: 50px;
+    margin-left: 30px;
+    font-size: 0.9rem;
+  }
+  div#social-media {
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+    margin-top: 40px;
+    margin-right: 50px;
+  }
+  div#social-media img {
+    width: 16px;
+    height: 16px;
+  }
