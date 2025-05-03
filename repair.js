@@ -18,6 +18,7 @@ let sellers = [
     image: "images/default-profile.png"
   }
 ];
+let allSellers = [...sellers]; // Create a copy of the initial sellers array
 
 document.addEventListener('DOMContentLoaded', function() {
   const searchBar = document.getElementById('search-bar'); // Make sure you have this ID in your HTML
@@ -30,12 +31,15 @@ document.addEventListener('DOMContentLoaded', function() {
 function handleSearch(e) {
   const searchTerm = e.target.value.trim().toLowerCase();
   if (searchTerm === '') {
-    renderSellers(sellers); // Show all when empty
+    renderSellers(allSellers); // Show all when empty
     return;
   }
 
-  const filtered = sellers.filter(seller => 
-    seller.city.toLowerCase() === searchTerm // Changed from includes to ===
+  const filtered = allSellers.filter(seller =>
+    seller.name.toLowerCase().includes(searchTerm) ||
+    seller.city.toLowerCase().includes(searchTerm) ||
+    seller.phone.toLowerCase().includes(searchTerm) ||
+    seller.services.some(service => service.toLowerCase().includes(searchTerm))
   );
   renderSellers(filtered);
 }
@@ -44,18 +48,18 @@ function renderSellers(sellersToShow) {
   if (!container) return;
   const logoStyles = 'width: 60px; height: 60px; margin-right: 4px; vertical-align: middle; border-radius: 3px;'; // Example styles
   container.innerHTML = sellersToShow.map(seller => `
-    <div class="repair-item" data-id="${seller.id}" onclick="showDetails(this)">
+    <div class="repair-item ${seller.isDynamic ? 'breakdown-shop' : ''}" data-id="${seller.id}" onclick="showDetails(this)">
       <img src="${seller.image}" alt="${seller.name}">
       <h2>${seller.name}</h2>
       <p>${seller.phone}</p>
-      <p class="seller-city">${seller.city}</p> <!-- Added city display -->
+      <p class="seller-city">${seller.city}</p>
       <div class="repair-rating">
         ${generateStars(seller.rating)}
         <span class="rating-value">${seller.rating.toFixed(1)}</span>
       </div>
       <div class="repair-services">
-        ${seller.services.map(service => 
-          `<img src="Logos/${service}-icon.png" alt="${service}" style="${logoStyles}">`
+        ${seller.services.map(service =>
+          `<img src="./Logos/${service}-icon.png" alt="${service}" style="${logoStyles}">`
         ).join('')}
       </div>
     </div>
@@ -107,11 +111,7 @@ function showDetails(item) {
           <div id='rating'>Rating: ${createRating(Math.floor(ratingValue))}</div>
         </div>
       </div>
-      <div id='buttons'>
         <button id='call'><img src="./Logos/phone.png"/>Contact</button>
-        <button id='available'><img src="./Logos/back-in-time.png"/>Available after 32min</button>
-      </div>
-      <button id='automatic-call'>Contact after time ends automatically</button>
     `;
 
     // 4. SAFE DOM INJECTION
@@ -244,3 +244,81 @@ darkModeToggle.addEventListener('click', () => {
 function forwardBilling(url){
   window.location.href=url;
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  const addBreakdownBtn = document.getElementById('add-breakdown');
+  const removeBreakdownBtn = document.getElementById('remove-breakdown');
+  const breakdownFormContainer = document.getElementById('breakdown-form-container');
+  const cancelFormBtn = document.getElementById('cancel-form');
+  const breakdownForm = document.getElementById('breakdown-form');
+  const repairContainer = document.getElementById('repair-container'); // Assuming this exists
+  const overlay=document.getElementsByClassName('form-overlay'); // Assuming this is the overlay element
+  const body = document.body; // Assuming this is the body element
+  if (addBreakdownBtn) {
+    addBreakdownBtn.addEventListener('click', function() {
+      body.classList.add("show-form");
+      breakdownFormContainer.style.display = 'block';
+    });
+  }
+
+  if (removeBreakdownBtn && repairContainer) {
+    removeBreakdownBtn.addEventListener('click', function() {
+      // Remove the last added breakdown shop item
+      const breakdownItems = repairContainer.querySelectorAll('.repair-item.breakdown-shop');
+      if (breakdownItems.length > 0) {
+        repairContainer.removeChild(breakdownItems[breakdownItems.length - 1]);
+      } else {
+        alert('No breakdown shops to remove.');
+      }
+    });
+  }
+
+  if (cancelFormBtn) {
+    cancelFormBtn.addEventListener('click', function() {
+      breakdownFormContainer.style.display = 'none';
+      body.classList.remove("show-form");
+      breakdownForm.reset(); // Clear the form
+    });
+  }
+
+ if (breakdownForm && repairContainer) {
+    breakdownForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const shopName = document.getElementById('shop-name').value.trim();
+      const shopPhone = document.getElementById('shop-phone').value.trim();
+      const shopCity = document.getElementById('shop-city').value.trim();
+      const servicesCheckboxes = document.querySelectorAll('#breakdown-form input[name="service"]:checked');
+      const shopImageInput = document.getElementById('shop-image');
+      const shopImageFile = shopImageInput.files[0];
+
+      if (!shopName || !shopPhone || !shopCity) {
+        alert('Please fill in the shop name, phone number, and city.');
+        return;
+      }
+
+      const selectedServices = Array.from(servicesCheckboxes).map(checkbox => checkbox.value);
+      if (selectedServices.length === 0) {
+        alert('Please select at least one service.');
+        return;
+      }
+
+      const newSeller = {
+        id: Date.now(),
+        name: shopName,
+        phone: shopPhone,
+        city: shopCity,
+        services: selectedServices,
+        rating: 0,
+        image: shopImageFile ? URL.createObjectURL(shopImageFile) : "images/default-profile.png",
+        isDynamic: true // Flag to identify dynamically added sellers (optional but can be useful)
+      };
+
+      allSellers.push(newSeller); // Add the new seller to the array
+      renderSellers(allSellers); // Re-render the entire list
+
+      breakdownFormContainer.style.display = 'none';
+      body.classList.remove("show-form");
+      breakdownForm.reset();
+    });
+  }});

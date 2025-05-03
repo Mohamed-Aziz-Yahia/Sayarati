@@ -46,11 +46,96 @@ body.dark-mode .moon-icon {
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.8);
 }
+body.dark-mode #billingHistoryBtn {
+  background-color: #333333;
+  color: #f0f0f0; /* Assuming light text in dark mode */
+  border-color: #333333; /* Optional: Match border */
+}
 
+body.dark-mode #billingHistoryBtn:hover {
+  background-color: #555555; /* Slightly darker hover */
+}
 body.dark-mode {
   background-color: #1a1a1a;
   color: #f0f0f0;
 }
+body.dark-mode section#second-section,
+body.dark-mode section#third-section {
+  background-color: #333; /* Or any dark color you prefer for these sections */
+  color: #ddd; /* Or any light color you prefer for the text in these sections */
+}
+body.dark-mode #seperator {
+  background-color: #555; /* A darker shade for the separator */
+}
+body.dark-mode input#search-bar {
+  background-color: #444;
+  color: #ddd;
+  border-color: #666;
+}
+
+body.dark-mode input#search-bar::placeholder {
+  color: #aaa;
+}
+body.dark-mode input#search-bar:focus {
+  border-color: #64b5f6; /* A lighter blue for dark mode focus */
+  box-shadow: 0 0 5px rgba(100, 181, 246, 0.5); /* Optional: Adjust shadow for dark mode */
+}
+body.dark-mode #btn button {
+  color: #ddd;
+}
+
+body.dark-mode #add-breakdown {
+  background-color: #3d5afe; /* Darker blue */
+}
+
+body.dark-mode #add-breakdown:hover {
+  background-color: #283593;
+}
+
+body.dark-mode #remove-breakdown {
+  background-color: #d32f2f; /* Darker red */
+}
+
+body.dark-mode #remove-breakdown:hover {
+  background-color: #9a0007;
+}
+body.dark-mode .repair-details {
+  background-color: #555;
+  color: #f0f0f0;
+}
+
+body.dark-mode #close {
+  background-color: #555;
+  color: #f0f0f0;
+}
+
+body.dark-mode button#call {
+  color: #f0f0f0;
+  background-color: #444;
+}
+
+body.dark-mode button#call:hover {
+  background-color: #666;
+}
+body.dark-mode #breakdown-form-container {
+  color:black; /* This will remove any blur applied by parent rules */
+}
+
+body.dark-mode .repair-review {
+  background-color: #333;
+  color: #f0f0f0;
+}
+
+body.dark-mode #submit {
+  background-color: #ef6c00; /* Darker orange */
+  color: #f0f0f0;
+}
+
+body.dark-mode #submit:hover {
+  background-color: #b24c00;
+}
+
+
 section#second-section,#third-section {
   background-color: #f2f2f2;
   color: #1a1a1a;
@@ -128,6 +213,7 @@ button#billingHistoryBtn:hover{
   height: 1px;
   background-color: #ddd;
   margin-bottom: 0;
+  border:none;
 }
 /* Second section*/
 section#second-section {
@@ -341,18 +427,9 @@ body.noscroll {
   font-size: 1.4rem;
   font-weight: 500;
 }
-#buttons {
+button#call{
   display: flex;
-  justify-content: space-between;
-  width: 600px;
-  margin: 20px;
-  margin-left: 110px;
-}
-#call,
-#available,
-#automatic-call {
-  display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   width: 160px;
   font-family: "Montserrat", sans-serif;
@@ -361,34 +438,23 @@ body.noscroll {
   border: none;
   border-radius: 5px;
   padding: 10px 10px;
+  margin: 40px auto;
 }
 #available {
   width: 300px;
 }
-#call img,
-#available img {
+#call img {
   width: 30px;
   height: 30px;
-}
-#automatic-call {
-  background-color: #5c5ff7;
-  border: none;
-  border-radius: 5px;
-  width: 400px;
-  margin-left: 200px;
+  margin-right: 10px;
 }
 #call:hover,
-#available:hover,
-#automatic-call:hover,
 #close:hover,
 #submit:hover {
   cursor: pointer;
 }
-#buttons button:hover {
+ button#call:hover {
   background-color: lightgray;
-}
-#automatic-call:hover {
-  background-color: #4749b4;
 }
 .repair-review {
   position: fixed;
@@ -450,6 +516,72 @@ body.noscroll {
 }
 #submit:hover {
   background-color: #ef7f00;
+}
+
+/* Section four*/
+
+#breakdown-form-container {
+  display: none; /* Initially hidden */
+  position: fixed; /* Stay in the viewport */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the form */
+  background-color: #f9f9f9; /* Light background for the form */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  z-index: 1000; /* Ensure it's on top of other content */
+  width: 80%; /* Adjust width as needed */
+  max-width: 500px; /* Maximum width */
+}
+.form-overlay {
+  display: none; /* Initially hidden */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  z-index: 999; /* Below the form */
+}
+body.show-form .form-overlay,
+body.show-form #breakdown-form-container {
+  display: block;
+}
+#breakdown-form input{
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 10px;
+}
+input#shop-image{
+  border:none;
+}
+#breakdown-form .form-buttons button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+#breakdown-form .form-buttons button[type="submit"] {
+  background-color: #007bff; /* Blue for submit */
+  color: white;
+}
+
+#breakdown-form .form-buttons button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+#breakdown-form .form-buttons button[type="button"]#cancel-form {
+  background-color: #dc3545; /* Red for cancel */
+  color: white;
+  margin-left: 10px;
+}
+
+#breakdown-form .form-buttons button[type="button"]#cancel-form:hover {
+  background-color: #c82333;
 }
 #add-breakdown {
   background-color: #5b76ff;

@@ -82,36 +82,40 @@
         <img id="repair"src="Logos/repair-icon.png" alt="Car fix logo" />
         </div>
       </div>
-      <div id="btn">
-            <button id="remove-breakdown">Remove breakdown</button>
-            <button id="add-breakdown">Add breakdown</button>
-        </div>
-        <div id="breakdown-form-container" class="form-popup" style="display:none;">
-          <form id="breakdown-form" class="form-content">
-            <h2>Add New Breakdown Shop</h2>
-            
-            <label for="shop-name">Shop Name:</label>
-            <input type="text" id="shop-name" required>
-            
-            <label for="shop-phone">Phone Number:</label>
-            <input type="tel" id="shop-phone" required>
-            
-            <label for="shop-services">Services:</label>
-            <div class="services-checkboxes">
-              <label><input type="checkbox" name="service" value="car-repair"> Car Repair</label>
-              <label><input type="checkbox" name="service" value="car-breakdown"> Car Breakdown</label>
-              <label><input type="checkbox" name="service" value="towing"> Towing</label>
-            </div>
-            
-            <label for="shop-image">Profile Picture:</label>
-            <input type="file" id="shop-image" accept="image/*">
-            
-            <div class="form-buttons">
-              <button type="submit">Submit</button>
-              <button type="button" id="cancel-form">Cancel</button>
-            </div>
-          </form>
-        </div>
+  </section>
+  <section id="fourth-section">
+    <div id="btn">
+      <button id="remove-breakdown">Remove breakdown</button>
+      <button id="add-breakdown">Add breakdown</button>
+  </div>
+  <div id="breakdown-form-container" class="form-popup" style="display:none;">
+    <form id="breakdown-form" class="form-content">
+      <h2>Add New Breakdown Shop</h2>
+      
+      <label for="shop-name">Shop Name:</label>
+      <input type="text" id="shop-name" required>
+      
+      <label for="shop-phone">Phone Number:</label>
+      <input type="tel" id="shop-phone" required>
+      
+      <label for="shop-city">city</label>
+      <input type="tel" id="shop-city" required>
+
+      <label for="shop-services">Services:</label>
+      <div class="services-checkboxes">
+        <label><input type="checkbox" name="service" value="repair"> Car Repair</label>
+        <label><input type="checkbox" name="service" value="towing"> Towing</label>
+      </div>
+      
+      <label for="shop-image">Profile Picture:</label>
+      <input type="file" id="shop-image" accept="image/*">
+      
+      <div class="form-buttons">
+        <button type="submit">Submit</button>
+        <button type="button" id="cancel-form">Cancel</button>
+      </div>
+    </form>
+  </div>
   </section>
   </main>
   <footer>
@@ -141,6 +145,7 @@
         </div>
     </div>
   </footer>
+  <div class="form-overlay"></div>
   <script src="./repair.js"></script>
 </body>
 </html>
