@@ -81,6 +81,61 @@ header a#header-btn {
   padding-top: 10px;
   border-radius: 10px;
 }
+#darkModeToggle {
+  margin-top: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, opacity 0.3s ease; /* Added opacity transition */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  z-index: 100; /* For absolute positioning of icons */
+  overflow: hidden;
+  width: 40px; /* Adjust as needed */
+  height: 40px; 
+}
+
+#darkModeToggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+}
+
+button .moon-icon, .sun-icon {
+  width: 20px;
+  height: 20px;
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Added opacity and transform */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the icons */
+}
+
+/* Initially show the moon icon and hide the sun icon */
+.sun-icon {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8); /* Start slightly smaller */
+}
+
+body.dark-mode .sun-icon {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1); /* Scale to normal */
+}
+
+body.dark-mode .moon-icon {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8); /* Shrink and fade out */
+}
+
+/* Dark mode specific styles for your page */
+body.dark-mode {
+  background-color: #1a1a1a;
+  color: #f0f0f0 !important;
+}
 /* Main */
 
 /* Section 1 */
@@ -332,14 +387,18 @@ color:black;
   background-position: 10%;
   background-size: 20px;
 }
-#map {
+div#map iframe{
   display: none;
   position:relative;
   z-index:20;
   /* right:400px; */
   bottom:160px;
-  width: 400px;
-  height: 400px;
+  width: 800px;
+  height: 450px;
+  margin: 20px auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
 }
 .date{
   background-image: url(./Logos/calendar.png);

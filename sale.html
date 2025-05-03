@@ -147,7 +147,7 @@
         }
 
         .shop-info-bottom {
-            text-align: right;
+            text-align: left;
             padding-top: 10px;
             display: flex;
             justify-content: flex-end;
@@ -163,10 +163,13 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: background-color 0.3s ease;
+           border-radius: 5px;
+            padding: 5px 10px;
+            text-align: center;
         }
-
         .shop-info button:hover {
-            text-decoration: underline;
+            background-color: rgba(0, 0, 0, 0.1);
         }
 
         .content {
@@ -516,10 +519,6 @@
 
         .dark-mode-toggle:hover {
             background-color: rgba(0, 0, 0, 0.1);
-        }
-
-        .dark-mode .dark-mode-toggle:hover {
-            background-color: rgba(255, 255, 255, 0.1);
         }
 
         .dark-mode-toggle svg {
@@ -902,28 +901,25 @@
         <hr style="border: none; border-top: 1px solid #ddd; margin: 0;">
         <div class="shop-info-bottom">
             <button id="darkModeToggle" class="dark-mode-toggle">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1-8.313-12.454z"/>
-                </svg>
+                </svg> -->
                 Dark Mode
             </button>
             <button id="addProductBtn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 4v16m8-8H4"/>
-                </svg>
+                </svg> -->
                 Add Product
             </button>
             <button id="openFavorites">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                </svg>
                 Favorites
             </button>
             <button id="openSidebar">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/>
-                </svg>
                 Filters
+            </button>
+            <button id="billingHistoryBtn" onclick="openBillingHistory('./billing.html')">
+                Billing History
             </button>
         </div>
     </div>
@@ -1859,6 +1855,10 @@ overlay.addEventListener('click', () => {
 });
 // Initialize original products array
 originalProducts = [...productGrid.children];
+        // Function to open billing history
+        function openBillingHistory(url) {
+            window.location.href = url;
+        }
     </script>
 </body>
 </html>

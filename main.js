@@ -53,46 +53,50 @@ function selectCar(carModel) {
 }
 
 //Map API
-function showMap() {
-  const show = document.getElementById("map");
-  if (show.style.display === "none" || show.style.display === "") {
-    show.style.display = "block";
-    setTimeout(() => {
-        google.maps.event.trigger(map, "resize");
-        map.setCenter(map.getCenter()); // Re-center the map
-    }, 0);
-  } else {
-    show.style.display = "none";
-  }
-}
-let map;
-let marker;
-const geocoder = new google.maps.Geocoder();
+// function showMap() {
+//   const show = document.getElementById("map");
+//   if (show.style.display === "none" || show.style.display === "") {
+//     show.style.display = "block";
+//     if(!map){
+//         initMap(); // Initialize the map if not already done
+//     }
+//     setTimeout(() => {
+//         google.maps.event.trigger(map, "resize");
+//         map.setCenter(map.getCenter()); // Re-center the map
+//     }, 0);
+//   } else {
+//     show.style.display = "none";
+//   }
+// }
 
-function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 }, // Default center
-    zoom: 8, // Default zoom level
-  });
+// let map;
+// let marker;
+// const geocoder = new google.maps.Geocoder();
 
-  // Add a click event listener to the map
-  map.addListener("click", (event) => {
-    placeMarker(event.latLng); // Place a marker at the clicked location
-    getAddress(event.latLng); // Get the address for the clicked location
-  });
-}
+// function initMap() {
+//   map = new google.maps.Map(document.getElementById("map"), {
+//     center: { lat: -34.397, lng: 150.644 }, // Default center
+//     zoom: 8, // Default zoom level
+//   });
 
-function placeMarker(location) {
-  if (marker) {
-    marker.setPosition(location); // Move existing marker
-  } else {
-    // Create a new marker
-    marker = new google.maps.Marker({
-      position: location,
-      map: map,
-    });
-  }
-}
+//   // Add a click event listener to the map
+//   map.addListener("click", (event) => {
+//     placeMarker(event.latLng); // Place a marker at the clicked location
+//     getAddress(event.latLng); // Get the address for the clicked location
+//   });
+// }
+
+// function placeMarker(location) {
+//   if (marker) {
+//     marker.setPosition(location); // Move existing marker
+//   } else {
+//     // Create a new marker
+//     marker = new google.maps.Marker({
+//       position: location,
+//       map: map,
+//     });
+//   }
+// }
 
 function getAddress(latLng) {
   // Reverse geocode the coordinates to get the address
@@ -132,3 +136,35 @@ function hideParagraph() {
 }
 const readLessButton=document.getElementById("read-less-btn");
 readMoreButton.addEventListener("click",showParagraph);
+
+const darkModeToggle = document.getElementById('darkModeToggle');
+const body = document.body;
+const darkModeKey = 'darkModeEnabled';
+// Function to enable dark mode
+function enableDarkMode() {
+  console.log("Dark mode enabled");
+  body.classList.add('dark-mode');
+  localStorage.setItem(darkModeKey, 'true');
+}
+
+// Function to disable dark mode
+function disableDarkMode() {
+  body.classList.remove('dark-mode');
+  localStorage.setItem(darkModeKey, 'false');
+}
+
+// Check local storage for previously set preference
+const isDarkModeEnabled = localStorage.getItem(darkModeKey) === 'true';
+
+if (isDarkModeEnabled) {
+  enableDarkMode();
+}
+
+// Event listener for the button click
+darkModeToggle.addEventListener('click', () => {
+  if (body.classList.contains('dark-mode')) {
+    disableDarkMode();
+  } else {
+    enableDarkMode();
+  }
+});

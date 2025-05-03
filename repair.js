@@ -209,5 +209,38 @@ function generateStars(rating) {
   for (let i = 0; i < emptyStars; i++) starsHtml += '☆'; // Or an empty star img
   return starsHtml;
 }
-// Make sure this function is defined BEFORE renderSellers uses it,
-// or place it globally.
+const darkModeToggle = document.getElementById('darkModeToggle');
+const body = document.body;
+const darkModeKey = 'darkModeEnabled';
+
+// Function to enable dark mode
+function enableDarkMode() {
+  body.classList.add('dark-mode');
+  localStorage.setItem(darkModeKey, 'true');
+}
+
+// Function to disable dark mode
+function disableDarkMode() {
+  body.classList.remove('dark-mode');
+  localStorage.setItem(darkModeKey, 'false');
+}
+
+// Check local storage for previously set preference
+const isDarkModeEnabled = localStorage.getItem(darkModeKey) === 'true';
+
+if (isDarkModeEnabled) {
+  enableDarkMode();
+}
+
+// Event listener for the button click
+darkModeToggle.addEventListener('click', () => {
+  if (body.classList.contains('dark-mode')) {
+    disableDarkMode();
+  } else {
+    enableDarkMode();
+  }
+});
+
+function forwardBilling(url){
+  window.location.href=url;
+}

@@ -25,8 +25,18 @@
       <img id="ayarati-header" src="Logos/ayarati.png" alt="Ayarati logo" />
     </header>
   <main id="main">
+    <section id="first-section">
+      <button id="billingHistoryBtn" onclick="forwardBilling('./billing.html')"aria-label="Billing History">
+      <span class="billing-text">Billing History</span>
+      </button> 
+      <button id="darkModeToggle" aria-label="Toggle dark mode">
+      <img src="Logos/moon.png" alt="Moon icon" class="moon-icon">
+      <img src="Logos/sun.png" alt="Sun icon" class="sun-icon">
+    </button>
+  </section>
+  <hr id="seperator"/>
+  <section id="second-section">
     <div class="map-container">
-      <!-- Replace the URL with your desired location -->
       <iframe 
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215209179035!2d-73.987844924525!3d40.74844047138939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1712345678901!5m2!1sen!2sus" 
           allowfullscreen="" 
@@ -34,6 +44,8 @@
           referrerpolicy="no-referrer-when-downgrade">
       </iframe>
   </div>
+  </section>
+  <section id="third-section">
     <h1>Car Breakdown</h1>
     <div class="search-container">
       <div class="search-wrapper">
@@ -100,6 +112,7 @@
             </div>
           </form>
         </div>
+  </section>
   </main>
   <footer>
     <footer id="footer">

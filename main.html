@@ -33,6 +33,10 @@
           <li><a href="#section5">Contact</a></li>
         </ul>
       </nav>
+      <button id="darkModeToggle" aria-label="Toggle dark mode">
+        <img src="Logos/moon.png" alt="Moon icon" class="moon-icon">
+        <img src="Logos/sun.png" alt="Sun icon" class="sun-icon">
+      </button>
       <a id="header-btn" href="./login.html">Login|Sign up</a>
     </header>
     <main>
@@ -179,7 +183,8 @@
               type="text"
               placeholder="Your current location"
               name="Location"
-            />
+              />
+             
             <input class="date" type="time" placeholder="Time" name="Time" />
             <input
               type="text"
@@ -213,7 +218,14 @@
           </div>
           <button type="submit" id="search-btn">Search</button>
         </div>
-        <div id="map"></div>
+        <div id="map">
+          <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215209179035!2d-73.987844924525!3d40.74844047138939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1712345678901!5m2!1sen!2sus" 
+          allowfullscreen="" 
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
       </section>
       <section id="section5">
         <h1 class="hidden-left">Contact Us</h1>
@@ -260,11 +272,11 @@
       </footer>
     </main>
     <script defer src="./main.js"></script>
-    <script
+    <!-- <script
       async
       defer
       src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
-    ></script>
+    ></script> -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script></script>
   </body>
