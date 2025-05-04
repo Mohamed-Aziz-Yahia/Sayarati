@@ -1,3 +1,38 @@
+document.addEventListener('DOMContentLoaded', function() {
+  const headerBtn = document.getElementById('header-btn');
+  const authToken = localStorage.getItem('authToken');
+  const loggedInUser = localStorage.getItem('loggedInUser');
+
+  if (headerBtn) {
+    if (authToken && loggedInUser) {
+      try {
+        const user = JSON.parse(loggedInUser);
+        // Use the username from the user object
+        if (user.username) {
+          const usernameParts = user.username.split('@')[0]; // Get part before '@' if it's an email
+          headerBtn.textContent = usernameParts;
+          // headerBtn.href = './dashboard.html'; // Redirect to dashboard or profile
+        } else {
+          // Fallback if username is not available (shouldn't happen based on your response)
+          headerBtn.textContent = 'My Account';
+          // headerBtn.href = './dashboard.html';
+        }
+      } catch (error) {
+        console.error('Error parsing user data:', error);
+        // If there's an error parsing, maybe clear the storage and revert to login state
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('loggedInUser');
+        headerBtn.textContent = 'Login|Sign up';
+        headerBtn.href = './login.html';
+      }
+    } else {
+      // User is not logged in
+      headerBtn.textContent = 'Login|Sign up';
+      headerBtn.href = './login.html';
+    }
+  }
+});
+
 //Calendar input
 
 flatpickr(".date", {
