@@ -49,18 +49,20 @@ from .models import RepairShop
 
 
 
+
 class RepairShopSerializer(serializers.ModelSerializer):
     average_rating = serializers.SerializerMethodField()
 
     class Meta:
         model = RepairShop
-        fields = '__all__'
+        fields = ['id', 'name', 'location', 'contact_info', 'services', 'image', 'owner', 'average_rating']
+        read_only_fields = ['owner']
 
     def get_average_rating(self, obj):
         reviews = obj.reviews.all()
         if not reviews.exists():
             return None
-        return round(sum([r.rating for r in reviews]) / reviews.count(), 2)
+        return round(sum([r.rating for r in reviews])) / reviews.count(), 2
 
 from .models import SparePart
 

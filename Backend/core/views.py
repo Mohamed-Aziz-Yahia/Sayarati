@@ -34,6 +34,11 @@ class UserProfileView(APIView):
 
 
 from rest_framework.authtoken.models import Token
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.permissions import AllowAny
+from .serializers import LoginSerializer
 
 class LoginView(APIView):
     permission_classes = [AllowAny]
@@ -43,7 +48,12 @@ class LoginView(APIView):
         if serializer.is_valid():
             user = serializer.validated_data
             token, created = Token.objects.get_or_create(user=user)
-            return Response({'token': token.key, 'message': 'Login successful'})
+            return Response({
+                'token': token.key,
+                'message': 'Login successful',
+                'user_id': user.id,
+                'username': user.username
+            })
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 from rest_framework import generics, permissions
@@ -105,15 +115,21 @@ from rest_framework import generics, permissions, filters
 from .models import RepairShop
 from .serializers import RepairShopSerializer
 
+
+
+from rest_framework import generics, permissions, filters
+from .models import RepairShop
+from .serializers import RepairShopSerializer
+
 class RepairShopListCreateView(generics.ListCreateAPIView):
     queryset = RepairShop.objects.all()
     serializer_class = RepairShopSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]  # Anyone can view, only auth users can create
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly] 
     filter_backends = [filters.SearchFilter]
     search_fields = ['name', 'location', 'contact_info']
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)  # Ensure the current user is set as the owner
+        serializer.save(owner=self.request.user)
 
 
 from .models import SparePart
