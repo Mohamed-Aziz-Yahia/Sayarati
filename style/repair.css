@@ -8,7 +8,7 @@ html {
 
 /* Header */
 header {
-  background-image: url(./images/What-to-Do-When-Car-Breakdown-on-Highway\ 1.png);
+  background-image: url(../images/What-to-Do-When-Car-Breakdown-on-Highway\ 1.png);
   background-size: cover;
   background-position: start;
   height: 400px;
@@ -207,6 +207,25 @@ button#billingHistoryBtn:hover{
 .sun-icon {
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.8); /* Start slightly smaller */
+}
+
+#exit {
+    width: 28px;
+    height: 28px;
+    background-color: transparent;
+    border-radius: 10%;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    font-size: 0.8rem;
+    color: white;
+    margin-right: 15px;
+    margin-top: 5px;
+}
+#exit:hover{
+    background-color:#ccc5c5c0;
+    cursor: pointer;
+    transition: 0.3s;
 }
 #seperator{
   width:99%;

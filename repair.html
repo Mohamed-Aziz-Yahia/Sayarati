@@ -26,6 +26,7 @@
     </header>
   <main id="main">
     <section id="first-section">
+      <img id= "exit" src="./Logos/exit.png" alt="Exit icon" onclick="window.location.href='./main.html'">
       <button id="billingHistoryBtn" onclick="forwardBilling('./billing.html')"aria-label="Billing History">
       <span class="billing-text">Billing History</span>
       </button> 
@@ -54,34 +55,7 @@
       </div>
   </div>
     <div id="repair-container" class="repair-container">
-    <div onclick="showDetails(this)"class="repair-item" data-id="item3">
-        <img src="images/Ronaldo.png" alt="Ronaldo" />
-        <h2>Cristiano Ronaldo</h2>
-        <p>+213676662231</p>
-        <div class="repair-rating">
-          <img src="Logos/star.png" alt="Star logo" />
-          <img src="Logos/star.png" alt="Star logo" />
-          <img src="Logos/star.png" alt="Star logo" />
-          <img src="Logos/star.png" alt="Star logo" />
-        </div>
-        <div class="repair-services">
-        <img id="car-fix"src="Logos/repair-icon.png" alt="Car fix logo" />
-        </div>
-      </div>
-      <div onclick="showDetails(this)"class="repair-item" data-id="item3">
-        <img src="images/Ronaldo.png" alt="Ronaldo" />
-        <h2>Cristiano Ronaldo</h2>
-        <p>+213676662231</p>
-        <div class="repair-rating">
-          <img src="Logos/star.png" alt="Star logo" />
-          <img src="Logos/star.png" alt="Star logo" />
-          <img src="Logos/star.png" alt="Star logo" />
-          <img src="Logos/star.png" alt="Star logo" />
-        </div>
-        <div class="repair-services">
-        <img id="repair"src="Logos/repair-icon.png" alt="Car fix logo" />
-        </div>
-      </div>
+    </div>
   </section>
   <section id="fourth-section">
     <div id="btn">
@@ -95,6 +69,9 @@
       <label for="shop-name">Shop Name:</label>
       <input type="text" id="shop-name" required>
       
+       <label for="owner">Owner:</label>
+      <input type="text" id="owner" required>
+
       <label for="shop-phone">Phone Number:</label>
       <input type="tel" id="shop-phone" required>
       
@@ -146,6 +123,6 @@
     </div>
   </footer>
   <div class="form-overlay"></div>
-  <script src="./js/repair.js"></script>
+  <script src="./repair.js"></script>
 </body>
 </html>

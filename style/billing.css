@@ -27,8 +27,6 @@ header{
     background-color:#ccc5c5c0;
     cursor: pointer;
     transition: 0.3s;
-    padding: 5px;
-    border-radius: 35%;
 }
 .billing-container {
     max-width: 800px; /* Limit width for better readability */
