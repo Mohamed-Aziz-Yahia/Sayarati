@@ -105,6 +105,7 @@ const closeSidebarBtn = document.getElementById('closeSidebar');
 const openFavoritesBtn = document.getElementById('openFavorites');
 const closeFavoritesBtn = document.getElementById('closeFavorites');
 
+
 openSidebarBtn.addEventListener('click', () => {
     sidebar.classList.add('active');
     overlay.classList.add('active');
@@ -240,10 +241,10 @@ const darkModeToggle = document.getElementById('darkModeToggle');
 if (localStorage.getItem('darkMode') === 'enabled') {
     document.body.classList.add('dark-mode');
     darkModeToggle.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121z"/>
-        </svg>
-        Light Mode
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121z"/>
+    </svg>
+    Light Mode
     `;
 }
 
@@ -254,18 +255,18 @@ darkModeToggle.addEventListener('click', () => {
     if (document.body.classList.contains('dark-mode')) {
         localStorage.setItem('darkMode', 'enabled');
         darkModeToggle.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121z"/>
-            </svg>
-            Light Mode
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121z"/>
+        </svg>
+        Light Mode
         `;
     } else {
         localStorage.setItem('darkMode', 'disabled');
         darkModeToggle.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1-8.313-12.454z"/>
-            </svg>
-            Dark Mode
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1-8.313-12.454z"/>
+        </svg>
+        Dark Mode
         `;
     }
 });
@@ -307,30 +308,30 @@ function renderFavorites() {
         const favoriteItem = document.createElement('div');
         favoriteItem.className = 'favorite-item';
         favoriteItem.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
+        <img src="${product.image}" alt="${product.name}">
             <div class="favorite-item-info">
-                <h4>${product.name}</h4>
+            <h4>${product.name}</h4>
                 <p>${product.price}</p>
             </div>
             <button class="remove-favorite" data-id="${productId}">×</button>
-        `;
+            `;
         
-        favoritesList.appendChild(favoriteItem);
-    });
-    
-    // Add event listeners to remove buttons
-    document.querySelectorAll('.remove-favorite').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const productId = parseInt(this.getAttribute('data-id'));
-            removeFromFavorites(productId);
+            favoritesList.appendChild(favoriteItem);
         });
-    });
-}
-
-// Add to favorites
-function addToFavorites(productId) {
-    if (!favorites.includes(productId)) {
+        
+        // Add event listeners to remove buttons
+        document.querySelectorAll('.remove-favorite').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const productId = parseInt(this.getAttribute('data-id'));
+                removeFromFavorites(productId);
+            });
+        });
+    }
+    
+    // Add to favorites
+    function addToFavorites(productId) {
+        if (!favorites.includes(productId)) {
         favorites.push(productId);
         localStorage.setItem('favorites', JSON.stringify(favorites));
         updateFavoriteButtons();
@@ -428,35 +429,35 @@ document.getElementById('addProductForm').addEventListener('submit', function(e)
     newProductCard.onclick = function() { toggleDetails(this); };
     
     newProductCard.innerHTML = `
-        <img src="${newProduct.image}" alt="${newProduct.name}">
-        <h3>${newProduct.name}</h3>
-        <p>${newProduct.category}</p>
+    <img src="${newProduct.image}" alt="${newProduct.name}">
+    <h3>${newProduct.name}</h3>
+    <p>${newProduct.category}</p>
         <p>SKU: <span>${newProduct.sku}</span></p>
         <p class="price">${newProduct.price}</p>
         <div class="product-details">
-            <p><span class="rating">${newProduct.rating}</span> | ${newProduct.sold}</p>
-            <p><strong>${newProduct.location}</strong></p>
-            <p>${newProduct.compatibility}</p>
-            <p>${newProduct.partNo}</p>
-            <div class="actions">
-                <button class="quantity-btn">+1</button>
-                <button class="favorite-btn">Add to favorite</button>
-                <button class="buy-btn">Buy</button>
-            </div>
+        <p><span class="rating">${newProduct.rating}</span> | ${newProduct.sold}</p>
+        <p><strong>${newProduct.location}</strong></p>
+        <p>${newProduct.compatibility}</p>
+        <p>${newProduct.partNo}</p>
+        <div class="actions">
+        <button class="quantity-btn">+1</button>
+        <button class="favorite-btn">Add to favorite</button>
+        <button class="buy-btn">Buy</button>
         </div>
-    `;
-    
-    // Add to the beginning of the product grid
-    productGrid.prepend(newProductCard);
-    
-    // Update product count
-    updateProductCount();
-    
-    // Reset form and close modal
-    this.reset();
-    addProductModal.classList.remove('active');
-    overlay.classList.remove('active');
-    
+        </div>
+        `;
+        
+        // Add to the beginning of the product grid
+        productGrid.prepend(newProductCard);
+        
+        // Update product count
+        updateProductCount();
+        
+        // Reset form and close modal
+        this.reset();
+        addProductModal.classList.remove('active');
+        overlay.classList.remove('active');
+        
     // Update favorite buttons
     updateFavoriteButtons();
 });
@@ -479,31 +480,31 @@ let originalProducts = [...productGrid.children];
 
 // Search when Enter key is pressed in search box
 searchBox.addEventListener('keyup', function(e) {
-if (e.key === 'Enter') {
-searchProducts();
-}
+    if (e.key === 'Enter') {
+        searchProducts();
+    }
 });
 
 // Search when search button is clicked
 searchBtn.addEventListener('click', searchProducts);
 
 function searchProducts() {
-const searchTerm = searchBox.value.toLowerCase().trim();
-
-if (!searchTerm) {
-// If search is empty, show all products
-productGrid.innerHTML = '';
-originalProducts.forEach(product => {
-    productGrid.appendChild(product);
-});
-updateProductCount();
-return;
-}
-
-// Filter products
-const filteredProducts = Object.values(products).filter(product => {
-return (
-    product.name.toLowerCase().includes(searchTerm) ||
+    const searchTerm = searchBox.value.toLowerCase().trim();
+    
+    if (!searchTerm) {
+        // If search is empty, show all products
+        productGrid.innerHTML = '';
+        originalProducts.forEach(product => {
+            productGrid.appendChild(product);
+        });
+        updateProductCount();
+        return;
+    }
+    
+    // Filter products
+    const filteredProducts = Object.values(products).filter(product => {
+        return (
+            product.name.toLowerCase().includes(searchTerm) ||
     product.category.toLowerCase().includes(searchTerm) ||
     product.sku.toLowerCase().includes(searchTerm) ||
     product.compatibility.toLowerCase().includes(searchTerm) ||
@@ -525,31 +526,31 @@ return;
 }
 
 filteredProducts.forEach(product => {
-const productCard = document.createElement('div');
-productCard.className = 'product-card';
-productCard.setAttribute('data-id', product.id);
-productCard.onclick = function() { toggleDetails(this); };
-
+    const productCard = document.createElement('div');
+    productCard.className = 'product-card';
+    productCard.setAttribute('data-id', product.id);
+    productCard.onclick = function() { toggleDetails(this); };
+    
 productCard.innerHTML = `
-    <img src="${product.image}" alt="${product.name}">
-    <h3>${product.name}</h3>
+<img src="${product.image}" alt="${product.name}">
+<h3>${product.name}</h3>
     <p>${product.category}</p>
     <p>SKU: <span>${product.sku}</span></p>
     <p class="price">${product.price}</p>
     <div class="product-details">
-        <p><span class="rating">${product.rating}</span> | ${product.sold}</p>
-        <p><strong>${product.location}</strong></p>
-        <p>${product.compatibility}</p>
-        <p>${product.partNo}</p>
-        <div class="actions">
-            <button class="quantity-btn">+1</button>
-            <button class="favorite-btn">Add to favorite</button>
-            <button class="buy-btn">Buy</button>
-        </div>
+    <p><span class="rating">${product.rating}</span> | ${product.sold}</p>
+    <p><strong>${product.location}</strong></p>
+    <p>${product.compatibility}</p>
+    <p>${product.partNo}</p>
+    <div class="actions">
+    <button class="quantity-btn">+1</button>
+    <button class="favorite-btn">Add to favorite</button>
+    <button class="buy-btn">Buy</button>
     </div>
-`;
-
-productGrid.appendChild(productCard);
+    </div>
+    `;
+    
+    productGrid.appendChild(productCard);
 });
 
 // Update favorite buttons for the new filtered products
@@ -557,24 +558,27 @@ updateFavoriteButtons();
 updateProductCount();
 }
 overlay.addEventListener('click', () => {
-sidebar.classList.remove('active');
-favoritesSidebar.classList.remove('active');
-overlay.classList.remove('active');
-ratingModal.classList.remove('active');
-purchaseModal.classList.remove('active');
-addProductModal.classList.remove('active');
-
-// Reset search when clicking outside
-searchBox.value = '';
-productGrid.innerHTML = '';
-originalProducts.forEach(product => {
-productGrid.appendChild(product);
-});
-updateProductCount();
+    sidebar.classList.remove('active');
+    favoritesSidebar.classList.remove('active');
+    overlay.classList.remove('active');
+    ratingModal.classList.remove('active');
+    purchaseModal.classList.remove('active');
+    addProductModal.classList.remove('active');
+    
+    // Reset search when clicking outside
+    searchBox.value = '';
+    productGrid.innerHTML = '';
+    originalProducts.forEach(product => {
+        productGrid.appendChild(product);
+    });
+    updateProductCount();
 });
 // Initialize original products array
 originalProducts = [...productGrid.children];
 // Function to open billing history
 function openBillingHistory(url) {
     window.location.href = url;
+}
+function exit(main){
+    window.location.href=main;
 }
