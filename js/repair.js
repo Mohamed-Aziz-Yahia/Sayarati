@@ -1,24 +1,9 @@
-let sellers = [
-  {
-    id: 1,
-    name: "City Auto Repair",
-    phone: "0555010123",
-    services: ["repair", "towing"],
-    rating: 4.2,
-    city: "Alger",
-    image: "images/default-profile.png"
-  },
-  {
-    id: 2,
-    name: "24/7 Breakdown Service",
-    phone: "0755020278",
-    services: ["towing"],
-    rating: 3.9,
-    city: "Constantine",
-    image: "images/default-profile.png"
-  }
-];
-let allSellers = [...sellers]; // Create a copy of the initial sellers array
+const authToken = localStorage.getItem('authToken');
+const loggedInUser = localStorage.getItem('loggedInUser');
+if (!authToken || !loggedInUser) {
+    window.location.href = './login.html';
+}
+let allSellers = []; // Create a copy of the initial sellers array
 
 document.addEventListener('DOMContentLoaded', function() {
   const searchBar = document.getElementById('search-bar'); // Make sure you have this ID in your HTML

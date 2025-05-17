@@ -5,7 +5,26 @@ const welcomeMessage = document.querySelector(".welcome-message");
 const selectBtn = document.getElementById('paper-clip');
 const fileInput = document.getElementById('pictureInput');
 const imagePreview = document.getElementById('imagePreview');
+const userName=document.getElementById('username');
+const authToken = localStorage.getItem('authToken');
+const loggedInUser = localStorage.getItem('loggedInUser');
 
+if (authToken && loggedInUser) {
+      try {
+        const user = JSON.parse(loggedInUser);
+        if (user) {
+          userName.textContent = user;
+          userName.classList.add('user-name')
+        } else {
+          userName.textContent = 'My Account';
+          userName.classList.add('user-name')
+        }
+      } catch (e) {
+        console.error("Error parsing loggedInUser:", e);
+      }
+}else{
+  window.location.href = './login.html';
+}
 // API Configuration
 const apiKey = "AIzaSyDg7nq6MpIxN8xWk9iB7kQ_T74w2fiFMxc"; // Replace with your actual API key
 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;

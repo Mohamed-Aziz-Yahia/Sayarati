@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const body = document.body;
 
   let allRepairShops = []; // To store the fetched repair shops
-
   // Function to render repair shops
   function renderRepairShops(shops) {
     repairContainer.innerHTML = ""; // Clear existing content
@@ -27,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
       };
 
       const image = document.createElement("img");
+      image.classList.add("repair-image");
       image.src = shop.image || "images/default-profile.png";
       image.alt = shop.name;
       shopDiv.appendChild(image);
@@ -42,22 +42,32 @@ document.addEventListener("DOMContentLoaded", function () {
       const locationParagraph = document.createElement("p");
       locationParagraph.textContent = shop.location || "No location";
       shopDiv.appendChild(locationParagraph);
+
       const ratingDiv = document.createElement("div");
       ratingDiv.classList.add("repair-rating");
-      ratingDiv.innerHTML = generateStars(shop.average_rating || 0);
-      const ratingValueSpan = document.createElement("span");
-      ratingValueSpan.classList.add("rating-value");
-      ratingValueSpan.textContent = (shop.average_rating || 0).toFixed(1);
-      ratingDiv.appendChild(ratingValueSpan);
+
+      // Extract values from array
+      const [averageRating, ownerId] = shop.average_rating || [0, null]; // Destructure with fallback
+
+      ratingDiv.innerHTML = `
+  <div class="rating-container">
+    <span class="stars">${generateStars(averageRating)}</span>
+    <span class="rating-value">
+      ${averageRating}
+    </span>
+    <input type="hidden" class="owner-id" value="${ownerId}">
+  </div>
+`;
+
       shopDiv.appendChild(ratingDiv);
 
       const servicesDiv = document.createElement("div");
       servicesDiv.classList.add("repair-services");
       const servicesArray = [];
-      if (shop.service_type === "repair" || shop.service_type === "both") {
-        servicesArray.push("repair");
+      if (shop.services === "repairing" || shop.services === "both") {
+        servicesArray.push("repairing");
       }
-      if (shop.service_type === "towing" || shop.service_type === "both") {
+      if (shop.services === "towing" || shop.services === "both") {
         servicesArray.push("towing");
       }
       servicesArray.forEach((service) => {
@@ -168,15 +178,14 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function generateStars(rating) {
-    const fullStars = Math.floor(rating);
-    const emptyStars = 5 - fullStars;
-    let starsHtml = "";
-    for (let i = 0; i < fullStars; i++) starsHtml += "★";
-    for (let i = 0; i < emptyStars; i++) starsHtml += "☆";
-    return starsHtml;
+    const numericRating = Number(rating) || 0;
+    const rounded = Math.round(numericRating);
+    return "★".repeat(rounded) + "☆".repeat(5 - rounded);
   }
-
+  let selectedShopId = null;
   function showDetails(item, shopData) {
+    selectedShopId = item.getAttribute("data-id");
+    console.log("Selected shop ID:", selectedShopId);
     try {
       document.body.classList.add("noscroll");
 
@@ -229,7 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
               <p>Phone: ${phoneNum}</p>
               <p>Location: ${city}</p>
               <p>Services: ${serviceText(services)}</p>
-              <div id='rating'>Rating: ${createRating(ratingValue)}</div>
+              <div id='rating'>Rating: ${generateStars(ratingValue)}</div>
             </div>
           </div>
           <button id='call'><img src="./Logos/phone.png"/>Contact</button>
@@ -260,19 +269,21 @@ document.addEventListener("DOMContentLoaded", function () {
           const details = document.querySelector(".repair-details");
           if (details) details.remove();
           const review = document.createElement("div");
-        review.className = "repair-review";
-        review.innerHTML = `
+          review.className = "repair-review";
+          review.innerHTML = `
           <img id='check' src='Logos/check.png' alt="Checkmark"/>
           <h2>Thanks for reaching out</h2>
           <p>Please evaluate our service</p>
           <div class="stars">
-            ${[1,2,3,4,5].map(i => `<span class="star" data-value="${i}">★</span>`).join("")}
+            ${[1, 2, 3, 4, 5]
+              .map((i) => `<span class="star" data-value="${i}">★</span>`)
+              .join("")}
           </div>
           <button id='submit'>Submit</button>
         `;
-        
-        document.body.appendChild(review);
-        setupStarRating();
+
+          document.body.appendChild(review);
+          setupStarRating();
         });
       }
     } catch (error) {
@@ -280,41 +291,89 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.classList.remove("noscroll");
     }
   }
-function setupStarRating() {
-  const stars = document.querySelectorAll(".star");
-  let selectedRating = 0;
+  function setupStarRating() {
+    const stars = document.querySelectorAll(".star");
+    const submitBtn = document.getElementById("submit"); // Get submit button
+    let selectedRating = 0;
 
-  stars.forEach((star) => {
-    star.addEventListener("mouseover", function() {
-      const value = parseInt(this.getAttribute("data-value"));
-      highlightStars(value);
-    });
-
-    star.addEventListener("mouseout", function() {
-      highlightStars(selectedRating);
-    });
-
-    star.addEventListener("click", function() {
-      selectedRating = parseInt(this.getAttribute("data-value"));
-      highlightStars(selectedRating);
-    });
-  });
-
-  function highlightStars(count) {
+    // Star hover/click logic (unchanged)
     stars.forEach((star) => {
-      star.classList.toggle("active", 
-        parseInt(star.getAttribute("data-value")) <= count
-      );
+      star.addEventListener("mouseover", function () {
+        const value = parseInt(this.getAttribute("data-value"));
+        highlightStars(value);
+      });
+
+      star.addEventListener("mouseout", function () {
+        highlightStars(selectedRating);
+      });
+
+      star.addEventListener("click", function () {
+        selectedRating = parseInt(this.getAttribute("data-value"));
+        highlightStars(selectedRating);
+      });
     });
+
+    // Submit button logic
+    submitBtn.addEventListener("click", async () => {
+      if (selectedRating === 0) {
+        alert("Please select a rating before submitting!");
+        return;
+      }
+      console.log("Selected rating:", selectedRating);
+      const token = localStorage.getItem("authToken"); // Replace with your token key
+      if (!token) {
+        alert("You must be logged in to submit a rating!");
+        window.location.href = "/login"; // Redirect if no token
+        return;
+      }
+      console.log("Token found:", token);
+      try {
+        // Replace `1` with the actual repair shop ID (dynamic value)
+        const data = {
+          repair_shop: parseInt(selectedShopId), // Hardcoded for now; replace with dynamic ID
+          rating: selectedRating,
+        };
+
+        const response = await fetch("http://localhost:8000/api/reviews/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`, // Include token
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+          alert("Rating submitted successfully!");
+          console.log(response);
+          const review = document.querySelector(".repair-review");
+          if (review) review.remove();
+          document.body.classList.remove("noscroll");
+        } else {
+          throw new Error("Failed to submit rating");
+        }
+      } catch (error) {
+        console.error("Error submitting rating:", error);
+        alert("Failed to submit rating. Please try again.");
+      }
+    });
+
+    function highlightStars(count) {
+      stars.forEach((star) => {
+        star.classList.toggle(
+          "active",
+          parseInt(star.getAttribute("data-value")) <= count
+        );
+      });
+    }
   }
-}
-document.addEventListener("click", function(event) {
-  if (event.target.id === "submit") {
-    const review = document.querySelector(".repair-review");
-    if (review) review.remove();
-    document.body.classList.remove("noscroll");
-  }
-});
+  document.addEventListener("click", function (event) {
+    if (event.target.id === "submit") {
+      const review = document.querySelector(".repair-review");
+      if (review) review.remove();
+      document.body.classList.remove("noscroll");
+    }
+  });
   // ... (rest of your existing JavaScript for dark mode and billing forward) ...
   const darkModeToggle = document.getElementById("darkModeToggle");
   const bodyElement = document.body;
@@ -353,7 +412,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Get references to the form and its elements
   const breakdownForm = document.getElementById("breakdown-form");
   const shopNameInput = document.getElementById("shop-name");
-  const ownerInput = document.getElementById("owner");
   const shopPhoneInput = document.getElementById("shop-phone");
   const shopCityInput = document.getElementById("shop-city");
   const servicesCheckboxes = breakdownForm.querySelectorAll(
@@ -371,7 +429,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const shopName = shopNameInput.value.trim();
       const shopPhone = shopPhoneInput.value.trim();
       const shopCity = shopCityInput.value.trim();
-      const owner= ownerInput.value.trim();
       // Determine selected service type(s) from checkboxes
       let serviceType = "";
       const selectedServices = [];
@@ -409,7 +466,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // Create a FormData object to send the data, especially for the file upload
       const formData = new FormData();
       formData.append("name", shopName);
-      formData.append("owner", owner);
       formData.append("contact_info", shopPhone); // Assuming contact_info is the phone number
       formData.append("location", shopCity); // Assuming location is just the city for now
       formData.append("service_type", serviceType);
@@ -427,7 +483,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!authToken) {
         alert("Authentication token not found. Please log in.");
         // Optionally redirect to login page
-        window.location.href = './login.html';
+        window.location.href = "./login.html";
         return;
       }
 

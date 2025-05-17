@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Sayarati</title>
-    <link rel="icon" href="./Logos/Logo bar sayarati.png" type="image/x-icon">
+    <link rel="icon" href="./Logos/Logo bar sayarati.png" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="./style/main.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,17 +27,33 @@
       </div>
       <nav>
         <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#about">About Us</a></li>
+          <li><a href="#section1">Home</a></li>
+          <li class="dropdown">
+          <a href="#">Services</a>
+          <ul class="dropdown-menu">
+            <li><a href="./repair.html">Repair</a></li>
+            <li><a href="./sale.html">Sell parts</a></li>
+            <li><a href="./chatbot.html">AI Chat Bot</a></li>
+          </ul></li>
+          <img
+            id="dropdown-icon"
+            src="./Logos/arrow-down.png"
+            alt="Icon of an arrow down"
+          />
+          <li><a href="#section2">About Us</a></li>
           <li><a href="#section5">Contact</a></li>
         </ul>
       </nav>
       <button id="darkModeToggle" aria-label="Toggle dark mode">
-        <img src="Logos/moon.png" alt="Moon icon" class="moon-icon">
-        <img src="Logos/sun.png" alt="Sun icon" class="sun-icon">
+        <img src="Logos/moon.png" alt="Moon icon" class="moon-icon" />
+        <img src="Logos/sun.png" alt="Sun icon" class="sun-icon" />
       </button>
-      <a id="header-btn" href="./login.html">Login|Sign up</a>
+      <a id="header-btn" class="header-btn"href="./login.html">Login|Sign up</a>
+      <div id="user-dropdown" class="user-dropdown">
+  <ul>
+    <li><a href="#" id="logout-link">Log out</a></li>
+  </ul>
+</div>
     </header>
     <main>
       <section id="section1">
@@ -48,7 +64,7 @@
             Use it now and experience what<br />
             you’ve never seen before.
           </p>
-          <a id="explore" href="#">Explore Now</a>
+          <a id="explore" href="./signup.html">Explore Now</a>
         </div>
         <div id="layer1"></div>
         <img
@@ -69,13 +85,15 @@
             src="./images/Section2-img.jpg"
             alt="Orange car"
           />
-          <p id="shown-paragraph"class="hidden-right">
+          <p id="shown-paragraph" class="hidden-right">
             You will find everything you need in Sayarati,<br />
             including locations of people who repair cars<br />
             and where various car parts are sold...<br />
-            <button onclick="showParagraph()" id="read-more-btn">Read More</button>
+            <button onclick="showParagraph()" id="read-more-btn">
+              Read More
+            </button>
           </p>
-          <p id="hidden-paragraph" class="hidden-right"> 
+          <p id="hidden-paragraph" class="hidden-right">
             You will find everything you need in Sayarati,<br />
             including locations of people who repair cars<br />
             and where various car parts are sold. You can<br />
@@ -83,7 +101,9 @@
             parts online. Sayarati is your guide on the road.<br />
             Use it now and experience what you’ve never<br />
             seen before.
-            <button onclick="hideParagraph()" id="read-less-btn">Read Less</button>
+            <button onclick="hideParagraph()" id="read-less-btn">
+              Read Less
+            </button>
           </p>
         </div>
       </section>
@@ -183,8 +203,8 @@
               type="text"
               placeholder="Your current location"
               name="Location"
-              />
-             
+            />
+
             <input class="date" type="time" placeholder="Time" name="Time" />
             <input
               type="text"
@@ -219,13 +239,14 @@
           <button type="submit" id="search-btn">Search</button>
         </div>
         <div id="map">
-          <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215209179035!2d-73.987844924525!3d40.74844047138939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1712345678901!5m2!1sen!2sus" 
-          allowfullscreen="" 
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215209179035!2d-73.987844924525!3d40.74844047138939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1712345678901!5m2!1sen!2sus"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          >
+          </iframe>
+        </div>
       </section>
       <section id="section5">
         <h1 class="hidden-left">Contact Us</h1>

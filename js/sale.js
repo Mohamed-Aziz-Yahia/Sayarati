@@ -78,7 +78,11 @@ const products = {
         image: "s-l1200 1.png"
     }
 };
-
+const authToken = localStorage.getItem('authToken');
+const loggedInUser = localStorage.getItem('loggedInUser');
+if (!authToken || !loggedInUser) {
+    window.location.href = './login.html';
+}
 // Toggle product details
 function toggleDetails(card) {
     const details = card.querySelector('.product-details');

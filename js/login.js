@@ -46,14 +46,14 @@ document.addEventListener("DOMContentLoaded", function () {
           // Handle the successful login response
           console.log("Login successful:", data);
           const token = data.token;
-          const user = data.user;
-
+          const user = data.username;
+          const userID= data.user_id;
           // Store the token in local storage or a cookie for future requests
           localStorage.setItem("authToken", token);
           localStorage.setItem("loggedInUser", JSON.stringify(user));
-
+          localStorage.setItem("userID", JSON.stringify(userID));
           // Redirect the user to a logged-in page (replace '/dashboard' with your actual page)
-          // window.location.href = './main.html';
+          window.location.href = './main.html';
         })
         .catch((error) => {
           console.error("Login error:", error);

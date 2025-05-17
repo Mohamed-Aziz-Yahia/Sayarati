@@ -137,6 +137,7 @@ body {
 }
 
 .sidebar-footer {
+    height: 40px;
     padding: 15px 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -159,7 +160,17 @@ body {
     margin-right: 10px;
     font-size: 0.9rem;
 }
-
+.user-avatar img{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+}
+.user-name{
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    color: var(--subtitle-color);
+    font-weight: 500;
+}
 /* Main Content */
 .main-content {
     flex-grow: 1;
