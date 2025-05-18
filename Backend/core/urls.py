@@ -98,3 +98,13 @@ urlpatterns += [
     # ... your other routes
     path("user-profile/", UserProfileView.as_view(), name="user-profile"),
 ]
+
+from .views import TestEndpointView
+urlpatterns +=[
+    # ... your existing url patterns ...
+
+    # Add the new test endpoint
+    path('test/', TestEndpointView.as_view(), name='test-endpoint'),
+
+    # ... rest of your url patterns ...
+]

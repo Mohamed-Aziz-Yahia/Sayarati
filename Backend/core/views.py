@@ -462,3 +462,14 @@ class BillingFrontendView(APIView):
         serializer = AlignedBillSerializer(bills, many=True)
         return Response(serializer.data)
 
+
+from django.http import JsonResponse
+from django.views import View
+
+class TestEndpointView(View):
+    """
+    A simple view for testing the deployment.
+    Returns a JSON message.
+    """
+    def get(self, request, *args, **kwargs):
+        return JsonResponse({"message": "Test endpoint is working!", "status": "success"})
