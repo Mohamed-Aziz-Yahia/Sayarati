@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Fetch all repair shops on page load
-  fetch("http://localhost:8000/api/repairshops/")
+  fetch("https://sayarati-production.up.railway.app/api/repairshops/")
     .then((response) => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -325,7 +325,7 @@ document.addEventListener("DOMContentLoaded", function () {
           rating: selectedRating,
         };
 
-        const response = await fetch("http://localhost:8000/api/reviews/", {
+        const response = await fetch("https://sayarati-production.up.railway.app/api/reviews/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -480,7 +480,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // --- Send the data using Fetch ---
       // Use the absolute URL for your backend endpoint
-      const backendUrl = "http://127.0.0.1:8000/api/repairshops/"; // Adjust if your URL is different
+      const backendUrl = "https://sayarati-production.up.railway.app/api/repairshops/"; // Adjust if your URL is different
 
       fetch(backendUrl, {
         method: "POST",
