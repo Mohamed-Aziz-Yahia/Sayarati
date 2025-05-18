@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
           // Ignoring 'role' as per your request
         };
   
-        fetch('http://localhost:8000/api/register/', {
+        fetch('https://sayarati-production.up.railway.app/api/register/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

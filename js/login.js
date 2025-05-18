@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
         password: password,
       };
 
-      fetch("http://localhost:8000/api/login/", {
+      fetch("http://https://sayarati-production.up.railway.app/api/login/", {
         // The endpoint you provided
         method: "POST",
         headers: {
