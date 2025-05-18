@@ -1,0 +1,1 @@
+web: gunicorn sayarati.wsgi --log-file -

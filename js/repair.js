@@ -196,24 +196,15 @@ document.addEventListener("DOMContentLoaded", function () {
       const imageSrc = shopData.image || "images/default-profile.png";
       const services = [];
       if (
-        shopData.service_type === "repair" ||
-        shopData.service_type === "both"
+        shopData.services === "repairing" ||
+        shopData.services === "both"
       )
-        services.push("repair");
+        services.push("repairing");
       if (
-        shopData.service_type === "towing" ||
-        shopData.service_type === "both"
+        shopData.services === "towing" ||
+        shopData.services === "both"
       )
         services.push("towing");
-
-      function createRating(rating) {
-        let starsHtml = "<div>";
-        for (let i = 0; i < Math.floor(rating); i++) {
-          starsHtml += `<img src="./Logos/star.png" alt="star"/>`;
-        }
-        starsHtml += "</div>";
-        return starsHtml;
-      }
 
       function serviceText(servicesArray) {
         if (servicesArray.length === 1)
@@ -226,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .join(", ");
         return "Various services";
       }
-
+     console.log("Services:", services);
       const repairDetails = document.createElement("div");
       repairDetails.className = "repair-details";
       repairDetails.innerHTML = `
@@ -468,7 +459,7 @@ document.addEventListener("DOMContentLoaded", function () {
       formData.append("name", shopName);
       formData.append("contact_info", shopPhone); // Assuming contact_info is the phone number
       formData.append("location", shopCity); // Assuming location is just the city for now
-      formData.append("service_type", serviceType);
+      formData.append("services", serviceType);
 
       // Append the image file if one was selected
       if (shopImageFile) {
@@ -556,3 +547,4 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+      console.log(generateStars(ratingValue));

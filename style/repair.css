@@ -428,6 +428,12 @@ div#repair-container {
   overflow-y: hidden;
   pointer-events: auto;
 }
+#rating{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-top: 6px;
+}
 body.noscroll {
   pointer-events: none;
   overflow: hidden;
@@ -443,13 +449,7 @@ body.noscroll {
 #profile-img {
   margin-bottom: 150px;
 }
-#rating {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 250px;
-  margin-top: -25px;
-}
+
 #rating img {
   width: 25px;
   height: 25px;

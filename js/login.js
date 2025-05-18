@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
           localStorage.setItem("loggedInUser", JSON.stringify(user));
           localStorage.setItem("userID", JSON.stringify(userID));
           // Redirect the user to a logged-in page (replace '/dashboard' with your actual page)
-          window.location.href = './main.html';
+          window.location.href = './index.html';
         })
         .catch((error) => {
           console.error("Login error:", error);
