@@ -185,7 +185,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let selectedShopId = null;
   function showDetails(item, shopData) {
     selectedShopId = item.getAttribute("data-id");
-    console.log("Selected shop ID:", selectedShopId);
     try {
       document.body.classList.add("noscroll");
 
@@ -217,7 +216,6 @@ document.addEventListener("DOMContentLoaded", function () {
             .join(", ");
         return "Various services";
       }
-     console.log("Services:", services);
       const repairDetails = document.createElement("div");
       repairDetails.className = "repair-details";
       repairDetails.innerHTML = `
@@ -310,14 +308,12 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Please select a rating before submitting!");
         return;
       }
-      console.log("Selected rating:", selectedRating);
       const token = localStorage.getItem("authToken"); // Replace with your token key
       if (!token) {
         alert("You must be logged in to submit a rating!");
         window.location.href = "/login"; // Redirect if no token
         return;
       }
-      console.log("Token found:", token);
       try {
         // Replace `1` with the actual repair shop ID (dynamic value)
         const data = {
@@ -336,7 +332,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (response.ok) {
           alert("Rating submitted successfully!");
-          console.log(response);
           const review = document.querySelector(".repair-review");
           if (review) review.remove();
           document.body.classList.remove("noscroll");
@@ -410,141 +405,218 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   const shopImageInput = document.getElementById("shop-image");
   const cancelButton = document.getElementById("cancel-form"); // Get cancel button
+  function getCurrentUserId() {
+  // Get the user ID JSON string from localStorage using the key "userID".
+  const userIdJson = localStorage.getItem("userID");
 
-  // Add event listener for the form submission
-  if (breakdownForm) {
-    breakdownForm.addEventListener("submit", function (event) {
-      event.preventDefault(); // Prevent the default form submission
+  // Check if the item exists in localStorage.
+  if (userIdJson) {
+    try {
+      // Attempt to parse the JSON string back into a JavaScript value.
+      const userId = JSON.parse(userIdJson);
 
-      // Collect data from text inputs
-      const shopName = shopNameInput.value.trim();
-      const shopPhone = shopPhoneInput.value.trim();
-      const shopCity = shopCityInput.value.trim();
-      // Determine selected service type(s) from checkboxes
-      let serviceType = "";
-      const selectedServices = [];
-      servicesCheckboxes.forEach((checkbox) => {
-        if (checkbox.checked) {
-          selectedServices.push(checkbox.value);
-        }
-      });
-
-      // Map selected services to the expected backend format (assuming 'repair', 'towing', 'both')
-      if (
-        selectedServices.includes("repairing") &&
-        selectedServices.includes("towing")
-      ) {
-        serviceType = "both";
-      } else if (selectedServices.includes("repairing")) {
-        serviceType = "repairing";
-      } else if (selectedServices.includes("towing")) {
-        serviceType = "towing";
+      // Basic check to ensure the parsed value is not null or undefined.
+      if (userId !== null && userId !== undefined) {
+        // Return the successfully parsed user ID.
+        return userId;
       }
-      // If no service is selected, serviceType remains '' or you could set it to null/undefined
-
-      // Get the selected image file
-      const shopImageFile = shopImageInput.files[0]; // Get the first selected file
-
-      // Basic validation
-      if (!shopName || !shopPhone || !shopCity || !serviceType) {
-        // You might want to add more specific validation messages
-        alert(
-          "Please fill in all required fields (Shop Name, Phone, City, and select at least one Service)."
-        );
-        return;
-      }
-
-      // Create a FormData object to send the data, especially for the file upload
-      const formData = new FormData();
-      formData.append("name", shopName);
-      formData.append("contact_info", shopPhone); // Assuming contact_info is the phone number
-      formData.append("location", shopCity); // Assuming location is just the city for now
-      formData.append("services", serviceType);
-
-      // Append the image file if one was selected
-      if (shopImageFile) {
-        formData.append("profile_image", shopImageFile); // Use the field name your backend expects for the image
-      }
-
-      // --- Authentication Token ---
-      // You need to get the authentication token that was stored after login.
-      // This is a placeholder - replace with your actual logic to retrieve the token.
-      const authToken = localStorage.getItem("authToken"); // Example: retrieve from localStorage
-
-      if (!authToken) {
-        alert("Authentication token not found. Please log in.");
-        // Optionally redirect to login page
-        window.location.href = "./login.html";
-        return;
-      }
-
-      // --- Send the data using Fetch ---
-      // Use the absolute URL for your backend endpoint
-      const backendUrl = "https://sayarati-production.up.railway.app/api/repairshops/"; // Adjust if your URL is different
-
-      fetch(backendUrl, {
-        method: "POST",
-        // When using FormData, DO NOT manually set the 'Content-Type' header.
-        // The browser sets it automatically, including the boundary needed for file uploads.
-        headers: {
-          Authorization: `Token ${authToken}`, // Include the authentication token
-          // 'Content-Type': 'multipart/form-data' // DO NOT set this manually with FormData
-        },
-        body: formData, // Send the FormData object
-      })
-        .then((response) => {
-          // Check if the response status is OK (2xx)
-          if (!response.ok) {
-            // Attempt to parse JSON error response for more details
-            return response
-              .json()
-              .then((errorData) => {
-                let errorMessage = `Failed to add shop: ${response.status}`;
-                if (errorData) {
-                  // Iterate over error details if available (common in DRF validation errors)
-                  for (const field in errorData) {
-                    if (errorData.hasOwnProperty(field)) {
-                      // Check if errorData[field] is an array before joining
-                      const fieldErrors = Array.isArray(errorData[field])
-                        ? errorData[field].join(", ")
-                        : errorData[field];
-                      errorMessage += `\n${field}: ${fieldErrors}`;
-                    }
-                  }
-                } else {
-                  errorMessage += ` - Something went wrong (No error details from server)`;
-                }
-                throw new Error(errorMessage);
-              })
-              .catch(() => {
-                // Fallback if response is not JSON (e.g., HTML error page)
-                throw new Error(
-                  `Failed to add shop: ${response.status} - Could not parse error details.`
-                );
-              });
-          }
-          return response.json(); // Parse the JSON response for successful requests
-        })
-        .then((newShopData) => {
-          console.log("Shop added successfully:", newShopData);
-          alert("Breakdown shop added successfully!");
-          // Optionally close the form or redirect
-          // breakdownForm.style.display = 'none'; // Example: hide the form
-          // window.location.reload(); // Example: refresh the page to see the new shop
-        })
-        .catch((error) => {
-          console.error("Error adding shop:", error);
-          alert("Error adding breakdown shop: " + error.message);
-        });
-    });
+    } catch (e) {
+      // Log any errors that occur during JSON parsing.
+      console.error("Error parsing user ID from localStorage:", e);
+      // Return null if parsing fails.
+      return null;
+    }
   }
 
-  // Add event listener for the cancel button (optional)
-  if (cancelButton) {
-    cancelButton.addEventListener("click", function () {
-      // Add logic here to close the form or reset it
-      // breakdownForm.style.display = 'none'; // Example: hide the form
-    });
+  // If the "userID" item is not found in localStorage, log a warning.
+  console.warn("User ID not found in localStorage under key 'userID'.");
+  // Return null if the item is not found or is empty.
+  return null;
+}
+function hasUserAlreadyCreatedShop(userId) {
+  if (!userId) return false; // Can't check without a user ID
+  return localStorage.getItem(`user_${userId}_hasShop`) === "true";
+}
+
+function markUserHasCreatedShop(userId) {
+  if (userId) {
+    localStorage.setItem(`user_${userId}_hasShop`, "true");
+  }
+}
+
+function disableShopCreationUI(message = "You have already registered a shop.") {
+  if (breakdownForm) {
+    // Hide the form or disable its inputs
+    breakdownForm.style.display = "none";
+    // Or disable all form elements:
+    // Array.from(breakdownForm.elements).forEach(element => element.disabled = true);
+  }
+  let statusMessageDiv = document.getElementById("shopCreationStatusMessage");
+  if (!statusMessageDiv) {
+    // Create a div to show the message if it doesn't exist
+    statusMessageDiv = document.createElement("div");
+    statusMessageDiv.id = "shopCreationStatusMessage";
+    statusMessageDiv.style.color = "red";
+    statusMessageDiv.style.fontWeight = "bold";
+    // Insert it before the form or at a suitable place
+    breakdownForm.parentNode.insertBefore(statusMessageDiv, breakdownForm);
+  }
+  statusMessageDiv.innerText = message;
+}
+ const currentUserId = getCurrentUserId();
+  if (currentUserId && hasUserAlreadyCreatedShop(currentUserId)) {
+    disableShopCreationUI();
   }
 });
-      console.log(generateStars(ratingValue));
+
+// --- Existing form submission logic with new checks ---
+if (breakdownForm) {
+  breakdownForm.addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const currentUserId = getCurrentUserId();
+
+    // --- NEW: Frontend check before attempting to send the request ---
+    if (currentUserId && hasUserAlreadyCreatedShop(currentUserId)) {
+      alert("You have already registered a shop and cannot create another one.");
+      disableShopCreationUI(); // Ensure UI is disabled
+      return; // Stop the form submission
+    }
+
+    // Collect data from text inputs
+    const shopName = shopNameInput.value.trim();
+    const shopPhone = shopPhoneInput.value.trim();
+    const shopCity = shopCityInput.value.trim();
+    // Determine selected service type(s) from checkboxes
+    let serviceType = "";
+    const selectedServices = [];
+    servicesCheckboxes.forEach((checkbox) => {
+      if (checkbox.checked) {
+        selectedServices.push(checkbox.value);
+      }
+    });
+
+    // Map selected services to the expected backend format (assuming 'repair', 'towing', 'both')
+    if (
+      selectedServices.includes("repairing") &&
+      selectedServices.includes("towing")
+    ) {
+      serviceType = "both";
+    } else if (selectedServices.includes("repairing")) {
+      serviceType = "repairing";
+    } else if (selectedServices.includes("towing")) {
+      serviceType = "towing";
+    }
+    // If no service is selected, serviceType remains '' or you could set it to null/undefined
+
+    // Get the selected image file
+    const shopImageFile = shopImageInput.files[0]; // Get the first selected file
+
+    // Basic validation
+    if (!shopName || !shopPhone || !shopCity || !serviceType) {
+      alert(
+        "Please fill in all required fields (Shop Name, Phone, City, and select at least one Service)."
+      );
+      return;
+    }
+
+    // Create a FormData object to send the data, especially for the file upload
+    const formData = new FormData();
+    formData.append("name", shopName);
+    formData.append("contact_info", shopPhone); // Assuming contact_info is the phone number
+    formData.append("location", shopCity); // Assuming location is just the city for now
+    formData.append("services", serviceType);
+
+    // Append the image file if one was selected
+    if (shopImageFile) {
+      formData.append("profile_image", shopImageFile); // Use the field name your backend expects for the image
+    }
+
+    // --- Authentication Token ---
+    const authToken = localStorage.getItem("authToken");
+
+    if (!authToken) {
+      alert("Authentication token not found. Please log in.");
+      window.location.href = "./login.html";
+      return;
+    }
+
+    // --- Send the data using Fetch ---
+    const backendUrl = "https://sayarati-production.up.railway.app/api/repairshops/";
+
+    fetch(backendUrl, {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${authToken}`,
+      },
+      body: formData,
+    })
+      .then((response) => {
+        // --- NEW: If backend says user already created, update frontend and stop ---
+        if (response.status === 400 || response.status === 403 || response.status === 409) {
+            // These status codes are common for "Bad Request", "Forbidden", or "Conflict"
+            // The backend should ideally send a specific message indicating the limit.
+            return response.json().then(errorData => {
+                // Look for common phrases from backend or specific error fields
+                if (JSON.stringify(errorData).includes("already has a shop") || JSON.stringify(errorData).includes("limit exceeded")) {
+                    alert("You have already registered a shop and cannot create another one.");
+                    markUserHasCreatedShop(currentUserId); // Mark even if backend rejected
+                    disableShopCreationUI();
+                    throw new Error("User limit reached (handled by frontend)."); // Stop the promise chain
+                }
+                throw new Error(`Server Error: ${response.status}. ${JSON.stringify(errorData)}`); // Re-throw if not the specific error
+            }).catch(e => {
+                // Catch JSON parsing errors for 4xx responses that might not be JSON
+                if (e.message !== "User limit reached (handled by frontend).") {
+                     alert(`Failed to add shop: ${response.status} - Could not parse error details.`);
+                }
+                throw e; // Re-throw for general error handling below
+            });
+        }
+
+
+        if (!response.ok) {
+          return response
+            .json()
+            .then((errorData) => {
+              let errorMessage = `Failed to add shop: ${response.status}`;
+              if (errorData) {
+                for (const field in errorData) {
+                  if (errorData.hasOwnProperty(field)) {
+                    const fieldErrors = Array.isArray(errorData[field])
+                      ? errorData[field].join(", ")
+                      : errorData[field];
+                    errorMessage += `\n${field}: ${fieldErrors}`;
+                  }
+                }
+              } else {
+                errorMessage += ` - Something went wrong (No error details from server)`;
+              }
+              throw new Error(errorMessage);
+            })
+            .catch(() => {
+              throw new Error(
+                `Failed to add shop: ${response.status} - Could not parse error details.`
+              );
+            });
+        }
+        return response.json();
+      })
+      .then((newShopData) => {
+        alert("Breakdown shop added successfully!");
+        // --- NEW: Mark that the user has now created a shop (INSECURE as primary method) ---
+        markUserHasCreatedShop(currentUserId);
+        disableShopCreationUI("Shop registered successfully!"); // Update UI after success
+
+        // Optionally close the form or redirect
+        // window.location.reload(); // Example: refresh the page to see the new shop
+      })
+      .catch((error) => {
+        console.error("Error adding shop:", error);
+        // Only show alert if it wasn't the "User limit reached" error handled above
+        if (!error.message.includes("User limit reached")) {
+            alert("Error adding breakdown shop: " + error.message);
+        }
+      });
+  });
+}
