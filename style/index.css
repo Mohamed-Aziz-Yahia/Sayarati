@@ -112,6 +112,7 @@ header a.header-btn {
   min-width: 110px;    /* Minimum width */
   text-align: center;
   border-radius: 10px;
+  padding-top: 8px;
 }
 .user-icon{
   width: 30px;
@@ -204,7 +205,7 @@ img {
 #darkModeToggle {
   margin-top: 6px;
   margin-right: 20px;
-  margin-left: 20px;
+  margin-left: 10px;
   background: none;
   border: none;
   cursor: pointer;
