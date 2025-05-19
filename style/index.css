@@ -30,7 +30,7 @@ main section h1 {
 /* Header */
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding-top: 8px;
   background-color: transparent;
   position: fixed;
@@ -66,38 +66,50 @@ header nav ul {
   list-style: none;
 }
 header nav ul li a {
-  margin: 0 10px;
   color: black;
   text-decoration: none;
+  display: inline-block;
+  padding: 0 10px;  /* Large click area */
+  white-space: nowrap; /* Prevents line breaks */
+  min-width: 60px;    /* Minimum width */
+  text-align: center;
 }
-.about-us,header nav ul li a.about-us{
+.about-us{
   width: 90px;
+}
+header nav ul li a#about-us{
+  width: 89px;
 }
 header a.header-btn {
   font-size: 1rem;
   background-color: #fe8400;
   color: black;
-  width: 120px;
+  width: 160px;
   height: 40px;
   text-decoration: none;
-  margin-right: 40px;
-  padding-left: 10px;
-  padding-top: 10px;
+  margin-right: 20px;
+  padding: 0 10px; 
+  padding-top: 8px; /* Large click area */
+  white-space: nowrap; /* Prevents line breaks */
+  min-width: 140px;    /* Minimum width */
+  text-align: center;
   border-radius: 10px;
 }
 .header-user {
   display:flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #fe8400;
   font-size: 1rem;
+  background-color: #fe8400;
   color: black;
   width: 120px;
   height: 40px;
   text-decoration: none;
-  margin-top: 5px;
   margin-right: 20px;
-  padding-left: 10px;
+  padding: 0 10px; 
+  white-space: nowrap; /* Prevents line breaks */
+  min-width: 110px;    /* Minimum width */
+  text-align: center;
   border-radius: 10px;
 }
 .user-icon{
@@ -190,6 +202,8 @@ img {
 }
 #darkModeToggle {
   margin-top: 6px;
+  margin-right: 20px;
+  margin-left: 20px;
   background: none;
   border: none;
   cursor: pointer;
