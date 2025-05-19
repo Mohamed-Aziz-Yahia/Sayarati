@@ -76,6 +76,7 @@ header nav ul li a {
 }
 .about-us{
   width: 90px;
+  margin-right: 10px;
 }
 header nav ul li a#about-us{
   width: 89px;
@@ -112,7 +113,7 @@ header a.header-btn {
   min-width: 110px;    /* Minimum width */
   text-align: center;
   border-radius: 10px;
-  padding-top: 8px;
+  margin-top: 6px;
 }
 .user-icon{
   width: 30px;
