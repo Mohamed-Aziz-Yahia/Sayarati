@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const name = shopData.name || "Unknown Shop";
       const phoneNum = shopData.contact_info || "No phone";
       const city = shopData.location || "Unknown City";
-      const ratingValue = shopData.average_rating || 0;
+      const [averageRating, ownerId] = shop.average_rating || [0, null];
       const imageSrc = shopData.image || "images/default-profile.png";
       const services = [];
       if (
@@ -227,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function () {
               <p>Phone: ${phoneNum}</p>
               <p>Location: ${city}</p>
               <p>Services: ${serviceText(services)}</p>
-              <div id='rating'>Rating: ${generateStars(ratingValue)}</div>
+              <div id='rating'>Rating: ${generateStars(averageRating)}</div>
             </div>
           </div>
           <button id='call'><img src="./Logos/phone.png"/>Contact</button>
@@ -523,9 +523,8 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((newShopData) => {
           console.log("Shop added successfully:", newShopData);
           alert("Breakdown shop added successfully!");
-          // Optionally close the form or redirect
-          // breakdownForm.style.display = 'none'; // Example: hide the form
-          // window.location.reload(); // Example: refresh the page to see the new shop
+          breakdownForm.style.display = 'none'; 
+          window.location.reload(); 
         })
         .catch((error) => {
           console.error("Error adding shop:", error);
