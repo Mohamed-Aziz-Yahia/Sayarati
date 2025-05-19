@@ -70,7 +70,7 @@ header nav ul li a {
   color: black;
   text-decoration: none;
 }
-.about-us{
+.about-us,header nav ul li a.about-us{
   width: 90px;
 }
 header a.header-btn {

@@ -390,10 +390,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  function forwardBilling(url) {
+  
+});
+function forwardBilling(url) {
     window.location.href = url;
   }
-});
 document.addEventListener("DOMContentLoaded", function () {
   // Get references to the form and its elements
   const breakdownForm = document.getElementById("breakdown-form");
