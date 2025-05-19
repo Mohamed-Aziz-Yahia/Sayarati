@@ -410,6 +410,7 @@ div#repair-container {
   color: #fff;
   border: none;
   border-radius: 10px;
+  margin: 0 20px;
 }
 
 .repair-details {
