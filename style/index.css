@@ -79,6 +79,7 @@ header nav ul li a {
 }
 header nav ul li a#about-us{
   width: 89px;
+  padding-right: 10px;
 }
 header a.header-btn {
   font-size: 1rem;
