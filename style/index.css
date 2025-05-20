@@ -30,7 +30,8 @@ main section h1 {
 /* Header */
 header {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between; /* Changed from space-around */
+  align-items: center;
   padding-top: 8px;
   background-color: transparent;
   position: fixed;
@@ -48,7 +49,7 @@ img.S-logo {
   width: 37px;
   height: 32px;
   margin-bottom: 15px;
-  margin-left: 70px;
+  margin-left: 40px;
 }
 img.ayarati-logo {
   width: 174px;
@@ -61,8 +62,9 @@ header nav ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 0px;
-  margin-left: 200px;
+   /* gap: 15px; */
+  padding: 0;
+  margin: 0;
   list-style: none;
 }
 header nav ul li a {
@@ -86,7 +88,7 @@ header a.header-btn {
   font-size: 1rem;
   background-color: #fe8400;
   color: black;
-  width: 160px;
+  width: 140px;
   height: 40px;
   text-decoration: none;
   margin-right: 20px;
@@ -741,4 +743,63 @@ footer {
 }
 .section3-item:nth-child(3) {
   animation-delay: 600ms;
+}
+@media (max-width: 886px){
+  header div.logo{
+    width: 50%;
+    margin-left: 0px;
+  }
+  img.S-logo{
+    width: 25px;
+    height: 20px;
+    margin-left: 10px;
+    margin-top: 6px;
+  }
+  img.ayarati-logo{
+    width: 120px;
+    height: 20px;
+     }
+  header nav ul li a{
+    max-width: 40px;
+    padding: 0 ;
+    margin: 0 ;
+    font-size: 0.8rem;
+  }
+  .about-us{
+  max-width: 60px;
+  margin-right: 3px;
+}
+header nav ul li a#about-us{
+  width: 89px;
+  padding-right: 3px;
+}
+header a.header-btn{
+  min-width: 70px;
+  width: 40px;
+  height: 30px;
+  font-size: 0.6rem;
+  margin-right: 10px;
+  padding: 3px 0;
+  padding-top: 6px;
+}
+  .header-user{
+    display:flex;
+    min-width: 30px;
+    height: 30px;
+    font-size: 0.6rem;
+    margin-right: 5px;
+    padding-top: 6px;
+  }
+  .user-icon{
+    width: 20px;
+    height: 20px;
+  }
+  #darkModeToggle{
+    margin-top: 6px;
+    margin-right: 10px;
+    margin-left: 0px;
+    width: 30px;
+    height: 30px;
+  }
+
 }

@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const name = shopData.name || "Unknown Shop";
       const phoneNum = shopData.contact_info || "No phone";
       const city = shopData.location || "Unknown City";
-      const [averageRating, ownerId] = shop.average_rating || [0, null];
+      const [averageRating, ownerId] = shopData.average_rating || [0, null];
       const imageSrc = shopData.image || "images/default-profile.png";
       const services = [];
       if (
