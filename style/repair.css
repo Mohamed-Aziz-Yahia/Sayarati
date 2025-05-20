@@ -420,7 +420,6 @@ div#repair-container {
   width: 60%;
   height: 500px;
   transform: translate(-50%, -50%);
-  background: #fe8400;
   padding: 20px;
   border: none;
   border-radius: 10px;
@@ -446,6 +445,8 @@ body.noscroll {
   margin: 20px 0;
   margin-left: 80px;
   width: 90%;
+  border: 1px solid #c4c4c4;
+  border-radius: 4px;
 }
 #profile-img {
   margin-bottom: 150px;
@@ -463,8 +464,8 @@ body.noscroll {
   border: none;
 }
 .repair-details p {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.4rem;
+font-family: "Poppins", sans-serif;
+ font-size: 1.4rem;
   font-weight: 500;
 }
 button#call{
@@ -472,7 +473,8 @@ button#call{
   justify-content: center;
   align-items: center;
   width: 160px;
-  font-family: "Montserrat", sans-serif;
+  background-color: #fe8400;
+   font-family: "Poppins", sans-serif;
   font-size: 1.2rem;
   font-weight: 500;
   border: none;

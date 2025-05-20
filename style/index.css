@@ -62,9 +62,9 @@ header nav ul {
   display: flex;
   justify-content: center;
   align-items: center;
-   /* gap: 15px; */
   padding: 0;
   margin: 0;
+  margin-left: 25px;
   list-style: none;
 }
 header nav ul li a {
@@ -92,6 +92,7 @@ header a.header-btn {
   height: 40px;
   text-decoration: none;
   margin-right: 20px;
+  margin-bottom: 5px;
   padding: 0 10px; 
   padding-top: 8px; /* Large click area */
   white-space: nowrap; /* Prevents line breaks */
@@ -110,12 +111,12 @@ header a.header-btn {
   height: 40px;
   text-decoration: none;
   margin-right: 20px;
+  margin-bottom: 5px;
   padding: 0 10px; 
   white-space: nowrap; /* Prevents line breaks */
   min-width: 110px;    /* Minimum width */
   text-align: center;
   border-radius: 10px;
-  margin-top: 6px;
 }
 .user-icon{
   width: 30px;
@@ -206,7 +207,6 @@ img {
   background-color: rgba(255, 255, 255, 0.3);
 }
 #darkModeToggle {
-  margin-top: 6px;
   margin-right: 20px;
   margin-left: 10px;
   background: none;
@@ -759,6 +759,9 @@ footer {
     width: 120px;
     height: 20px;
      }
+  header nav ul{
+    margin-left: 15px;
+  }
   header nav ul li a{
     max-width: 40px;
     padding: 0 ;
