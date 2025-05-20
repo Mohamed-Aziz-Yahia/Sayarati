@@ -223,10 +223,10 @@ document.addEventListener("DOMContentLoaded", function () {
           <div id='details-content'>
             <img id='profile-img' src="${imageSrc}" alt="${name}"/>
             <div>
-              <p>Name: ${name}</p>
-              <p>Phone: ${phoneNum}</p>
-              <p>Location: ${city}</p>
-              <p>Services: ${serviceText(services)}</p>
+              <p class='details-content'>Name: ${name}</p>
+              <p class='details-content'>Phone: ${phoneNum}</p>
+              <p class='details-content'>Location: ${city}</p>
+              <p class='details-content'>Services: ${serviceText(services)}</p>
               <div id='rating'>Rating: ${generateStars(averageRating)}</div>
             </div>
           </div>

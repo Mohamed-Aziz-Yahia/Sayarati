@@ -414,6 +414,7 @@ div#repair-container {
 }
 
 .repair-details {
+  background-color: #fff;
   position: fixed;
   top: 50%;
   left: 51%;
@@ -429,7 +430,7 @@ div#repair-container {
   pointer-events: auto;
 }
 #rating{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 1.4rem;
   font-weight: 500;
   margin-top: 6px;
@@ -463,7 +464,7 @@ body.noscroll {
   background-color: #fe8400;
   border: none;
 }
-.repair-details p {
+ p.details-content {
 font-family: "Poppins", sans-serif;
  font-size: 1.4rem;
   font-weight: 500;
@@ -496,7 +497,8 @@ button#call{
   cursor: pointer;
 }
  button#call:hover {
-  background-color: lightgray;
+  background-color: #ef7f00;
+  transition: 0.3s;
 }
 .repair-review {
   position: fixed;
