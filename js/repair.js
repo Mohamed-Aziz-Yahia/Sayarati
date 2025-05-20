@@ -1,3 +1,8 @@
+const authToken = localStorage.getItem('authToken');
+const loggedInUser = localStorage.getItem('loggedInUser');
+if (!authToken || !loggedInUser) {
+    window.location.href = './login.html';
+}
 document.addEventListener("DOMContentLoaded", function () {
   const searchBar = document.getElementById("search-bar");
   const repairContainer = document.getElementById("repair-container");
