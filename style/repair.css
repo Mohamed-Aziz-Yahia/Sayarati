@@ -432,7 +432,6 @@ div#repair-container {
 #rating{
   font-family: 'Poppins', sans-serif;
   font-size: 1.4rem;
-  font-weight: 500;
   margin-top: 6px;
 }
 body.noscroll {
@@ -446,8 +445,6 @@ body.noscroll {
   margin: 20px 0;
   margin-left: 80px;
   width: 90%;
-  border: 1px solid #c4c4c4;
-  border-radius: 4px;
 }
 #profile-img {
   margin-bottom: 150px;
@@ -464,10 +461,9 @@ body.noscroll {
   background-color: #fe8400;
   border: none;
 }
- p.details-content {
+ .repair-details div#details-content div p.details-content {
 font-family: "Poppins", sans-serif;
  font-size: 1.4rem;
-  font-weight: 500;
 }
 button#call{
   display: flex;
